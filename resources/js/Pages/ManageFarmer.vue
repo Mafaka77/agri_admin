@@ -1,0 +1,159 @@
+<template>
+    <div class="row justify-center">
+    <div class="col-md-9 col-xl-7">
+        <q-table
+            flat bordered
+            title="Farmers"
+            :rows="farmerList"
+            :columns="columns"
+            row-key="status"
+            :pagination="initialPagination"
+        >
+            <template v-slot:top-left>
+               <q-input
+                outlined
+                dense
+                placeholder="Search List"
+               />
+
+            </template>
+            <template v-slot:top-right>
+                <q-btn
+                    @click="e=>$inertia.get(route('farmer-basic-info.index'))"
+                    outline
+                    rounded
+                    label="Add Farmer"
+                    dense
+                    flat
+                    class="text-white q-px-lg q-mx-lg"
+                    style="background-color:#2e6525 "
+                />
+
+            </template>
+            <template v-slot:body-cell-actions="props">
+                <q-td :props="props">
+                       <q-btn v-if="$page.props.auth.user.roles_id===2"
+                           dense
+                           flat
+                           @click="openFarmer(props.row.id)"
+                           label="VIEW"
+                           style="color: #2e6525"
+                       ></q-btn>
+
+                        <q-btn
+                            v-else
+                            dense
+                            round
+                            flat
+                            @click="openFarmer(props.row.id)"
+                            label="OPEN"
+                            style="color: #2e6525"
+                        ></q-btn>
+
+                    <q-btn
+                        dense
+                        round
+                        flat
+                        style="color: #2e6525"
+                        icon="more_vert"
+                    >
+                        <q-menu fit anchor="bottom left" self="top left">
+                            <q-item clickable @click="$inertia.get(route('farmer-basic-info.edit',props.row.id))">
+                                <q-item-section>View/Edit</q-item-section>
+                            </q-item>
+                            <q-item clickable @click="deleteFarmer(props.row.id)">
+                                <q-item-section style="color: red">Delete</q-item-section>
+                            </q-item>
+                        </q-menu>
+                    </q-btn>
+                </q-td>
+            </template>
+            <template v-slot:body-cell-status="props">
+                <q-td :props="props">
+                    <div v-if="props.value==='Incomplete'">
+                        <q-badge class="q-pa-sm"  color="red" :label="props.value"/>
+                    </div>
+                    <div v-else>
+                        <q-badge class="q-pa-sm" style="background-color: #2e6525"  :label="props.value"/>
+                    </div>
+                </q-td>
+            </template>
+            <template v-slot:body-cell-verification="props">
+                <q-td :props="props">
+                    <div v-if="props.value==='Submitted'">
+                        <q-badge class="q-pa-sm"  style="background-color: #cd9f27" :label="props.value"/>
+                    </div>
+                    <div v-else-if="props.value==='Pending'">
+                        <q-badge class="q-pa-sm" style="background-color: red"  :label="props.value"/>
+                    </div>
+                    <div v-else-if="props.value==='Approved'">
+                        <q-badge class="q-pa-sm" style="background-color: #59964f"  :label="props.value"/>
+                    </div>
+                    <div v-else-if="props.value==='Rejected'">
+                        <q-badge class="q-pa-sm" style="background-color: #e94343"  :label="props.value"/>
+                    </div>
+                </q-td>
+            </template>
+        </q-table>
+    </div>
+    </div>
+</template>
+
+<script setup>
+import {ref} from 'vue';
+import {useQuasar} from "quasar";
+import {router, useForm} from "@inertiajs/vue3";
+const q=useQuasar();
+const columns = [
+    {
+        name: 'farmer_id',
+        required: true,
+        label: 'Farmer ID',
+        align: 'left',
+        field: row => row.farmer_id,
+        sortable: true
+    },
+    { name: 'full_name', align: 'center', label: 'Farmer Name', field: 'full_name', sortable: true },
+    { name: 'phone_no', align: 'center', label: 'Phone No.', field: 'phone_no', sortable: true },
+    { name: 'district', label: 'District', field: row => row.district.district_name },
+    { name: 'status', align: 'center', label: 'Status', field: row => row.status, sortable: true},
+    { name: 'verification', align: 'center', label: 'Verification', field: row => row.verification, sortable: true},
+    {name: 'actions', align: 'right', field: 'id'}
+]
+
+const props=defineProps({
+        'farmers':[]
+}
+)
+const farmerList=ref(props.farmers);
+const openFarmer=(id)=>{
+    router.get(route('open-clicked',id),{})
+}
+const deleteFarmer=(id)=>{
+    q.dialog({
+        title: 'Confirm Delete',
+        message: 'Are you sure?',
+        ok: 'Yes',
+        cancel: 'No'
+    }).onOk(() => {
+        router.delete(route('farmer-basic-info.destroy', id), {
+            onStart: () => q.loading.show({ message: 'Deleting....' }),
+            onFinish: () => q.loading.hide(),
+            onSuccess: () => q.loading.hide(),
+            onError: () => q.loading.hide(),
+            preserveState: false,
+        })
+    }).onCancel(() => {
+    })
+}
+</script>
+<style>
+.my-table-details {
+    font-size: 0.85em;
+    font-style: italic;
+    max-width: 200px;
+    white-space: normal;
+    color: #555;
+    margin-top: 4px;
+}
+</style>
