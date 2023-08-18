@@ -12,6 +12,7 @@ use App\Models\Gender;
 use App\Models\GreenHousePlant;
 use App\Models\IrrigationInfrastructures;
 use App\Models\KharifCrops;
+use App\Models\LandCrop;
 use App\Models\LandHolding;
 use App\Models\Orchards;
 use App\Models\OwnershipType;
@@ -110,5 +111,11 @@ class ResourceController extends Controller
         $plantation=Plantation::query()->get();
         $greenHouse=GreenHousePlant::query()->get();
         return response()->json(['orchards'=>$orchards,'plantation'=>$plantation,'greenHouse'=>$greenHouse],200);
+    }
+
+    public function getLandCrops(Request $request)
+    {
+        $landCrops=LandCrop::query()->get();
+        return response()->json(['crops'=>$landCrops],200);
     }
 }

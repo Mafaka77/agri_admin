@@ -34,6 +34,7 @@ Route::middleware('auth')->group(function () {
 
 //FARMER DETAILS
     Route::get('farmer-details/{farmer}', [\App\Http\Controllers\FarmerDetailsController::class, 'index'])->name('farmer-details');
+    Route::get('send-for-approval/{id}',[\App\Http\Controllers\FarmerDetailsController::class,'submitForApproval'])->name('send-for-approval');
 //ADDITIONAL FARMER DETAILS
     Route::get('additional-farmer-details/{id}', [\App\Http\Controllers\AdditionalFarmerDetailsController::class,'index'])->name('to-additional-farmer-details');
     Route::post('upload-ration-card', [\App\Http\Controllers\AdditionalFarmerDetailsController::class,'uploadRationCard'])->name('upload-ration-card');
@@ -72,6 +73,12 @@ Route::middleware('auth')->group(function () {
     Route::resource('manage-user',\App\Http\Controllers\ManageUserController::class);
 
 //EDIT ROUTES
+
+    //SUPERVISOR
+    Route::get('supervisor-approval-index/{id}',[\App\Http\Controllers\SupervisorApprovalController::class,'index'])->name('supervisor-approval-index');
+    Route::resource('supervisor-approval',\App\Http\Controllers\SupervisorApprovalController::class);
+    Route::get('approve-farmer/{id}',[\App\Http\Controllers\SupervisorApprovalController::class,'approve'])->name('approve-farmer');
+    Route::get('reject-farmer/{id}',[\App\Http\Controllers\SupervisorApprovalController::class,'reject'])->name('reject-farmer');
 
 });
 

@@ -10,11 +10,16 @@ class PoultryTypeOfFarm extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'type_name'
+        'type_of_poultry_farm_id','farmer_animal_husbandry_details_id'
     ];
 
     public function farmerAnimalHusbandry():BelongsTo
     {
         return $this->belongsTo(FarmerAnimalHusbandryDetails::class);
+    }
+
+    public function typeOfPoultryFarm():BelongsTo
+    {
+        return $this->belongsTo(TypeOfPoultryFarm::class);
     }
 }

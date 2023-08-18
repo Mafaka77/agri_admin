@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('farmer_fisheries', function (Blueprint $table) {
             $table->id();
-            $table->string('fisheries_id');
+            $table->string('fisheries_id')->nullable();
             $table->string('location');
             $table->string('acres_or_hectares');
             $table->string('total_area');

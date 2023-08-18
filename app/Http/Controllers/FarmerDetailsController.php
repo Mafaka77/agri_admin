@@ -50,4 +50,11 @@ class FarmerDetailsController extends Controller
             'farmer'=>$id
         ]);
     }
+
+    public function submitForApproval(Request $request,int $id)
+    {
+        $farmer=Farmers::query()->where('id',$id)->first();
+        $farmer->update(['verification'=>'Submitted']);
+        return to_route('manage-farmer');
+    }
 }

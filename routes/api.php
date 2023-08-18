@@ -33,6 +33,7 @@ Route::get('get-all-kharif-crops',[\App\Http\Controllers\Api\ResourceController:
 Route::get('get-all-rabi-crops',[\App\Http\Controllers\Api\ResourceController::class,'rabiCrops'])->name('get-all-rabi-crops');
 Route::get('get-all-scheme',[\App\Http\Controllers\Api\ResourceController::class,'scheme'])->name('get-all-scheme');
 Route::get('get-horticulture-data',[\App\Http\Controllers\Api\ResourceController::class,'getHorticultureData'])->name('get-horticulture-data');
+Route::get('get-land-crops',[\App\Http\Controllers\Api\ResourceController::class,'getLandCrops'])->name('get-land-crops');
 
 //LOGIN API
 
@@ -67,4 +68,9 @@ Route::post('submit-farmer-horticulture',[\App\Http\Controllers\Api\FarmerHortic
 Route::get('get-horticulture-detail/{id}',[\App\Http\Controllers\Api\FarmerHorticultureController::class,'getHorticultureDetail'])->name('get-horticulture-detail');
 Route::put('update-horticulture-details/{id}',[\App\Http\Controllers\Api\FarmerHorticultureController::class,'updateHorticultureDetail'])->name('update-horticulture-details');
 Route::delete('delete-horticulture-details/{id}',[\App\Http\Controllers\Api\FarmerHorticultureController::class,'deleteHorticulture'])->name('delete-horticulture-details');
+
+//LAND WATER CONSERVATION
+Route::post('submit-land-water',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'submitLandWater'])->name('submit-land-water');
+Route::get('get-land-water/{id}',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'getLandWater'])->name('get-land-water');
+Route::put('update-land-water',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'updateLandWater'])->name('update-land-water');
 

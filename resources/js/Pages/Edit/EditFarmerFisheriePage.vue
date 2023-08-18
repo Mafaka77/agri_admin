@@ -42,6 +42,10 @@
                                 type="number"
                                 outlined
                                 v-model="form.nursery_ponds"
+                                :error="!form.errors.nursery_ponds===false"
+                                :error-message="form.errors.nursery_ponds"
+                                lazy-rules
+                                :rules="[(val) => val>=0 || 'Invalid Number']"
                                 dense
                                 filled
                                 label="Nursery Pond">
@@ -53,6 +57,9 @@
                                 type="number"
                                 outlined
                                 v-model="form.rearing_ponds"
+                                :error="!form.errors.rearing_ponds===false"
+                                :error-message="form.errors.rearing_ponds"
+                                :rules="[(val) => val>=0 || 'Invalid ID Number']"
                                 dense
                                 filled
                                 label="Rearing Pond">
@@ -64,6 +71,9 @@
                                 type="number"
                                 outlined
                                 v-model="form.grew_out_ponds"
+                                :error="!form.errors.grew_out_ponds===false"
+                                :error-message="form.errors.grew_out_ponds"
+                                :rules="[(val) => val>=0 || 'Invalid ID Number']"
                                 dense
                                 filled
                                 label="Grow out Pond">
@@ -94,9 +104,9 @@
                                 :error-message="form.errors.total_area"
                                 dense
                                 label="Total Area Sown *">
-<!--                                <template v-slot:prepend>-->
-<!--                                    <q-select v-model="form.acres_or_hectares" :options="areaOptions" label="Area" dense borderless option-value="value" option-label="label" emit-value/>-->
-<!--                                </template>-->
+                                <!--                                <template v-slot:prepend>-->
+                                <!--                                    <q-select v-model="form.acres_or_hectares" :options="areaOptions" label="Area" dense borderless option-value="value" option-label="label" emit-value/>-->
+                                <!--                                </template>-->
                             </q-input>
                         </div>
                         <div class="col-xs-12 col-md-5">
@@ -120,8 +130,7 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-select v-model="form.fish_hatchery" :error="!form.errors.fish_hatchery=== false"
-                                      :error-message="form.errors.fish_hatchery" :options="fishHatchery" dense emit-value
-                                      fill-input
+                                      :error-message="form.errors.fish_hatchery" :options="fishHatchery" dense
                                       option-label="label" option-value="value"
                                       label=" Fish Hatchery" filled outlined  >
                                 <template v-slot:no-option>
@@ -166,21 +175,23 @@ import {useQuasar} from "quasar";
 const q=useQuasar();
 
 const form=useForm({
-    farmers_id:props.farmers_id,
-    fisheries_id:'',
-    location:'',
-    nursery_ponds:0,
-    rearing_ponds:0,
-    grew_out_ponds:0,
-    total_ponds:0,
-    fish_cultured_id:[],
-    fish_hatchery:'',
+    farmers_id:props.fisherieData.farmers_id,
+    fisheries_id:props.fisherieData.id,
+    location:props.fisherieData.location,
+    nursery_ponds: props.fisherieData.nursery_ponds,
+    rearing_ponds:props.fisherieData.rearing_ponds,
+    grew_out_ponds:props.fisherieData.grew_out_ponds,
+    total_ponds:props.fisherieData.total_ponds,
+    fish_cultured_id:props.fisherieData.fish,
+    fish_hatchery:props.fisherieData.fish_hatchery,
     acres_or_hectares:'Acres',
-    total_area:''
+    total_area:props.fisherieData.total_area,
 });
 const props=defineProps({
     'fish':[],
-    'farmers_id':Object
+    'farmers_id':Object,
+    'fisherieData':Object
+
 })
 const areaOptions=[
     {
@@ -202,20 +213,20 @@ const fishHatchery=[
         value: 'FRP Hatchery'
     }
 ];
-let total=computed(e=>parseInt(form.grew_out_ponds)+parseInt(form.rearing_ponds)+parseInt(form.nursery_ponds));
+const total=computed(e=>parseInt(form.grew_out_ponds)+parseInt(form.rearing_ponds)+parseInt(form.nursery_ponds));
 form.total_ponds=total;
 
 
 const submit=()=>{
     form.transform(data=>({
         fish_cultured_ids:data.fish_cultured_id.map(e=>e.id),
-            ...data
-    })).post(route('fisheries.store'),{
+        ...data
+    })).put(route('fisheries.update',props.fisherieData.id),{
         onStart:()=>q.loading.show(),
         onFinish:()=>{
             q.loading.hide();
             q.notify({
-                message:'Successfully Submitted'
+                message:'Successfully Update'
             })
         },
         onError:(err)=>{

@@ -17,7 +17,10 @@ class ManageUserController extends Controller
     {
         $roles=Roles::query()->get();
         $district=District::query()->get();
-        $users=User::query()->where('roles_id','!=',1)->with('roles')->with('district')->get();
+        $users=User::query()->where('roles_id','!=',1)
+            ->with('roles')
+            ->with('district')
+            ->get();
         return inertia('Admin/ManageUsersPage',[
             'roles'=>$roles,
             'districts'=>$district,

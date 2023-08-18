@@ -10,11 +10,16 @@ class HusbandryTypeOfFarm extends Model
 {
     use HasFactory;
     protected $fillable=[
-        'type_name',
+
     ];
 
     public function farmerAnimalHusbandryDetails():BelongsTo
     {
         return $this->belongsTo(FarmerAnimalHusbandryDetails::class);
+    }
+
+    public function typeOfFarm():BelongsTo
+    {
+        return $this->belongsTo(TypeOfFarm::class);
     }
 }

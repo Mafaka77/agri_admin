@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\LandHolding;
+use App\Models\TypeOfPoultryBreed;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -35,6 +36,10 @@ class DatabaseSeeder extends Seeder
         $this->call(FishSeeder::class);
         $this->call(VillageSeeder::class);
         $this->call(GreenHousePlantSeeder::class);
+        $this->call(TypeOfBreedSeeder::class);
+        $this->call(TypeOfFarmSeeder::class);
+        $this->call(TypeOfPoultryFarmSeeder::class);
+        $this->call(TypeOfPoultryBreedSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

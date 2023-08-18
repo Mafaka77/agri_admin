@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\AdditionalFarmerDetails;
 use App\Models\FarmerAgricultureLandDetails;
 use App\Models\FarmerHorticultureFarmDetails;
+use App\Models\FarmerLandWaterConservation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,7 +15,6 @@ class FarmerAgriLandController extends Controller
     public function getFarmerFarms(Request $request)
     {
         $farmer_id=$request->id;
-        info($farmer_id);
         $farms=FarmerAgricultureLandDetails::query()->where('farmers_id','=',$farmer_id)
             ->with('landHolding')
             ->with('district')
@@ -29,7 +29,11 @@ class FarmerAgriLandController extends Controller
             ->get();
         $additional=AdditionalFarmerDetails::query()->where('farmers_id','=',$farmer_id)->get();
         $horticulture=FarmerHorticultureFarmDetails::query()->where('farmers_id','=',$farmer_id)->get();
-        return response()->json(['farms'=>$farms,'additional'=>$additional,'horticulture'=>$horticulture],200);
+        $landWater=FarmerLandWaterConservation::query()->where('farmers_id',$farmer_id)->get();
+        return response()->json(['farms'=>$farms,'additional'=>$additional,
+            'horticulture'=>$horticulture,
+            'landWater'=>$landWater,
+            ],200);
 
     }
 
@@ -54,7 +58,6 @@ class FarmerAgriLandController extends Controller
     {
         try{
             $data=$request->data;
-            info($data);
             $irrigationInfrastructure=$request->infrastructure;
             $equipment=$request->equipment;
             $kharifCrop=$request->kharifCrop;

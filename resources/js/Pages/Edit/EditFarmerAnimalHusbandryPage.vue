@@ -65,20 +65,20 @@
                         </div>
                     </div>
                     <div class="row justify-around">
-                    <div class="col-xs-12 col-md-5">
-                        <q-select v-model="form.type_of_farm" :error="!form.errors.type_of_farm=== false"
-                                  :error-message="form.errors.type_of_farm" :options="typeOfFarm" dense
-                                  option-label="name" option-value="id" multiple use-chips stack-label
-                                  label="Type of Farm " filled outlined  >
-                            <template v-slot:no-option>
-                                <q-item>
-                                    <q-item-section class="text-gresy">
-                                        No results
-                                    </q-item-section>
-                                </q-item>
-                            </template>
-                        </q-select>
-                    </div>
+                        <div class="col-xs-12 col-md-5">
+                            <q-select v-model="form.type_of_farm" :error="!form.errors.type_of_farm=== false"
+                                      :error-message="form.errors.type_of_farm" :options="typeOfFarm" dense
+                                      option-label="name" option-value="id" multiple use-chips stack-label
+                                      label="Type of Farm " filled outlined  >
+                                <template v-slot:no-option>
+                                    <q-item>
+                                        <q-item-section class="text-gresy">
+                                            No results
+                                        </q-item-section>
+                                    </q-item>
+                                </template>
+                            </q-select>
+                        </div>
                         <div class="col-xs-12 col-md-5"></div>
                     </div>
                     <div class="row justify-around q-mt-md">
@@ -218,19 +218,19 @@ const q=useQuasar();
 
 
 const form=useForm({
-    farmers_id:props.farmers,
-    husbandry_id:'',
-    location:'',
-    livestock_id:[],
-    type_of_breed:[],
-    type_of_farm:[],
-    adult_male:0,
-    adult_female:0,
-    young_stock:0,
-    total:0,
-    type_of_poultry_farm:[],
-    type_of_poultry_breed:[],
-    no_of_poultry:'',
+    farmers_id:props.animalData.farmers_id,
+    husbandry_id:props.animalData.husbandry_id,
+    location:props.animalData.location,
+    livestock_id:props.animalData.livestock,
+    type_of_breed:props.animalData.husbandry_type_breed,
+    type_of_farm:props.animalData.type_of_farm,
+    adult_male:props.animalData.adult_male,
+    adult_female:props.animalData.adult_female,
+    young_stock:props.animalData.young_stock,
+    total:props.animalData.total,
+    type_of_poultry_farm:props.animalData.poultry_farm,
+    type_of_poultry_breed:props.animalData.type_of_breed,
+    no_of_poultry:props.animalData.no_of_poultry,
 });
 
 const props=defineProps({
@@ -239,7 +239,8 @@ const props=defineProps({
     'poultryBreed':[],
     'poultryFarm':[],
     'livestock':[],
-    'farmers':Object
+    'farmers':Object,
+    'animalData':Object,
 })
 const total=computed(e=>parseInt(form.adult_male)+parseInt(form.adult_female)+parseInt(form.young_stock));
 form.total=total;
@@ -252,7 +253,7 @@ const submit=()=>{
         type_of_poultry_farms:data.type_of_poultry_farm.map(e=>e.id),
         type_of_poultry_breeds:data.type_of_poultry_breed.map(e=>e.id),
         ...data
-    })).post(route('animal-husbandry.store'),{
+    })).put(route('animal-husbandry.update',props.animalData.id),{
         onStart:()=>q.loading.show(),
         onSuccess:()=>{
             q.loading.hide();

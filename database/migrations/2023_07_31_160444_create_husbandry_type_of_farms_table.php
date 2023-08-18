@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('husbandry_type_of_farms', function (Blueprint $table) {
             $table->id();
-            $table->string('type_name');
+            $table->foreignIdFor(\App\Models\TypeOfFarm::class);
             $table->foreignIdFor(\App\Models\FarmerAnimalHusbandryDetails::class);
             $table->timestamps();
         });

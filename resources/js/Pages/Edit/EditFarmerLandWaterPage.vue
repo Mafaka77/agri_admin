@@ -49,7 +49,6 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
-                                name="full_name"
                                 filled
                                 outlined
                                 v-model="form.total_area"
@@ -57,9 +56,7 @@
                                 :error-message="form.errors.total_area"
                                 dense
                                 label="Total Area Sown *">
-                                <template v-slot:prepend>
-                                    <q-select v-model="form.crops_acres_or_hectares" :options="areaOptions" label="Area" dense borderless option-value="value" option-label="label" emit-value/>
-                                </template>
+
                             </q-input>
                         </div>
                     </div>
@@ -96,11 +93,11 @@ const q=useQuasar();
 
 
 const form=useForm({
-    farmers_id:props.farmerId,
-    owner_id:'',
-    location:'',
-    crops_id:[],
-    total_area:'',
+    farmers_id:props.landData.farmers_id,
+    owner_id:props.landData.owner_id,
+    location:props.landData.location,
+    crops_id:props.landData.land_crops,
+    total_area:props.landData.total_area,
     crops_acres_or_hectares:'Acres',
 });
 const areaOptions=[
@@ -114,20 +111,21 @@ const areaOptions=[
     }
 ];
 const props=defineProps({
+    'landData':Object,
     'landCrops':[],
     'farmerId':Object,
 });
 const submit=()=>{
     form.transform(data=>({
         crop_ids:data.crops_id.map(e=>e.id),...data
-    })).post(route('land-water-conservation.store'),{
+    })).put(route('land-water-conservation.update',props.landData.id),{
         onStart:()=>{
             q.loading.show();
         },
         onSuccess:()=>{
             q.loading.hide();
             q.notify({
-                message:'Successfully Submitted',
+                message:'Successfully Updated',
                 closeBtn:true,
             })
         },

@@ -158,12 +158,17 @@
                     </q-item-section>
                     <q-item-section middle>
                         <q-item-label lines="1">
-                            <span class="text-weight-medium">{{data.owner_id}}</span>
+                            <span class="text-weight-medium">{{data.location}}</span>
                         </q-item-label>
                     </q-item-section>
                     <q-item-section middle side>
                         <div class="q-gutter-xs" style="color: #2e6525">
-                            <q-btn class="text-weight-bold" size="12px" flat dense label="View" />
+                            <q-btn class="text-weight-bold" size="12px" flat dense label="View" @click="$inertia.get(route('land-water-conservation.edit',data.id))" />
+                        </div>
+                    </q-item-section>
+                    <q-item-section middle side>
+                        <div class="q-gutter-xs" style="color: #2e6525">
+                            <q-btn class="text-weight-bold" size="12px" flat dense icon="delete" color="red" @click="deleteLandWater(data.id)" />
                         </div>
                     </q-item-section>
                 </q-item>
@@ -189,7 +194,12 @@
                     </q-item-section>
                     <q-item-section middle side>
                         <div class="q-gutter-xs" style="color: #2e6525">
-                            <q-btn class="text-weight-bold" size="12px" flat dense label="View" />
+                            <q-btn class="text-weight-bold" size="12px" flat dense label="View" @click="$inertia.get(route('fisheries.edit',data.id))" />
+                        </div>
+                    </q-item-section>
+                    <q-item-section middle side>
+                        <div class="q-gutter-xs" style="color: #2e6525">
+                            <q-btn class="text-weight-bold" size="12px" flat dense icon="delete" color="red" @click="deleteFisheries(data.id)" />
                         </div>
                     </q-item-section>
                 </q-item>
@@ -214,7 +224,12 @@
                     </q-item-section>
                     <q-item-section middle side>
                         <div class="q-gutter-xs" style="color: #2e6525">
-                            <q-btn class="text-weight-bold" size="12px" flat dense label="View" />
+                            <q-btn class="text-weight-bold" size="12px" flat dense label="View" @click="$inertia.get(route('animal-husbandry.edit',data.id))"/>
+                        </div>
+                    </q-item-section>
+                    <q-item-section middle side>
+                        <div class="q-gutter-xs" style="color: #2e6525">
+                            <q-btn class="text-weight-bold" size="12px" flat dense icon="delete" color="red" @click="deleteHusbandry(data.id)"/>
                         </div>
                     </q-item-section>
                 </q-item>
@@ -359,11 +374,27 @@
                 </q-badge>
             </q-btn>
         </div>
+        <div v-if="farmer.verification==='Rejected'" class="q-pt-md">
+            <q-card style="background: #f1f1f1;border-color: red" flat bordered >
+                <q-card-section class="q-gutter-sm">
+                    <div class="text-red">Rejection Note:</div>
+                    <div>{{farmer.rejection_note}}</div>
+                </q-card-section>
+
+            </q-card>
+
+        </div>
         <div class="q-pt-md">
             <q-card style="background: #f1f1f1" flat>
-                <q-card-section>
+                <q-card-section class="q-gutter-sm">
                     <div>If all sections are complete you can mark this Registration for Supervisor Approval</div>
-                    <div>Submit</div>
+                    <div class="row">
+                        <div>
+                            <q-checkbox v-model="isSubmitted" disable/>
+                        </div>
+                        <q-btn label="SUBMIT FOR APPROVAL" text-color="white" style="background-color: #2e6525" flat @click="farmer.verification==='Submitted'?openDialog():farmer.verification==='Approved'?openDialog(): approveDialog(farmer_id)"/>
+                    </div>
+
                 </q-card-section>
 
             </q-card>
@@ -379,7 +410,6 @@ import {computed, ref} from 'vue';
 import {router, useForm} from "@inertiajs/vue3";
 import {useQuasar} from "quasar";
 const q=useQuasar();
-
 const props=defineProps({
     'animalHusbandry':[],
     'farmerFish':[],
@@ -393,7 +423,8 @@ const props=defineProps({
     'farmer_id':Object,
     'farmer':Object
 })
-
+const isSubmitted=ref(props.farmer.verification === 'Submitted'||props.farmer.verification==='Approved')
+console.log(isSubmitted.value);
 const farmerAgriLandDetails=props.farmDetails;
 const deleteAgriLand=(id)=>{
     q.dialog({
@@ -427,6 +458,92 @@ const deleteHorti=(id)=>{
             preserveState: false,
         })
     }).onCancel(() => {
+    })
+}
+const deleteLandWater=(id)=>{
+    q.dialog({
+        title: 'Confirm Delete',
+        message: 'Are you sure?',
+        ok: 'Yes',
+        cancel: 'No'
+    }).onOk(() => {
+        router.delete(route('land-water-conservation.destroy', id), {
+            onStart: () => q.loading.show({ message: 'Deleting....' }),
+            onFinish: () => q.loading.hide(),
+            onSuccess: () => q.loading.hide(),
+            onError: () => q.loading.hide(),
+            preserveState: false,
+        })
+    }).onCancel(() => {
+    })
+}
+const deleteFisheries=(id)=>{
+    q.dialog({
+        title: 'Confirm Delete',
+        message: 'Are you sure?',
+        ok: 'Yes',
+        cancel: 'No'
+    }).onOk(() => {
+        router.delete(route('fisheries.destroy', id), {
+            onStart: () => q.loading.show({ message: 'Deleting....' }),
+            onFinish: () => q.loading.hide(),
+            onSuccess: () => q.loading.hide(),
+            onError: () => q.loading.hide(),
+            preserveState: false,
+        })
+    }).onCancel(() => {
+    })
+}
+const deleteHusbandry=(id)=>{
+    q.dialog({
+        title: 'Confirm Delete',
+        message: 'Are you sure?',
+        ok: 'Yes',
+        cancel: 'No'
+    }).onOk(() => {
+        router.delete(route('animal-husbandry.destroy', id), {
+            onStart: () => q.loading.show({ message: 'Deleting....' }),
+            onFinish: () => q.loading.hide(),
+            onSuccess: () => q.loading.hide(),
+            onError: () => q.loading.hide(),
+            preserveState: false,
+        })
+    }).onCancel(() => {
+    })
+}
+const approveDialog=(id)=>{
+    q.dialog({
+        title: 'Submit for Approval',
+        message: 'Are you sure?',
+        ok: 'Yes',
+        cancel: 'No'
+    }).onOk(() => {
+        router.get(route('send-for-approval', id), {
+            onStart: () => q.loading.show(),
+            onFinish: () =>{
+                q.loading.hide();
+            },
+            onSuccess: () =>{
+                q.loading.hide();
+                q.notify({
+                    message:'Success',
+                    icon:'check',
+                    iconColor:'blue',
+                    closeBtn:true
+                });
+            } ,
+            onError: () => q.loading.hide(),
+            preserveState: false,
+        })
+    }).onCancel(() => {
+    })
+}
+const openDialog=()=>{
+    q.notify({
+        message:'Farmer already submitted',
+        icon:'warning',
+        iconColor:'red',
+        closeBtn:true,
     })
 }
 </script>

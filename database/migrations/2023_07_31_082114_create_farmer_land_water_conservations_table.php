@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('farmer_land_water_conservations', function (Blueprint $table) {
             $table->id();
-            $table->string('owner_id');
+            $table->string('owner_id')->nullable();
             $table->string('location');
             $table->string('total_area');
             $table->string('crops_acres_or_hectares')->nullable();

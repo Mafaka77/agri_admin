@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('farmer_sericulture_details', function (Blueprint $table) {
             $table->id();
-            $table->string('sericulture_id');
+            $table->string('sericulture_id')->nullable();
             $table->string('location');
-            $table->string('acres_or_hectares');
+            $table->string('acres_or_hectares')->nullable();
             $table->string('total_area');
             $table->string('size_of_rearing_unit');
             $table->string('plantation_acres_or_hectares');

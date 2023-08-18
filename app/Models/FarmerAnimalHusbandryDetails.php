@@ -25,9 +25,14 @@ class FarmerAnimalHusbandryDetails extends Model
     {
         return $this->belongsToMany(Livestock::class,'farmer_livestocks');
     }
-    public function husbandryTypeOfFarm():HasMany
+    public function husbandryTypeOfFarm():HasOne
     {
-        return $this->hasMany(HusbandryTypeOfFarm::class);
+        return $this->hasOne(HusbandryTypeOfFarm::class);
+    }
+
+    public function typeOfFarm():BelongsToMany
+    {
+        return $this->belongsToMany(TypeOfFarm::class,'husbandry_type_of_farms');
     }
 
     public function poultryTypeOfFarm():HasMany
@@ -35,13 +40,28 @@ class FarmerAnimalHusbandryDetails extends Model
         return $this->hasMany(PoultryTypeOfFarm::class);
     }
 
-    public function poultryTypeOfBreed():HasMany
+    public function poultryFarm():BelongsToMany
     {
-        return $this->hasMany(PoultryTypeOfBreed::class);
+        return $this->belongsToMany(TypeOfPoultryFarm::class,'poultry_type_of_farms');
+    }
+
+    public function poultryTypeOfBreed():HasOne
+    {
+        return $this->hasOne(PoultryTypeOfBreed::class);
+    }
+
+    public function typeOfBreed():BelongsToMany
+    {
+        return $this->belongsToMany(TypeOfPoultryBreed::class,'poultry_type_of_breeds');
     }
 
     public function husbandryTypeOfBreed():HasMany
     {
         return $this->hasMany(HusbandryTypeOfBreed::class);
+    }
+
+    public function husbandryTypeBreed():BelongsToMany
+    {
+        return $this->belongsToMany(TypeOfBreed::class,'husbandry_type_of_breeds');
     }
 }

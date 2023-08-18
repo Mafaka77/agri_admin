@@ -50,7 +50,7 @@ class FarmerAgricultureLandDetails extends Model
 
     public function farmerIrrigationInfrastructure():HasMany
     {
-        return $this->hasMany(FarmerIrrigationInfrastructure::class);
+        return $this->hasMany(FarmerIrrigationInfrastructure::class)->with('infrastructure');
     }
     public function irrigationInfrastructures():BelongsToMany{
         return $this->belongsToMany(IrrigationInfrastructures::class,'farmer_irrigation_infrastructures');

@@ -55,7 +55,7 @@
                                 dense
                                 round
                                 flat
-                                @click="openFarmer(props.row.id)"
+                                @click="$inertia.get(route('supervisor-approval-index',props.row.id))"
                                 label="OPEN"
                                 style="color: #2e6525"
                             ></q-btn>

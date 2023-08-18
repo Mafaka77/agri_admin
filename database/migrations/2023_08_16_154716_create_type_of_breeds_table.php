@@ -11,10 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('poultry_type_of_breeds', function (Blueprint $table) {
+        Schema::create('type_of_breeds', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(\App\Models\TypeOfPoultryBreed::class);
-            $table->foreignIdFor(\App\Models\FarmerAnimalHusbandryDetails::class);
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -24,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('poultry_type_of_breeds');
+        Schema::dropIfExists('type_of_breeds');
     }
 };
