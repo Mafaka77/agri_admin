@@ -6,24 +6,19 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-
+//Route::get('/',function(){
+//    return inertia('Index');
+//});
 Route::get('login',[\App\Http\Controllers\AuthController::class,'index'])->name('login');
 Route::post('admin-login', [\App\Http\Controllers\AuthController::class, 'login'])->name('admin-login');
+
 Route::middleware('auth')->group(function () {
     Route::get('logout',[\App\Http\Controllers\HomeController::class,'logout'])->name('logout');
-//    Route::get('/', function () {
-//        return Inertia::render('HomePage');
-//    })->name('dashboard');
-//    Route::get('/dashboard', function () {
-//        return inertia::render('HomePage');
-//    })->name('dashboard');
     Route::get('/',[\App\Http\Controllers\HomeController::class,'index'])->name('dashboard');
     Route::get('/dashboard',[\App\Http\Controllers\HomeController::class,'index'])->name('dashboard');
 
     Route::get('manage-farmer', [\App\Http\Controllers\ManageFarmerController::class, 'index'])->name('manage-farmer');
     Route::resource('farmer-basic-info', \App\Http\Controllers\FarmersController::class);
-
-
 //DROPDOWN POPULATE
     Route::get('{district}/sub-division', [\App\Http\Controllers\ManageFarmerController::class, 'getSubDivision'])->name('get-sub-division');
     Route::get('{district}/block', [\App\Http\Controllers\ManageFarmerController::class, 'getBlock'])->name('get-block');
