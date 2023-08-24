@@ -29,8 +29,14 @@ class FarmerLandWaterController extends Controller
         return response()->json(['data'=>$landWater],200);
     }
 
-    public function updateLandWater(Request $request)
+    public function updateLandWater(Request $request,int $id)
     {
-
+        $landData=$request->data;
+        $landCrops=$request->landCrops;
+        DB::transaction(function () use($landCrops,$landData,$id){
+            $land=FarmerLandWaterConservation::query()->findOrFail($id)->first();
+            $land->update($landData);
+            $land->landCrops()->sync($landCrops);
+        });
     }
 }

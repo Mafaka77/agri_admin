@@ -12,16 +12,27 @@ class HomeController extends Controller
     public function index()
     {
         $user=Auth::user();
-        $farmerCounts=Farmers::query()->count();
-        $villageCounts=Village::query()->count();
-        $districtCounts=District::query()->count();
+
 
         switch ($user->roles_id){
+
             case 3:
+                $unSubmitted=Farmers::query()
+                    ->where('user_id','=','3')
+                    ->where('verification','=','Pending')
+                    ->count();
+                $pendingApproval=Farmers::query()
+                    ->where('user_id','=','3')
+                    ->where('verification','=','Submitted')
+                    ->count();
+                $approved= Farmers::query()
+                    ->where('user_id','=','3')
+                    ->where('verification','=','Approved')
+                    ->count();
                 return inertia('HomePage',[
-                'farmerCounts'=>$farmerCounts,
-                'villageCounts'=>$villageCounts,
-                'districtCounts'=>$districtCounts
+                'unSubmitted'=>$unSubmitted,
+                'pendingApproval'=>$pendingApproval,
+                'totalApproved'=>$approved
             ]);
             break;
             case 2:
@@ -30,7 +41,9 @@ class HomeController extends Controller
                 $district=District::query()->where('id',$user->district_id)->first();
                 $totalApprovedFarmers=Farmers::query()->where('verification','=','Approved')->count();
                 $pendingList=Farmers::query()->where('district_id',$user->district_id)->where('verification','=','Submitted')->with('user')->get();
-                $enumeratorList=User::query()->where('roles_id','=','3')->where('district_id',$user->district_id)->get();
+                $enumeratorList=User::query()->where('roles_id','=','3')
+                    ->where('district_id',$user->district_id)
+                    ->get();
                 return inertia('Supervisor/SupervisorHomePage',[
                 'pendingCounts'=>$pendingCounts,
                 'totalFarmersDistrictWise'=>$totalFarmersDistrictWise,

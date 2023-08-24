@@ -34,6 +34,7 @@ Route::get('get-all-rabi-crops',[\App\Http\Controllers\Api\ResourceController::c
 Route::get('get-all-scheme',[\App\Http\Controllers\Api\ResourceController::class,'scheme'])->name('get-all-scheme');
 Route::get('get-horticulture-data',[\App\Http\Controllers\Api\ResourceController::class,'getHorticultureData'])->name('get-horticulture-data');
 Route::get('get-land-crops',[\App\Http\Controllers\Api\ResourceController::class,'getLandCrops'])->name('get-land-crops');
+Route::get('get-all-resources',[\App\Http\Controllers\Api\ResourceController::class,'getAllResources'])->name('get-all-resources');
 
 //LOGIN API
 
@@ -72,5 +73,22 @@ Route::delete('delete-horticulture-details/{id}',[\App\Http\Controllers\Api\Farm
 //LAND WATER CONSERVATION
 Route::post('submit-land-water',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'submitLandWater'])->name('submit-land-water');
 Route::get('get-land-water/{id}',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'getLandWater'])->name('get-land-water');
-Route::put('update-land-water',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'updateLandWater'])->name('update-land-water');
+Route::put('update-land-water/{id}',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'updateLandWater'])->name('update-land-water');
 
+//FISHERIES
+Route::post('submit-fisheries',[\App\Http\Controllers\Api\FarmerFisheriesController::class,'submitFisheries'])->name('submit-fisheries');
+Route::get('get-fisheries/{id}',[\App\Http\Controllers\Api\FarmerFisheriesController::class,'getFisheries'])->name('get-fisheries');
+Route::put('update-fisheries/{id}',[\App\Http\Controllers\Api\FarmerFisheriesController::class,'updateFisheries'])->name('update-fisheries');
+Route::delete('delete-fisheries/{id}',[\App\Http\Controllers\Api\FarmerFisheriesController::class,'deleteFisheries'])->name('delete-fisheries');
+
+//ANIMAL HUSBANDRY
+Route::post('submit-animal-husbandry',[\App\Http\Controllers\Api\AnimalHusbandryController::class,'submitAnimalHusbandry'])->name('submit-animal-husbandry');
+Route::get('get-animal-husbandry/{id}',[\App\Http\Controllers\Api\AnimalHusbandryController::class,'getAnimalHusbandry'])->name('get-animal-husbandry');
+Route::put('update-animal-husbandry/{id}',[\App\Http\Controllers\Api\AnimalHusbandryController::class,'updateAnimalHusbandry'])->name('update-animal-husbandry');
+Route::delete('delete-animal-husbandry/{id}',[\App\Http\Controllers\Api\AnimalHusbandryController::class,'deleteHusbandry'])->name('delete-animal-husbandry');
+
+//SERICULTURE
+Route::post('submit-sericulture',[\App\Http\Controllers\Api\SericultureController::class,'submitSericulture'])->name('submit-sericulture');
+Route::get('get-sericulture/{id}',[\App\Http\Controllers\Api\SericultureController::class,'getSericulture'])->name('get-sericulture');
+Route::put('update-sericulture/{id}',[\App\Http\Controllers\Api\SericultureController::class,'updateSericulture'])->name('update-sericulture');
+Route::delete('delete-sericulture/{id}',[\App\Http\Controllers\Api\SericultureController::class,'deleteSericulture'])->name('delete-sericulture');

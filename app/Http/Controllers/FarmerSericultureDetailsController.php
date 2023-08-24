@@ -34,28 +34,26 @@ class FarmerSericultureDetailsController extends Controller
      */
     public function store(Request $request)
     {
-        try{
+//        try{
             $validate=$this->validate($request,[
                 'farmers_id'=>'required',
-                'sericulture_id'=>'required',
                 'location'=>'required',
                 'acres_or_hectares'=>'required',
                 'total_area'=>'required',
-                'size_of_rearing_unit'=>'required',
                 'plantation_acres_or_hectares'=>'required',
-                'plantation_total_area'=>'required',
             ]);
+            $datas=array_merge($validate,['sericulture_id'=>$request->sericulture_id,'plantation_total_area'=>$request->plantation_total_area,'size_of_rearing_unit'=>$request->size_of_rearing_unit]);
             $silkwormId=$request->silkworm_ids;
-            DB::transaction(function () use($validate,$silkwormId){
-                $data=FarmerSericultureDetails::query()->create($validate);
+            DB::transaction(function () use($datas,$silkwormId){
+                $data=FarmerSericultureDetails::query()->create($datas);
                 $data->silkworm()->sync($silkwormId);
             });
             return to_route('farmer-details',[
                 'farmer'=>$request->farmers_id
             ]);
-        }catch (\Exception $ex){
-            return redirect()->back()->withErrors(['message'=>$ex]);
-        }
+//        }catch (\Exception $ex){
+//            return redirect()->back()->withErrors(['message'=>$ex]);
+//        }
 
     }
 
@@ -70,24 +68,59 @@ class FarmerSericultureDetailsController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(FarmerSericultureDetails $farmerSericultureDetails)
+    public function edit(FarmerSericultureDetails $farmerSericultureDetails,int $id)
     {
-        //
+        $silkWorm=Silkworm::query()->get();
+        $sericulture=FarmerSericultureDetails::query()
+            ->findOrFail($id)
+            ->with('silkworm')
+            ->first();
+        return inertia('Edit/EditFarmerSericulturePage',[
+            'farmers_id'=>$id,
+            'silkWorm'=>$silkWorm,
+            'sericulture'=>$sericulture
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, FarmerSericultureDetails $farmerSericultureDetails)
+    public function update(Request $request, FarmerSericultureDetails $farmerSericultureDetails,int $id)
     {
-        //
+        try{
+            $validate=$this->validate($request,[
+                'farmers_id'=>'required',
+                'location'=>'required',
+                'acres_or_hectares'=>'required',
+                'total_area'=>'required',
+                'plantation_acres_or_hectares'=>'required',
+            ]);
+            $datas=array_merge($validate,['sericulture_id'=>$request->sericulture_id,'plantation_total_area'=>$request->plantation_total_area,'size_of_rearing_unit'=>$request->size_of_rearing_unit]);
+            $silkwormId=$request->silkworm_ids;
+            DB::transaction(function () use($datas,$silkwormId,$id){
+                $data=FarmerSericultureDetails::query()->findOrFail($id)->first();
+                $data->update($datas);
+                $data->silkworm()->sync($silkwormId);
+            });
+            return to_route('farmer-details',[
+                'farmer'=>$request->farmers_id
+            ]);
+        }catch (\Exception $ex){
+            return redirect()->back()->withErrors(['message'=>$ex]);
+        }
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(FarmerSericultureDetails $farmerSericultureDetails)
+    public function destroy(FarmerSericultureDetails $farmerSericultureDetails,int $id)
     {
-        //
+        $data=FarmerSericultureDetails::query()->findOrFail($id)->first();
+        $farmer_id=$data->farmers_id;
+        $data->delete();
+        $data->silkwormReared()->delete();
+        return to_route('farmer-details',[
+            'farmer'=>$farmer_id,
+        ]);
     }
 }

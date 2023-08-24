@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-center">
-        <div class="col-md-9 col-xl-7 q-pa-xl" style="background-color: white">
+        <div class="col-xs-12 col-md-9 col-xl-7 " style="background-color: white">
 <!--        BASIC INFORMATION-->
             <BasicInfoComponent :basic-info="basicInfo"/>
             <AgriLandComponent :agri-land="agriLand"/>
@@ -11,14 +11,11 @@
             <HusbandryComponent :husbandry="husbandry"/>
             <SericultureComponent :sericulture="sericulture"/>
             <q-separator/>
-            <div class="row justify-center q-gutter-md q-pt-md">
-<!--                <div class="col-xs-12 col-md-1">-->
-<!--                    <q-btn outline label="BACK" style="color: #588052"/>-->
-<!--                </div>-->
-                <div class="col-xs-6 col-md-1">
+            <div class="row justify-center q-gutter-md q-pt-md q-pb-md">
+                <div class=" col-xs-3 col-md-1">
                     <q-btn outline label="REJECT" style="color: red" @click="rejectDialog(basicInfo.id)"/>
                 </div>
-                <div class="col-xs-6 col-md-1">
+                <div class=" col-xs-3 col-md-1">
                     <q-btn flat text-color="white" label="APPROVE" style="background-color: #588052" @click="basicInfo.verification==='Approved'?openDialog(): approve(basicInfo.id)"/>
                 </div>
             </div>

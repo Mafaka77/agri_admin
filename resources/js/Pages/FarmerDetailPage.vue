@@ -2,7 +2,7 @@
     <div class="row justify-center">
 
 
-    <div class="col-md-9 col-xl-7 q-pa-md" style="background-color: white">
+    <div class="col-xs-12 col-md-9 col-xl-7 q-pa-md" style="background-color: white">
         <div class="row justify-between">
             <div class=" text-weight-medium" style="color: #2e6525">
                 Farmer Details
@@ -254,7 +254,12 @@
                     </q-item-section>
                     <q-item-section middle side>
                         <div class="q-gutter-xs" style="color: #2e6525">
-                            <q-btn class="text-weight-bold" size="12px" flat dense label="View" />
+                            <q-btn class="text-weight-bold" size="12px" flat dense label="View" @click="$inertia.get(route('sericulture.edit',data.id))"/>
+                        </div>
+                    </q-item-section>
+                    <q-item-section middle side>
+                        <div class="q-gutter-xs" style="color: #2e6525">
+                            <q-btn class="text-weight-bold" size="12px" flat dense icon="delete" color="red" @click="deleteSericulture(data.id)"/>
                         </div>
                     </q-item-section>
                 </q-item>
@@ -502,6 +507,23 @@ const deleteHusbandry=(id)=>{
         cancel: 'No'
     }).onOk(() => {
         router.delete(route('animal-husbandry.destroy', id), {
+            onStart: () => q.loading.show({ message: 'Deleting....' }),
+            onFinish: () => q.loading.hide(),
+            onSuccess: () => q.loading.hide(),
+            onError: () => q.loading.hide(),
+            preserveState: false,
+        })
+    }).onCancel(() => {
+    })
+}
+const deleteSericulture=(id)=>{
+    q.dialog({
+        title: 'Confirm Delete',
+        message: 'Are you sure?',
+        ok: 'Yes',
+        cancel: 'No'
+    }).onOk(() => {
+        router.delete(route('sericulture.destroy', id), {
             onStart: () => q.loading.show({ message: 'Deleting....' }),
             onFinish: () => q.loading.hide(),
             onSuccess: () => q.loading.hide(),

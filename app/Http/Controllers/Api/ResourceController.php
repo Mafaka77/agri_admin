@@ -8,18 +8,26 @@ use App\Models\Caste;
 use App\Models\District;
 use App\Models\FarmEquipment;
 use App\Models\FarmerCategory;
+use App\Models\Fish;
 use App\Models\Gender;
 use App\Models\GreenHousePlant;
 use App\Models\IrrigationInfrastructures;
 use App\Models\KharifCrops;
 use App\Models\LandCrop;
 use App\Models\LandHolding;
+use App\Models\Livestock;
 use App\Models\Orchards;
 use App\Models\OwnershipType;
 use App\Models\Plantation;
+use App\Models\PoultryTypeOfFarm;
 use App\Models\RabiCrops;
 use App\Models\Schemes;
+use App\Models\Silkworm;
 use App\Models\SubDivision;
+use App\Models\TypeOfBreed;
+use App\Models\TypeOfFarm;
+use App\Models\TypeOfPoultryBreed;
+use App\Models\TypeOfPoultryFarm;
 use App\Models\Village;
 use Illuminate\Http\Request;
 
@@ -117,5 +125,53 @@ class ResourceController extends Controller
     {
         $landCrops=LandCrop::query()->get();
         return response()->json(['crops'=>$landCrops],200);
+    }
+
+    public function getAllResources(Request $request)
+    {
+        $subDivision=SubDivision::query()->get();
+        $rdBlock=Block::query()->get();
+        $villages=Village::query()->get();
+        $landHolding=LandHolding::query()->get();
+        $ownershipType=OwnershipType::query()->get();
+        $infrastructure=IrrigationInfrastructures::query()->get();
+        $equipments=FarmEquipment::query()->get();
+        $kharifCrops=KharifCrops::query()->get();
+        $rabiCrops=RabiCrops::query()->get();
+        $schemes=Schemes::query()->get();
+        $orchards=Orchards::query()->get();
+        $plantation=Plantation::query()->get();
+        $greenHouse=GreenHousePlant::query()->get();
+        $landCrops=LandCrop::query()->get();
+        $fish=Fish::query()->get();
+        $livestock=Livestock::query()->get();
+        $typeOfBreed=TypeOfBreed::query()->get();
+        $typeOfFarm=TypeOfFarm::query()->get();
+        $typeOfPoultryFarm=TypeOfPoultryFarm::query()->get();
+        $typeOfPoultryBreed=TypeOfPoultryBreed::query()->get();
+        $silkworm=Silkworm::query()->get();
+        return response()->json([
+            'subDivision'=>$subDivision,
+            'rdBlock'=>$rdBlock,
+            'villages'=>$villages,
+            'landHolding'=>$landHolding,
+            'ownershipType'=>$ownershipType,
+            'infrastructure'=>$infrastructure,
+            'equipments'=>$equipments,
+            'kharifCrops'=>$kharifCrops,
+            'rabiCrops'=>$rabiCrops,
+            'schemes'=>$schemes,
+            'orchards'=>$orchards,
+            'plantation'=>$plantation,
+            'greenHouse'=>$greenHouse,
+            'landCrops'=>$landCrops,
+            'fish'=>$fish,
+            'livestock'=>$livestock,
+            'typeOfBreed'=>$typeOfBreed,
+            'typeOfFarm'=>$typeOfFarm,
+            'typeOfPoultryFarm'=>$typeOfPoultryFarm,
+            'typeOfPoultryBreed'=>$typeOfPoultryBreed,
+            'silkworm'=>$silkworm
+        ],200);
     }
 }

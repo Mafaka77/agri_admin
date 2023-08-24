@@ -5,8 +5,11 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\AdditionalFarmerDetails;
 use App\Models\FarmerAgricultureLandDetails;
+use App\Models\FarmerAnimalHusbandryDetails;
+use App\Models\FarmerFisherie;
 use App\Models\FarmerHorticultureFarmDetails;
 use App\Models\FarmerLandWaterConservation;
+use App\Models\FarmerSericultureDetails;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -30,9 +33,15 @@ class FarmerAgriLandController extends Controller
         $additional=AdditionalFarmerDetails::query()->where('farmers_id','=',$farmer_id)->get();
         $horticulture=FarmerHorticultureFarmDetails::query()->where('farmers_id','=',$farmer_id)->get();
         $landWater=FarmerLandWaterConservation::query()->where('farmers_id',$farmer_id)->get();
+        $fisheries=FarmerFisherie::query()->where('farmers_id',$farmer_id)->get();
+        $animalHusbandry=FarmerAnimalHusbandryDetails::query()->where('farmers_id',$farmer_id)->get();
+        $sericulture=FarmerSericultureDetails::query()->where('farmers_id',$farmer_id)->get();
         return response()->json(['farms'=>$farms,'additional'=>$additional,
             'horticulture'=>$horticulture,
             'landWater'=>$landWater,
+            'fisheries'=>$fisheries,
+            'husbandry'=>$animalHusbandry,
+            'sericulture'=>$sericulture
             ],200);
 
     }
@@ -109,7 +118,7 @@ class FarmerAgriLandController extends Controller
         $equipment=$request->equipment;
         $kharifCrop=$request->kharifCrop;
         $rabiCrop=$request->rabiCrop;
-        DB::transaction(function () use($data,$irrigationInfrastructure,$equipment,$kharifCrop,$rabiCrop,$id,$farm){
+        DB::transaction(function () use($data,$irrigationInfrastructure,$equipment,$kharifCrop,$rabiCrop,$farm){
 //            $farmDetail=FarmerAgricultureLandDetails::query()->where('id','=',$id);
             $farm->update($data);
 //            $agriFarm=FarmerAgricultureLandDetails::query()->create($data);

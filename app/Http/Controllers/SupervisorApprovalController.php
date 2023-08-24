@@ -27,6 +27,7 @@ class SupervisorApprovalController extends Controller
             ->with('block')
             ->with('village')
             ->with('farmerBankDetails')
+            ->where('id',$id)
             ->first();
         $agriLand=FarmerAgricultureLandDetails::query()
             ->with('landHolding')
@@ -39,9 +40,11 @@ class SupervisorApprovalController extends Controller
             ->with('farmEquipments')
             ->with('kharifCrops')
             ->with('rabiCrops')
+            ->where('farmers_id',$id)
             ->get();
         $additional=AdditionalFarmerDetails::query()
             ->with('schemeApplied')
+            ->where('farmers_id',$id)
             ->first();
         $horticulture=FarmerHorticultureFarmDetails::query()
             ->with('farmerHortiKharifCrops')
@@ -49,12 +52,15 @@ class SupervisorApprovalController extends Controller
             ->with('farmerOrchids')
             ->with('farmerPlantation')
             ->with('greenHousePlants')
+            ->where('farmers_id',$id)
             ->get();
         $landWater=FarmerLandWaterConservation::query()
             ->with('landCrops')
+            ->where('farmers_id',$id)
             ->get();
         $fisheries=FarmerFisherie::query()
             ->with('fish')
+            ->where('farmers_id',$id)
             ->get();
         $husbandry=FarmerAnimalHusbandryDetails::query()
             ->with('livestock')
@@ -62,9 +68,11 @@ class SupervisorApprovalController extends Controller
             ->with('poultryFarm')
             ->with('typeOfBreed')
             ->with('husbandryTypeBreed')
+            ->where('farmers_id',$id)
             ->get();
         $sericulture=FarmerSericultureDetails::query()
             ->with('silkworm')
+            ->where('farmers_id',$id)
             ->get();
         return inertia('Supervisor/SupervisorApprovalPage',[
             'basicInfo'=>$basicInfo,

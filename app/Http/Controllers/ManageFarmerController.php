@@ -6,33 +6,48 @@ use App\Models\Block;
 use App\Models\District;
 use App\Models\Farmers;
 use App\Models\Village;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ManageFarmerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $rolesId=Auth::user()->roles_id;
         $user=Auth::user();
-        if($rolesId==3){
-             $farmers=Farmers::query()->with('district')->where('user_id',$user->id)->get();
-            return inertia('ManageFarmer',[
-                'farmers'=>$farmers
-            ]);
-        }else if($rolesId==2){
-            $farmers=Farmers::query()->with('district')->where('district_id',$user->district_id)->where('verification','!=','Pending')->get();
-            return inertia('ManageFarmer',[
-                'farmers'=>$farmers
-            ]);
-        }else{
-            $farmers=Farmers::query()->with('district')->get();
-            return inertia('ManageFarmer',[
-                'farmers'=>$farmers
-            ]);
+        switch ($rolesId){
+            case 3:{
+                $farmers=Farmers::query()->with('district')
+                    ->where('user_id',$user->id)
+                    ->get();
+                return inertia('ManageFarmer',[
+                    'farmers'=>$farmers
+                ]);
+            }
+            case 2:{
+                $search = $request->get('search');
+                $perPage = $request->get('per_page') ?? 10;
+                $district=District::query()->where('id',$user->district_id)->first();
+                $farmers=Farmers::query()->with('district')
+                    ->where('district_id',$user->district_id)
+                    ->where('verification','!=','Pending')
+                    ->with('user')
+                    ->when($search, fn (Builder $builder) => $builder->where('full_name', 'LIKE', "%$search%"))
+                    ->latest()
+                    ->paginate($perPage);
+                return inertia('Supervisor/SupervisorManageFarmerPage',[
+                    'farmers'=>$farmers,
+                    'district'=>$district
+                ]);
+            }
+            default:{
+                $farmers=Farmers::query()->with('district')->get();
+                return inertia('ManageFarmer',[
+                    'farmers'=>$farmers
+                ]);
+            }
         }
-
-
     }
 
     public function getSubDivision(District $district)

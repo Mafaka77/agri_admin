@@ -3,27 +3,27 @@
 
 
     <div class="col-md-9 col-xl-7">
-        <div class="q-gutter-x-md column">
+        <div class="column">
             <div class="row justify-between q-col-gutter-sm">
                 <div class="col-xs-12 col-md-4 text-center">
                     <q-card flat bordered>
-                        <q-card-section class="text-h6">Total Farmers</q-card-section>
-                        <q-card-section class="text-h4 text-bold">{{farmerCounts}}</q-card-section>
+                        <q-card-section class="text-h4 text-bold">{{unSubmitted}}</q-card-section>
+                        <q-card-section class="text-h6">Unsubmitted Registration</q-card-section>
                     </q-card>
                 </div>
                 <div class="col-xs-12 col-md-4">
                     <div class="col-xs-12 col-md-4 text-center">
                         <q-card flat bordered>
-                            <q-card-section  class=" text-h6">Total District</q-card-section>
-                            <q-card-section class="text-h4 text-bold">{{districtCounts}}</q-card-section>
+                            <q-card-section class="text-h4 text-bold">{{pendingApproval}}</q-card-section>
+                            <q-card-section  class=" text-h6">Pending for Approval</q-card-section>
                         </q-card>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-4">
                     <div class="col-xs-12 col-md-4 text-center">
                         <q-card flat bordered>
-                            <q-card-section  class="text-h6">Total Village</q-card-section>
-                            <q-card-section class="text-h4 text-bold">{{villageCounts}}</q-card-section>
+                            <q-card-section class="text-h4 text-bold">{{totalApproved}}</q-card-section>
+                            <q-card-section  class="text-h6">Total Approved</q-card-section>
                         </q-card>
                     </div>
                 </div>
@@ -40,9 +40,9 @@ import {router, useForm} from "@inertiajs/vue3";
 const q=useQuasar();
 
 const props=defineProps({
-    'farmerCounts':Object,
-    'villageCounts':Object,
-    'districtCounts':Object
+    'unSubmitted':Object,
+    'pendingApproval':Object,
+    'totalApproved':Object
 });
 </script>
 

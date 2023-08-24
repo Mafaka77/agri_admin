@@ -45,8 +45,7 @@ class BasicInfoController extends Controller
     public function sendForApproval(Request $request){
             $farmerId=$request->id;
             $basicInfo=Farmers::query()->where('id',$farmerId)->first();
-            info($basicInfo);
-            $basicInfo->update(['verification'=>'Submitted']);
+            $basicInfo->update(['verification'=>'Submitted','rejection_note'=>null]);
             return response()->json(['data'=>$basicInfo->verification],200);
 
     }

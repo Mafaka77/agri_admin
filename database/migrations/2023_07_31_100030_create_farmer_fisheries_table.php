@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('location');
             $table->string('acres_or_hectares');
             $table->string('total_area');
-            $table->string('total_ponds');
-            $table->string('nursery_ponds');
-            $table->string('rearing_ponds');
-            $table->string('grew_out_ponds');
+            $table->integer('total_ponds')->nullable();
+            $table->integer('nursery_ponds')->nullable();
+            $table->integer('rearing_ponds')->nullable();
+            $table->integer('grew_out_ponds')->nullable();
             $table->string('fish_hatchery')->nullable();
             $table->foreignIdFor(\App\Models\Farmers::class);
             $table->timestamps();

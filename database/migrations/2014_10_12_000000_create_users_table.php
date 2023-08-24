@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('email');
+            $table->string('mobile')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->foreignIdFor(\App\Models\Roles::class);

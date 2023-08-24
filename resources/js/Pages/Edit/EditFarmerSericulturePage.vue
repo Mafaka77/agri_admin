@@ -3,8 +3,7 @@
     <div class="col-xs-12 col-md-9 col-xl-7 q-pa-md" style="background-color: white">
         <q-breadcrumbs>
             <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-            <q-breadcrumbs-el label="Farmer Details" icon="list" @click="e=>$inertia.get(route('farmer-details',farmers_id))"/>
-            <q-breadcrumbs-el label="Sericulture" icon="agriculture" />
+            <q-breadcrumbs-el label="Sericulture" icon="person" />
         </q-breadcrumbs>
         <div class="q-pt-md text-lg">Animal Husbandry Details</div>
         <div class="q-gutter-x-md column">
@@ -103,7 +102,7 @@
                     <q-btn
                         flat
                         rounded
-                        label="Confirm"
+                        label="Update"
                         type="submit"
                         style="padding: 5px 30px 5px;background-color: #2e6525;color: white;"
                     />
@@ -120,15 +119,15 @@ import {router, useForm} from "@inertiajs/vue3";
 import {useQuasar} from "quasar";
 const q=useQuasar();
 const form=useForm({
-    farmers_id:props.farmers_id,
-    sericulture_id:'',
-    location:'',
+    farmers_id:props.sericulture.farmers_id,
+    sericulture_id:props.sericulture.sericulture_id,
+    location:props.sericulture.location,
     acres_or_hectares:'Acres',
-    total_area:'',
-    size_of_rearing_unit:'',
+    total_area:props.sericulture.total_area,
+    size_of_rearing_unit:props.sericulture.size_of_rearing_unit,
     plantation_acres_or_hectares:'Acres',
-    plantation_total_area:'',
-    silkworm_id:[],
+    plantation_total_area:props.sericulture.plantation_total_area,
+    silkworm_id:props.sericulture.silkworm,
 });
 const areaOptions=[
     {
@@ -143,18 +142,21 @@ const areaOptions=[
 const props=defineProps({
     'farmers_id':Object,
     'silkWorm':[],
+    'sericulture':[],
 });
 const submit=()=>{
     form.transform(data=>({
         silkworm_ids:data.silkworm_id.map(e=>e.id),
         ...data
-    })).post(route('sericulture.store'),{
+    })).put(route('sericulture.update',props.sericulture.id),{
         onStart:()=>q.loading.show(),
         onSuccess:()=>{
             q.loading.hide();
             q.notify({
                 message:'Submitted Successfully',
-                closeBtn:true
+                closeBtn:true,
+                icon:'check',
+                iconColor:'blue'
             })
         },
         onError:(err)=>{

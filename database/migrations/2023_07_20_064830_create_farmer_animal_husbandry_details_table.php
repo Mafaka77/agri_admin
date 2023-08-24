@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string('husbandry_id')->nullable();
             $table->string('location')->nullable();
-            $table->string('adult_male')->nullable();
-            $table->string('adult_female')->nullable();
-            $table->string('young_stock')->nullable();
-            $table->string('total')->nullable();
-            $table->string('no_of_poultry')->nullable();
+            $table->integer('adult_male')->nullable();
+            $table->integer('adult_female')->nullable();
+            $table->integer('young_stock')->nullable();
+            $table->integer('total')->nullable();
+            $table->integer('no_of_poultry')->nullable();
             $table->foreignIdFor(\App\Models\Farmers::class);
             $table->timestamps();
         });

@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-center">
-        <div class="col-md-9 col-xl-7 q-pa-xl" style="background-color: white">
+        <div class="col-xs-12 col-md-9 col-xl-7 q-pa-xl" style="background-color: white">
             <q-breadcrumbs>
                 <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
                 <q-breadcrumbs-el label="Basic Information" icon="person" />

@@ -17,9 +17,9 @@ return new class extends Migration
             $table->string('location');
             $table->string('acres_or_hectares')->nullable();
             $table->string('total_area');
-            $table->string('size_of_rearing_unit');
-            $table->string('plantation_acres_or_hectares');
-            $table->string('plantation_total_area');
+            $table->string('size_of_rearing_unit')->nullable();
+            $table->string('plantation_acres_or_hectares')->nullable();
+            $table->string('plantation_total_area')->nullable();
             $table->foreignIdFor(\App\Models\Farmers::class);
             $table->timestamps();
         });

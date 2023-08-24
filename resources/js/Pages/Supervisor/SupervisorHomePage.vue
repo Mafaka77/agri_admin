@@ -1,6 +1,6 @@
 <template>
     <div class="row justify-center">
-        <div class="col-md-9 col-xl-7 ">
+        <div class="col-xs-12 col-md-9 col-xl-7 ">
             <div class="column">
                 <div class="q-col-gutter-lg">
                     <div class="row justify-between q-col-gutter-sm">
@@ -152,7 +152,7 @@ const enumeratorColumn = [
         field: row => row.name,
         sortable: true
     },
-    // { name: 'full_name', align: 'center', label: 'Farmer Name', field: 'full_name', sortable: true },
+    { name: 'mobile', align: 'center', label: 'Mobile', field: 'mobile', sortable: true },
     // { name: 'verification', align: 'center', label: 'Verification', field: row => row.verification, sortable: true},
     // { name: 'enumerator', align: 'center', label: 'Enumerator', field: row => row.user.name, sortable: true},
     {name: 'actions', align: 'right', field: 'id'}
