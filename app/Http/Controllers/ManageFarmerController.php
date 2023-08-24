@@ -18,9 +18,15 @@ class ManageFarmerController extends Controller
         $user=Auth::user();
         switch ($rolesId){
             case 3:{
-                $farmers=Farmers::query()->with('district')
+                $search=$request->get('search');
+                $perPage = $request->get('per_page') ?? 10;
+                $farmers=Farmers::query()
+                    ->orderBy('created_at', 'DESC')
+                    ->with('district')
                     ->where('user_id',$user->id)
-                    ->get();
+                    ->when($search, fn (Builder $builder) => $builder->where('full_name', 'LIKE', "%$search%"))
+                    ->latest()
+                    ->paginate($perPage);
                 return inertia('ManageFarmer',[
                     'farmers'=>$farmers
                 ]);
@@ -29,7 +35,9 @@ class ManageFarmerController extends Controller
                 $search = $request->get('search');
                 $perPage = $request->get('per_page') ?? 10;
                 $district=District::query()->where('id',$user->district_id)->first();
-                $farmers=Farmers::query()->with('district')
+                $farmers=Farmers::query()
+                    ->orderBy('created_at', 'DESC')
+                    ->with('district')
                     ->where('district_id',$user->district_id)
                     ->where('verification','!=','Pending')
                     ->with('user')
@@ -42,7 +50,8 @@ class ManageFarmerController extends Controller
                 ]);
             }
             default:{
-                $farmers=Farmers::query()->with('district')->get();
+                $farmers=Farmers::query()
+                    ->with('district')->get();
                 return inertia('ManageFarmer',[
                     'farmers'=>$farmers
                 ]);

@@ -79,7 +79,7 @@
                             <div class="col-xs-12 col-md-5">
                                 <q-field borderless>
                                     <template v-slot:control>
-                                        <div  class="self-center no-outline" tabindex="0">{{ scheme.scheme_name }}</div>
+                                        <div  class="self-center no-outline" tabindex="0">{{ scheme.schemes.scheme_name }}</div>
                                     </template>
                                     <template v-slot:append>
                                         <q-btn
@@ -114,8 +114,6 @@
                                             name="benefit_amount"
                                             outlined
                                             v-model="scheme.amount"
-                                            :error="!form.errors.ration_card_number===false"
-                                            :error-message="form.errors.ration_card_number"
                                             dense
                                             label="Benefit Amt. (till date)">
                                         </q-input>

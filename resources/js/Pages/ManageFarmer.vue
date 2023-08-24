@@ -7,14 +7,33 @@
             :rows="farmerList"
             :columns="columns"
             row-key="status"
-            :pagination="initialPagination"
+            @request="tableData"
+            :rows-per-page-options="[2,5,7,15]"
+            v-model:pagination="pagination"
         >
             <template v-slot:top-left>
-               <q-input
-                outlined
-                dense
-                placeholder="Search List"
-               />
+                <div class="column q-gutter-md">
+                    <div class="row">Farmer List</div>̵
+                    <div>
+                        <q-input
+                            outlined̵̵
+                            debounce="300"
+                            dense
+                            label="Search"
+                            @keyup.enter.prevent="searchData(store.searchFarmerText)"
+                            v-model="store.searchFarmerText"
+                            clearable
+                            @clear="searchData('')"
+
+                        >
+                            <template v-slot:append>
+                                <q-avatar>
+                                    <q-icon name="search"/>
+                                </q-avatar>
+                            </template>
+                        </q-input>
+                    </div>
+                </div>
 
             </template>
             <template v-slot:top-right>
@@ -71,7 +90,7 @@
             <template v-slot:body-cell-status="props">
                 <q-td :props="props">
                     <div v-if="props.value==='Incomplete'">
-                        <q-badge class="q-pa-sm"  color="red" :label="props.value"/>
+                        <q-badge class="q-pa-sm"  color="grey" :label="props.value"/>
                     </div>
                     <div v-else>
                         <q-badge class="q-pa-sm" style="background-color: #2e6525"  :label="props.value"/>
@@ -84,7 +103,7 @@
                         <q-badge class="q-pa-sm"  style="background-color: #cd9f27" :label="props.value"/>
                     </div>
                     <div v-else-if="props.value==='Pending'">
-                        <q-badge class="q-pa-sm" style="background-color: red"  :label="props.value"/>
+                        <q-badge class="q-pa-sm" style="background-color: darkgrey"  :label="props.value"/>
                     </div>
                     <div v-else-if="props.value==='Approved'">
                         <q-badge class="q-pa-sm" style="background-color: #59964f"  :label="props.value"/>
@@ -103,7 +122,9 @@
 import {ref} from 'vue';
 import {useQuasar} from "quasar";
 import {router, useForm} from "@inertiajs/vue3";
+import {AdminStore} from "@/Store/AdminStore.js";
 const q=useQuasar();
+const store=AdminStore();
 const columns = [
     {
         name: 'farmer_id',
@@ -123,9 +144,8 @@ const columns = [
 
 const props=defineProps({
         'farmers':[]
-}
-)
-const farmerList=ref(props.farmers);
+})
+const farmerList=ref(props.farmers.data);
 const openFarmer=(id)=>{
     router.get(route('open-clicked',id),{})
 }
@@ -144,6 +164,31 @@ const deleteFarmer=(id)=>{
             preserveState: false,
         })
     }).onCancel(() => {
+    })
+}
+function tableData(props) {
+    const {page, rowsPerPage,} = props.pagination;
+    router.get(route('manage-farmer'), {
+        per_page: rowsPerPage,
+        page: page,
+    }, {})
+}
+const pagination = ref({
+    page: props.farmers.current_page,
+    rowsPerPage: props.farmers.per_page,
+    rowsNumber: props.farmers.total,
+})
+const searchData=(searchText)=> {
+    router.get(route('manage-farmer'), {
+        search: searchText,
+        per_page: 10,
+        page: 1,
+    }, {
+        onStart: () => q.loading.show(),
+        onSuccess: () => q.loading.hide(),
+        onFinish: () => q.loading.hide(),
+        onError: () => q.loading.hide(),
+
     })
 }
 </script>

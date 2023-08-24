@@ -11,7 +11,7 @@
                 <div style="color: #588052">Ration Card Document</div>
             </div>
             <div class="col-xs-6 col-md-3">
-                <q-btn label="VIEW DOCUMENT" flat style="background-color:#2e6525" text-color="white"/>
+                <a href="#" style="text-decoration: none" ><q-btn label="VIEW DOCUMENT" flat style="background-color:#2e6525" text-color="white" @click="openRationCard(additional.ration_card_path)"/></a>
             </div>
         </div>
 <!--        SCHEME APPLIED-->
@@ -91,7 +91,7 @@
                 <div style="color: #588052">Aadhaar Card</div>
             </div>
             <div class="col-xs-6 col-md-3">
-                <q-btn label="VIEW DOCUMENT" flat style="background-color:#2e6525" text-color="white"/>
+                <a href="#" style="text-decoration: none" ><q-btn label="VIEW DOCUMENT" flat style="background-color:#2e6525" text-color="white" @click="openFile(additional.aadhaar_card_path)"/></a>
             </div>
             <div class="col-xs-6 col-md-2">
 
@@ -106,7 +106,7 @@
                 <div style="color: #588052">Bank Passbook</div>
             </div>
             <div class="col-xs-6 col-md-3">
-                <q-btn label="VIEW DOCUMENT" flat style="background-color:#2e6525" text-color="white"/>
+                <a href="#" style="text-decoration: none" ><q-btn label="VIEW DOCUMENT" flat style="background-color:#2e6525" text-color="white" @click="openFile(additional.bank_passbook_path)"/></a>
             </div>
             <div class="col-xs-6 col-md-2">
 
@@ -158,6 +158,9 @@ const q=useQuasar();
 const props=defineProps({
     'additional':Object,
 });
+const openFile=(file)=>{
+    window.open('/storage/'+file,'_blank')
+}
 </script>
 
 <style scoped>

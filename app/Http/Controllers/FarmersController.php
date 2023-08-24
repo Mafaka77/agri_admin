@@ -71,6 +71,7 @@ class FarmersController extends Controller
            'gender_id'=>'required',
            'caste_id'=>'required',
            'district_id'=>'required',
+           'sub_division_id'=>'required',
            'block_id'=>'required',
            'village_id'=>'required',
        ]);

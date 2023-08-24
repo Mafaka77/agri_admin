@@ -397,7 +397,7 @@
                         <div>
                             <q-checkbox v-model="isSubmitted" disable/>
                         </div>
-                        <q-btn label="SUBMIT FOR APPROVAL" text-color="white" style="background-color: #2e6525" flat @click="farmer.verification==='Submitted'?openDialog():farmer.verification==='Approved'?openDialog(): approveDialog(farmer_id)"/>
+                        <q-btn label="SUBMIT FOR APPROVAL" text-color="white" style="background-color: #2e6525" flat @click="farmer.verification==='Submitted'?openDialog():farmer.verification==='Approved'?openDialog():farmer.status==='Incomplete'?openIncompleteDialog(): approveDialog(farmer_id)"/>
                     </div>
 
                 </q-card-section>
@@ -563,6 +563,14 @@ const approveDialog=(id)=>{
 const openDialog=()=>{
     q.notify({
         message:'Farmer already submitted',
+        icon:'warning',
+        iconColor:'red',
+        closeBtn:true,
+    })
+}
+const openIncompleteDialog=()=>{
+    q.notify({
+        message:'Application form Incomplete',
         icon:'warning',
         iconColor:'red',
         closeBtn:true,

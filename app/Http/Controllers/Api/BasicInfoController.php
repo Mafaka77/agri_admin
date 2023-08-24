@@ -190,7 +190,6 @@ class BasicInfoController extends Controller
             $farmer->delete();
             return response()->json(['message'=>'Successfully Deleted'],200);
         }catch (\Exception $ex){
-            info($ex);
             return response()->json(500);
         }
     }
