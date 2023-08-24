@@ -1,6 +1,6 @@
 <script setup>
 
-import LoginPage from "@/Pages/Auth/LoginPage.vue";
+import LoginPage from "@/Pages/Login.vue";
 </script>
 
 <template>

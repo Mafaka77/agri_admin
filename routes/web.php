@@ -6,8 +6,8 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 
-Route::get('/test',function(){
-    return inertia('Index');
+Route::get('test',function(){
+    return inertia('Login');
 });
 Route::get('login',[\App\Http\Controllers\AuthController::class,'index'])->name('login');
 Route::post('admin-login', [\App\Http\Controllers\AuthController::class, 'login'])->name('admin-login');
