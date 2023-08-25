@@ -23,7 +23,6 @@
                 </div>
                 <div class="col-xs-12 col-md-5">
                     <q-input
-                        type="date"
                             clearable
                              v-model="form.dob"
                              dense
