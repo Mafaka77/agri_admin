@@ -50,7 +50,7 @@ Route::put('update-farmer-basic-info/{farmerId}',[\App\Http\Controllers\Api\Basi
 Route::delete('delete-farmer/{id}',[\App\Http\Controllers\Api\BasicInfoController::class,'deleteFarmer'])->name('delete-farmer');
 
 //AGRICULTURE FARM
-Route::get('get-agri-farm/{id}',[\App\Http\Controllers\api\MobileAgriLandController::class,'getFarmerFarms'])->name('get-agri-farm');
+Route::get('get-agri-farm/{id}',[\App\Http\Controllers\Api\MobileAgriLandController::class,'getFarmerFarms'])->name('get-agri-farm');
 Route::post('upload-landholding-file',[\App\Http\Controllers\Api\MobileAgriLandController::class,'uploadLandHolding'])->name('upload-landholding-file');
 Route::post('submit-agri-farm',[\App\Http\Controllers\Api\MobileAgriLandController::class,'submitAgriFarm'])->name('submit-agri-farm');
 Route::get('get-agri-farm-detail/{id}',[\App\Http\Controllers\Api\MobileAgriLandController::class,'getFarmerAgriLand'])->name('get-agri-farm-detail');
