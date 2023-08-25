@@ -32,5 +32,4 @@ import FooterComponent from "@/Components/FooterComponent.vue";
         </q-page-container>
         <FooterComponent/>
     </q-layout>
-    <Login/>
 </template>

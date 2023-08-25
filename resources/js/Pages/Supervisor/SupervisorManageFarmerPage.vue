@@ -62,10 +62,16 @@
             <template v-slot:body-cell-verification="props">
                 <q-td :props="props">
                     <div v-if="props.value==='Submitted'">
-                        <q-badge class="q-pa-sm"  style="background-color: #cd9f27" :label="props.value"/>
+                        <q-badge class="q-pa-sm"  style="background-color:#f8f2e1;color: #cd9f27" :label="props.value"/>
+                    </div>
+                    <div v-else-if="props.value==='Pending'">
+                        <q-badge class="q-pa-sm" style="background-color: darkgrey"  :label="props.value"/>
+                    </div>
+                    <div v-else-if="props.value==='Approved'">
+                        <q-badge class="q-pa-sm" style="background-color: #59964f"  :label="props.value"/>
                     </div>
                     <div v-else>
-                        <q-badge class="q-pa-sm" style="background-color: #2e6525"  :label="props.value"/>
+                        <q-badge class="q-pa-sm" style="background-color: #ffe8e8;color: red"  :label="props.value"/>
                     </div>
                 </q-td>
             </template>

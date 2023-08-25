@@ -108,8 +108,8 @@
                     <div v-else-if="props.value==='Approved'">
                         <q-badge class="q-pa-sm" style="background-color: #59964f"  :label="props.value"/>
                     </div>
-                    <div v-else-if="props.value==='Rejected'">
-                        <q-badge class="q-pa-sm" style="background-color: #e94343"  :label="props.value"/>
+                    <div v-else>
+                        <q-badge class="q-pa-sm" style="background-color: red"  :label="props.value"/>
                     </div>
                 </q-td>
             </template>

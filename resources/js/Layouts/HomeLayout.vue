@@ -62,9 +62,9 @@
         <q-page-container style="background-color: #f1f1f1">
             <div class="row justify-start">
                 <div class="col-md-5">
-                    <q-tabs inline-label class="largeScreen text-green-9" v-model="tabs">
-                        <q-tab name="mails" icon="home" label="Dashboard" clickable @click="e=>$inertia.get(route('dashboard'))"/>
-                        <q-tab name="alarms" icon="person" label="Farmers List" clickable @click="e=>$inertia.get(route('manage-farmer'))"/>
+                    <q-tabs inline-label class="largeScreen text-green-9" v-model="store.tabs">
+                        <q-tab name="dashboard" icon="home" label="Dashboard" clickable @click="e=>$inertia.get(route('dashboard'))"/>
+                        <q-tab name="farmers" icon="person" label="Farmers List" clickable @click="e=>$inertia.get(route('manage-farmer'))"/>
                         <q-tab  v-if="$page.props.auth.user.roles_id===1" name="movies" icon="movie" label="Admin Controls" >
                             <q-menu
                                 transition-show="scale"
@@ -115,6 +115,7 @@ import SideNav from "@/Components/SideNav.vue";
 import {ref} from 'vue'
 import {router, useForm} from "@inertiajs/vue3";
 import {useQuasar} from "quasar";
+import {AdminStore} from "@/Store/AdminStore.js";
 
 const form = useForm({})
 const confirm = ref(false)
@@ -122,6 +123,7 @@ const leftDrawerOpen = ref(false)
 const miniState = ref(false);
 const tabs=ref('mails')
 const q=useQuasar();
+const store=AdminStore();
 
 function toggleLeftDrawer() {
     leftDrawerOpen.value = !leftDrawerOpen.value
