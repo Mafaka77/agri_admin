@@ -134,6 +134,14 @@ class KharifCropsSeeder extends Seeder
             [
                 'id'=>30,
                 'kharif_crops_name'=>'Watermelon',
+            ],
+            [
+                'id'=>31,
+                'kharif_crops_name'=>'Oilseeds',
+            ],
+            [
+                'id'=>32,
+                'kharif_crops_name'=>'Tung',
             ]
         ];
         foreach ($kharifs as $kharif){

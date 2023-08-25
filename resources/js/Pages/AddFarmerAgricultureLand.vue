@@ -38,6 +38,7 @@
                 <div class="row justify-around">
                     <div class="col-xs-12 col-md-5">
                         <q-input
+                            type="number"
                             name="farm_area"
                             outlined
                             v-model="form.area_of_land"
@@ -218,7 +219,7 @@
                                 outlined
                                 clearable
                                 dense
-                                max-file-size="5000"
+                                max-file-size="3145728"
                                 @rejected="fileRejected"
                             >
                                 <template v-slot:prepend>

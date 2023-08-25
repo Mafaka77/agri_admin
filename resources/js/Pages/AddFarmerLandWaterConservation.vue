@@ -1,10 +1,10 @@
 <template>
     <div class="row justify-center">
         <div class="col-xs-12 col-md-9 col-xl-7 q-pa-xl" style="background-color: white">
-            <q-breadcrumbs>
-                <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-                <q-breadcrumbs-el label="Basic Information" icon="person" />
-            </q-breadcrumbs>
+<!--            <q-breadcrumbs>-->
+<!--                <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>-->
+<!--                <q-breadcrumbs-el label="Basic Information" icon="person" />-->
+<!--            </q-breadcrumbs>-->
             <div class="q-pt-md text-lg">Land Resource, Soil & Water Conservation Details</div>
             <div class="q-gutter-x-md column">
                 <form @submit.prevent="submit" method="POST">
@@ -49,6 +49,7 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
+                                type="number"
                                 name="full_name"
                                 filled
                                 outlined
@@ -56,10 +57,10 @@
                                 :error="!form.errors.total_area===false"
                                 :error-message="form.errors.total_area"
                                 dense
-                                label="Total Area Sown *">
-                                <template v-slot:prepend>
-                                    <q-select v-model="form.crops_acres_or_hectares" :options="areaOptions" label="Area" dense borderless option-value="value" option-label="label" emit-value/>
-                                </template>
+                                label="Total Area Sown (Acres) *">
+<!--                                <template v-slot:prepend>-->
+<!--                                    <q-select v-model="form.crops_acres_or_hectares" :options="areaOptions" label="Area" dense borderless option-value="value" option-label="label" emit-value/>-->
+<!--                                </template>-->
                             </q-input>
                         </div>
                     </div>

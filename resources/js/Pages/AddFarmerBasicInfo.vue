@@ -23,6 +23,7 @@
                 </div>
                 <div class="col-xs-12 col-md-5">
                     <q-input
+                        type="date"
                             clearable
                              v-model="form.dob"
                              dense
@@ -30,9 +31,6 @@
                              label="Date of Birth *"
                              outlined
                             color="green"
-
-                             :error="!form.errors.dob===false"
-                             :error-message="form.errors.dob"
                     >
                         <template v-slot:append>
                             <q-icon name="event" class="cursor-pointer">
@@ -466,9 +464,9 @@ const props=defineProps({
 
 });
 const relations=[
-    {label:'Fathers Name',value:'Father Name'},
-    {label:'Wife Name',value:'Wife Name'},
-    {label:'Husband Name',value:'Husband Name'},
+    {label:"Father's Name",value:'Father Name'},
+    {label:"Wife's Name",value:'Wife Name'},
+    {label:"Husband's Name",value:'Husband Name'},
 ]
 const options=[
     {

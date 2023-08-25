@@ -17,15 +17,27 @@ class FarmerCategorySeeder extends Seeder
         $category=[
             [
                 'id'=>1,
-                'f_category_name'=>'Small'
+                'f_category_name'=>'Landless'
             ],
             [
                 'id'=>2,
-                'f_category_name'=>'Marginal'
+                'f_category_name'=>'Marginal (<1 Ha)'
             ],
             [
                 'id'=>3,
-                'f_category_name'=>'Large'
+                'f_category_name'=>'Small (1-2 Ha)'
+            ],
+            [
+                'id'=>4,
+                'f_category_name'=>'Semi-Medium (2-4 Ha)'
+            ],
+            [
+                'id'=>5,
+                'f_category_name'=>'Medium (4-10 Ha)'
+            ],
+            [
+                'id'=>6,
+                'f_category_name'=>'Large (10+ Ha)'
             ],
         ];
         foreach ($category as $cat){
