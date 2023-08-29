@@ -50,9 +50,17 @@ class ManageFarmerController extends Controller
                 ]);
             }
             default:{
+                $search = $request->get('search');
+                $perPage = $request->get('per_page') ?? 10;
                 $farmers=Farmers::query()
-                    ->with('district')->get();
-                return inertia('ManageFarmer',[
+                    ->orderBy('created_at', 'DESC')
+                    ->with('district')
+                    ->where('verification','=','Approved')
+                    ->with('user')
+                    ->when($search, fn (Builder $builder) => $builder->where('full_name', 'LIKE', "%$search%"))
+                    ->latest()
+                    ->paginate($perPage);
+                return inertia('Admin/AdminManageFarmerPage',[
                     'farmers'=>$farmers
                 ]);
             }

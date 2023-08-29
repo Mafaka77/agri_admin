@@ -12,24 +12,22 @@
                         <div class="col-xs-12 col-md-5">
                             <q-input
                                 name="full_name"
-                                standout
+                                outlined
                                 v-model="form.fisheries_id"
                                 :error="!form.errors.fisheries_id===false"
                                 :error-message="form.errors.fisheries_id"
                                 dense
-                                filled
                                 label="Owner ID No *">
                             </q-input>
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
                                 name="full_name"
-                                standout
+                                outlined
                                 v-model="form.location"
                                 :error="!form.errors.location===false"
                                 :error-message="form.errors.location"
                                 dense
-                                filled
                                 label="Location *">
                             </q-input>
                         </div>
@@ -47,7 +45,6 @@
                                 lazy-rules
                                 :rules="[(val) => val>=0 || 'Invalid Number']"
                                 dense
-                                filled
                                 label="Nursery Pond">
                             </q-input>
                         </div>
@@ -61,7 +58,6 @@
                                 :error-message="form.errors.rearing_ponds"
                                 :rules="[(val) => val>=0 || 'Invalid ID Number']"
                                 dense
-                                filled
                                 label="Rearing Pond">
                             </q-input>
                         </div>
@@ -75,7 +71,6 @@
                                 :error-message="form.errors.grew_out_ponds"
                                 :rules="[(val) => val>=0 || 'Invalid ID Number']"
                                 dense
-                                filled
                                 label="Grow out Pond">
                             </q-input>
                         </div>
@@ -88,7 +83,6 @@
                                 :error="!form.errors.total_ponds===false"
                                 :error-message="form.errors.total_ponds"
                                 dense
-                                filled
                                 label="Total No of Pond">
                             </q-input>
                         </div>
@@ -97,7 +91,6 @@
                         <div class="col-xs-12 col-md-5">
                             <q-input
                                 name="full_name"
-                                filled
                                 outlined
                                 v-model="form.total_area"
                                 :error="!form.errors.total_area===false"
@@ -118,7 +111,7 @@
                             <q-select v-model="form.fish_cultured_id" :error="!form.errors.fish_cultured_id=== false"
                                       :error-message="form.errors.fish_cultured_id" :options="fish" dense
                                       option-label="fish_name" option-value="id" multiple use-chips stack-label
-                                      label="Type of Fish Cultured *" filled outlined  >
+                                      label="Type of Fish Cultured *" outlined  >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -132,7 +125,7 @@
                             <q-select v-model="form.fish_hatchery" :error="!form.errors.fish_hatchery=== false"
                                       :error-message="form.errors.fish_hatchery" :options="fishHatchery" dense
                                       option-label="label" option-value="value"
-                                      label=" Fish Hatchery" filled outlined  >
+                                      label=" Fish Hatchery" outlined  >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -150,7 +143,7 @@
                             dense
                             rounded
                             style="color:#2e6525;padding: 5px 40px 5px"
-                            @click="e=>$inertia.get(route('manage-farmer'))"
+                            @click="e=>$inertia.get(route('farmer-details',form.farmers_id))"
                         />
                         <div style="width: 15px"/>
                         <q-btn

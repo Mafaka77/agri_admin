@@ -506,6 +506,9 @@ const submit=()=>{
                 message:'Farmer Agriculture Land Updated',
                 closeBtn:true,
             })
+        },
+        onFinish:()=>{
+            q.loading.hide();
         }
     })
 }
@@ -533,7 +536,7 @@ const fileRejected=(message)=>{
     })
 }
 const toFarmerDetails=()=>{
-    router.get(route('farmer-details',props.farmerId));
+    router.get(route('farmer-details',props.landDetails.farmers_id));
 }
 const uploadFile=(files)=>{
     const formData = new FormData()

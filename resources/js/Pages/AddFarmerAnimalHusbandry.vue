@@ -1,10 +1,6 @@
 <template>
     <div class="row justify-center">
-        <div class="col-xs-12 col-md-9 col-xl-7 q-pa-xl" style="background-color: white">
-            <q-breadcrumbs>
-                <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-                <q-breadcrumbs-el label="Fisheries" icon="person" />
-            </q-breadcrumbs>
+        <div class="col-xs-12 col-md-9 col-xl-7 q-pa-md" style="background-color: white">
             <div class="q-pt-md text-lg">Animal Husbandry Details</div>
             <div class="q-gutter-x-md column">
                 <form @submit.prevent="submit" method="POST">
@@ -12,24 +8,24 @@
                         <div class="col-xs-12 col-md-5">
                             <q-input
                                 name="full_name"
-                                standout
+                                outlined
                                 v-model="form.husbandry_id"
                                 :error="!form.errors.husbandry_id===false"
                                 :error-message="form.errors.husbandry_id"
                                 dense
-                                filled
-                                label="Husbandry ID *">
+
+                                label="Husbandry ID">
                             </q-input>
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
                                 name="full_name"
-                                standout
+                                outlined
                                 v-model="form.location"
                                 :error="!form.errors.location===false"
                                 :error-message="form.errors.location"
                                 dense
-                                filled
+
                                 label="Location *">
                             </q-input>
                         </div>
@@ -39,7 +35,7 @@
                             <q-select v-model="form.livestock_id" :error="!form.errors.livestock_id=== false"
                                       :error-message="form.errors.livestock_id" :options="livestock" dense
                                       option-label="livestock_name" option-value="id" multiple use-chips stack-label
-                                      label="Livestock *" filled outlined  >
+                                      label="Livestock *"  outlined  >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -53,7 +49,7 @@
                             <q-select v-model="form.type_of_breed" :error="!form.errors.type_of_breed=== false"
                                       :error-message="form.errors.type_of_breed" :options="typeOfBreed" dense
                                       option-label="name" option-value="id" multiple use-chips stack-label
-                                      label="Type of breed *" filled outlined  >
+                                      label="Type of breed *"  outlined  >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -69,7 +65,7 @@
                         <q-select v-model="form.type_of_farm" :error="!form.errors.type_of_farm=== false"
                                   :error-message="form.errors.type_of_farm" :options="typeOfFarm" dense
                                   option-label="name" option-value="id" multiple use-chips stack-label
-                                  label="Type of Farm " filled outlined  >
+                                  label="Type of Farm "  outlined  >
                             <template v-slot:no-option>
                                 <q-item>
                                     <q-item-section class="text-gresy">
@@ -93,7 +89,7 @@
                                 lazy-rules
                                 :rules="[(val) => val>=0 || 'Invalid Number']"
                                 dense
-                                filled
+
                                 label="Adult Male ">
                             </q-input>
                         </div>
@@ -107,7 +103,7 @@
                                 :error-message="form.errors.adult_female"
                                 :rules="[(val) => val>=0 || 'Invalid ID Number']"
                                 dense
-                                filled
+
                                 label="Adult Female">
                             </q-input>
                         </div>
@@ -121,7 +117,7 @@
                                 :error-message="form.errors.young_stock"
                                 :rules="[(val) => val>=0 || 'Invalid ID Number']"
                                 dense
-                                filled
+
                                 label="Youngstock">
                             </q-input>
                         </div>
@@ -134,7 +130,7 @@
                                 :error="!form.errors.total===false"
                                 :error-message="form.errors.total"
                                 dense
-                                filled
+
                                 label="Total">
                             </q-input>
                         </div>
@@ -145,7 +141,7 @@
                             <q-select v-model="form.type_of_poultry_farm" :error="!form.errors.type_of_poultry_farm=== false"
                                       :error-message="form.errors.type_of_poultry_farm" :options="poultryFarm" dense
                                       option-label="name" option-value="id" multiple use-chips stack-label
-                                      label="Type of Poultry Farm*" filled outlined  >
+                                      label="Type of Poultry Farm*"  outlined  >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -159,7 +155,7 @@
                             <q-select v-model="form.type_of_poultry_breed" :error="!form.errors.type_of_poultry_breed=== false"
                                       :error-message="form.errors.type_of_poultry_breed" :options="poultryBreed" dense
                                       option-label="name" option-value="id" multiple use-chips stack-label
-                                      label="Type of Poultry Breed *" filled outlined  >
+                                      label="Type of Poultry Breed *"  outlined  >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -173,13 +169,15 @@
                     <div class="row justify-around q-mt-md">
                         <div class="col-xs-12 col-md-5">
                             <q-input
-
+                                mask="#"
+                                fill-mask="0"
+                                reverse-fill-mask
                                 outlined
                                 v-model="form.no_of_poultry"
                                 :error="!form.errors.no_of_poultry===false"
                                 :error-message="form.errors.no_of_poultry"
                                 dense
-                                filled
+
                                 label="No of Poultry *">
                             </q-input>
                         </div>
@@ -192,7 +190,7 @@
                             dense
                             rounded
                             style="color:#2e6525;padding: 5px 40px 5px"
-                            @click="e=>$inertia.get(route('manage-farmer'))"
+                            @click="e=>$inertia.get(route('farmer-details',props.farmers))"
                         />
                         <div style="width: 15px"/>
                         <q-btn

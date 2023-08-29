@@ -12,30 +12,28 @@
                         <div class="col-xs-12 col-md-5">
                             <q-input
                                 name="full_name"
-                                standout
+                                outlined
                                 v-model="form.fisheries_id"
                                 :error="!form.errors.fisheries_id===false"
                                 :error-message="form.errors.fisheries_id"
                                 dense
-                                filled
-                                label="Owner ID No *">
+                                label="Owner ID No ">
                             </q-input>
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
                                 name="full_name"
-                                standout
+                                outlined
                                 v-model="form.location"
                                 :error="!form.errors.location===false"
                                 :error-message="form.errors.location"
                                 dense
-                                filled
                                 label="Location *">
                             </q-input>
                         </div>
                     </div>
                     <div>Fish Pond Details</div>
-                    <div class="row justify-around q-mt-md">
+                    <div class="row justify-around q-gutter-y-md q-mt-md">
                         <div class="col-xs-12 col-md-2">
                             <q-input
                                 min="0"
@@ -43,7 +41,6 @@
                                 outlined
                                 v-model="form.nursery_ponds"
                                 dense
-                                filled
                                 label="Nursery Pond">
                             </q-input>
                         </div>
@@ -54,7 +51,6 @@
                                 outlined
                                 v-model="form.rearing_ponds"
                                 dense
-                                filled
                                 label="Rearing Pond">
                             </q-input>
                         </div>
@@ -65,7 +61,6 @@
                                 outlined
                                 v-model="form.grew_out_ponds"
                                 dense
-                                filled
                                 label="Grow out Pond">
                             </q-input>
                         </div>
@@ -78,7 +73,6 @@
                                 :error="!form.errors.total_ponds===false"
                                 :error-message="form.errors.total_ponds"
                                 dense
-                                filled
                                 label="Total No of Pond">
                             </q-input>
                         </div>
@@ -86,8 +80,9 @@
                     <div class="row justify-around">
                         <div class="col-xs-12 col-md-5">
                             <q-input
-                                name="full_name"
-                                filled
+                                mask="#.#"
+                                fill-mask="0"
+                                reverse-fill-mask
                                 outlined
                                 v-model="form.total_area"
                                 :error="!form.errors.total_area===false"
@@ -108,7 +103,7 @@
                             <q-select v-model="form.fish_cultured_id" :error="!form.errors.fish_cultured_id=== false"
                                       :error-message="form.errors.fish_cultured_id" :options="fish" dense
                                       option-label="fish_name" option-value="id" multiple use-chips stack-label
-                                      label="Type of Fish Cultured *" filled outlined  >
+                                      label="Type of Fish Cultured *"  outlined  >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -123,7 +118,7 @@
                                       :error-message="form.errors.fish_hatchery" :options="fishHatchery" dense emit-value
                                       fill-input
                                       option-label="label" option-value="value"
-                                      label=" Fish Hatchery" filled outlined  >
+                                      label=" Fish Hatchery" outlined  >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -141,7 +136,7 @@
                             dense
                             rounded
                             style="color:#2e6525;padding: 5px 40px 5px"
-                            @click="e=>$inertia.get(route('manage-farmer'))"
+                            @click="e=>$inertia.get(route('farmer-details',props.farmers_id))"
                         />
                         <div style="width: 15px"/>
                         <q-btn

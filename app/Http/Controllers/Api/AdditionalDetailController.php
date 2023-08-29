@@ -54,7 +54,9 @@ class AdditionalDetailController extends Controller
     public function getAdditionalDetails(Request $request)
     {
         try{
-            $additional=AdditionalFarmerDetails::query()->where('id',$request->id)->with('schemeApplied')->with('schemes')->first();
+            $additional=AdditionalFarmerDetails::query()->where('id',$request->id)
+                ->with('schemeApplied')
+                ->with('schemes')->first();
             return response()->json(['data'=>$additional],200);
         }catch (\Exception $exception){}
     }

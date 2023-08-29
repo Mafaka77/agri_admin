@@ -1,14 +1,4 @@
 <template>
-    <div class="column full-height bg-white">
-        <q-item clickable @click="e=>$inertia.get(route('dashboard'))">
-            <q-item-section avatar>
-                <q-icon name="home"/>
-            </q-item-section>
-            <q-item-section>
-                <q-item-label >Dashboard</q-item-label>
-            </q-item-section>
-        </q-item>
-        <q-separator/>
         <div v-if="$page.props.auth.user.roles_id===1">
             <q-list>
                 <q-expansion-item expand-separator icon="person" label="Admin Controls">
@@ -66,20 +56,6 @@
 
             </q-list>
         </div>
-
-        <q-separator/>
-        <q-item clickable @click="e=>$inertia.get(route('manage-farmer'))">
-            <q-item-section avatar>
-                <q-icon name="description"/>
-            </q-item-section>
-            <q-item-section>
-                <q-item-label>Manage Farmers</q-item-label>
-            </q-item-section>
-        </q-item>
-        <q-separator/>
-
-
-    </div>
 </template>
 <script setup>
 

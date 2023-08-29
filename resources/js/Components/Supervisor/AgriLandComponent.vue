@@ -1,6 +1,6 @@
 <template>
     <div v-for="agri in agriLand">
-        <q-expansion-item label="Agriculture Land Details">
+        <q-expansion-item label="Agriculture Land Details" class="overflow-hidden" >
             <div class="row justify-between q-pa-md q-gutter-y-md q-gutter-y-md">
                 <div class="col-xs-6 col-md-2">
                     <div style="color: #588052">Agri Farmer ID</div>

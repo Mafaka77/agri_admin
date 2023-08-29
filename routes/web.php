@@ -75,7 +75,12 @@ Route::middleware('auth')->group(function () {
     Route::get('approve-farmer/{id}',[\App\Http\Controllers\SupervisorApprovalController::class,'approve'])->name('approve-farmer');
     Route::get('reject-farmer/{id}',[\App\Http\Controllers\SupervisorApprovalController::class,'reject'])->name('reject-farmer');
 
+    //ADMIN
+    Route::get('admin-view-farmer-details/{id}',[\App\Http\Controllers\AdminViewFarmerDetailController::class,'index'])->name('admin-view-farmer-details');
+
 });
+
+
 
 //Route::get('/dashboard', function () {
 //    return Inertia::render('Dashboard');

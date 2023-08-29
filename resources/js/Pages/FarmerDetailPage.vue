@@ -150,7 +150,7 @@
                     <q-separator color="green" inset class="q-mt-md"/>
         </div>
 
-        <div v-for="data in farmerLandWaterConservation">
+        <div v-for="(data,index) in farmerLandWaterConservation">
             <q-card  class="basic-info-card q-mt-md" bordered flat style="border-color: #2e6525">
                 <q-item>
                     <q-item-section avatar middle>

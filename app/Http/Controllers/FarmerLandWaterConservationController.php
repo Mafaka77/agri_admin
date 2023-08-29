@@ -70,7 +70,8 @@ class FarmerLandWaterConservationController extends Controller
      */
     public function edit(FarmerLandWaterConservation $farmerLandWaterConservation,int $id)
     {
-        $land=FarmerLandWaterConservation::query()->findOrFail($id)
+
+        $land=FarmerLandWaterConservation::query()->where('id',$id)
             ->with('landCrops')
             ->first();
         return inertia('Edit/EditFarmerLandWaterPage',[
@@ -110,7 +111,7 @@ class FarmerLandWaterConservationController extends Controller
      */
     public function destroy(FarmerLandWaterConservation $farmerLandWaterConservation,int $id)
     {
-        $land=FarmerLandWaterConservation::query()->findOrFail($id)->first();
+        $land=FarmerLandWaterConservation::query()->where('id',$id)->first();
         DB::transaction(function () use ($land){
             $land->delete();
             $land->landCropsGrown()->delete();

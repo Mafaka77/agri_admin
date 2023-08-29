@@ -1,10 +1,6 @@
 <template>
     <div class="row justify-center">
         <div class="col-md-9 col-xl-7 q-pa-xl" style="background-color: white">
-            <q-breadcrumbs>
-                <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-                <q-breadcrumbs-el label="Basic Information" icon="person" />
-            </q-breadcrumbs>
             <div class="q-pt-md text-lg">Land Resource, Soil & Water Conservation Details</div>
             <div class="q-gutter-x-md column">
                 <form @submit.prevent="submit" method="POST">
@@ -18,7 +14,7 @@
                                 :error-message="form.errors.owner_id"
                                 dense
                                 filled
-                                label="Owner ID No *">
+                                label="Owner ID No">
                             </q-input>
                         </div>
                         <div class="col-xs-12 col-md-5">
@@ -49,6 +45,9 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
+                                mask="#.#"
+                                fill-mask="0"
+                                reverse-fill-mask
                                 filled
                                 outlined
                                 v-model="form.total_area"
@@ -67,7 +66,7 @@
                             dense
                             rounded
                             style="color:#2e6525;padding: 5px 40px 5px"
-                            @click="e=>$inertia.get(route('manage-farmer'))"
+                            @click="back"
                         />
                         <div style="width: 15px"/>
                         <q-btn
@@ -137,6 +136,10 @@ const submit=()=>{
             })
         }
     });
+}
+const back=()=>{
+
+    router.get(route('open-clicked',props.landData.farmers_id))
 }
 </script>
 

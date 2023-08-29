@@ -1,36 +1,34 @@
 <template>
     <div class="row justify-center">
     <div class="col-xs-12 col-md-9 col-xl-7 q-pa-md" style="background-color: white">
-        <q-breadcrumbs>
-            <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-            <q-breadcrumbs-el label="Farmer Details" icon="list" @click="e=>$inertia.get(route('farmer-details',farmers_id))"/>
-            <q-breadcrumbs-el label="Sericulture" icon="agriculture" />
-        </q-breadcrumbs>
-        <div class="q-pt-md text-lg">Animal Husbandry Details</div>
+<!--        <q-breadcrumbs>-->
+<!--            <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>-->
+<!--            <q-breadcrumbs-el label="Farmer Details" icon="list" @click="e=>$inertia.get(route('farmer-details',farmers_id))"/>-->
+<!--            <q-breadcrumbs-el label="Sericulture" icon="agriculture" />-->
+<!--        </q-breadcrumbs>-->
+        <div class="q-pt-md text-lg">Sericulture Details</div>
         <div class="q-gutter-x-md column">
             <form @submit.prevent="submit" method="POST">
                 <div class="row justify-around q-mt-md">
                     <div class="col-xs-12 col-md-5">
                         <q-input
-                            name="full_name"
-                            standout
+                            outlined
                             v-model="form.sericulture_id"
                             :error="!form.errors.sericulture_id===false"
                             :error-message="form.errors.sericulture_id"
                             dense
-                            filled
+
                             label="Sericulture ID">
                         </q-input>
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <q-input
-                            name="full_name"
-                            standout
+                            outlined
                             v-model="form.location"
                             :error="!form.errors.location===false"
                             :error-message="form.errors.location"
                             dense
-                            filled
+
                             label="Location *">
                         </q-input>
                     </div>
@@ -39,8 +37,9 @@
                 <div class="row justify-around q-mt-md">
                     <div class="col-xs-12 col-md-5">
                         <q-input
-                            name="full_name"
-                            filled
+                            mask="#"
+                            fill-mask="0"
+                            reverse-fill-mask
                             outlined
                             v-model="form.total_area"
                             :error="!form.errors.total_area===false"
@@ -51,13 +50,15 @@
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <q-input
-                            name="full_name"
-                            standout
+                            mask="#"
+                            fill-mask="0"
+                            reverse-fill-mask
+                            outlined
                             v-model="form.size_of_rearing_unit"
                             :error="!form.errors.size_of_rearing_unit===false"
                             :error-message="form.errors.size_of_rearing_unit"
                             dense
-                            filled
+
                             label="Size of Rearing Unit(in sqft) *">
                         </q-input>
                     </div>
@@ -67,7 +68,7 @@
                         <q-select v-model="form.silkworm_id" :error="!form.errors.silkworm_id=== false"
                                   :error-message="form.errors.silkworm_id" :options="silkWorm" dense
                                   option-label="silkworm_name" option-value="id" multiple use-chips stack-label
-                                  label="Silkworms Reared" filled outlined  >
+                                  label="Silkworms Reared"  outlined  >
                             <template v-slot:no-option>
                                 <q-item>
                                     <q-item-section class="text-gresy">
@@ -79,8 +80,9 @@
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <q-input
-                            name="full_name"
-                            filled
+                            mask="#"
+                            fill-mask="0"
+                            reverse-fill-mask
                             outlined
                             v-model="form.plantation_total_area"
                             :error="!form.errors.plantation_total_area===false"
@@ -97,7 +99,7 @@
                         dense
                         rounded
                         style="color:#2e6525;padding: 5px 40px 5px"
-                        @click="e=>$inertia.get(route('manage-farmer'))"
+                        @click="e=>$inertia.get(route('farmer-details',form.farmers_id))"
                     />
                     <div style="width: 15px"/>
                     <q-btn

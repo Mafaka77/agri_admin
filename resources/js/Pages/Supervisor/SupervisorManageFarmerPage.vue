@@ -16,7 +16,7 @@
         >
             <template v-slot:top-left>
                 <div class="column q-gutter-md">
-                    <div class="row">Farmer List for
+                    <div class="row">Farmer List for &nbsp
                     <div class="text-bold">{{district.district_name}}</div>
                     </div>̵
                     <div>

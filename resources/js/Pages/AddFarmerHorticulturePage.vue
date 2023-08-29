@@ -17,7 +17,7 @@
                             :error="!form.errors.farmer_horticulture_id===false"
                             :error-message="form.errors.farmer_horticulture_id"
                             dense
-                            label="Farmer Horticulture ID *">
+                            label="Farmer Horticulture ID">
                         </q-input>
                     </div>
                     <div class="col-xs-12 col-md-5">
@@ -52,6 +52,9 @@
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <q-input
+                            mask="#.#"
+                            fill-mask="0"
+                            reverse-fill-mask
                             name="full_name"
                             outlined
                             v-model="form.kharif_total_area"
@@ -82,6 +85,9 @@
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <q-input
+                            mask="#.#"
+                            fill-mask="0"
+                            reverse-fill-mask
                             name="full_name"
                             outlined
                             v-model="form.rabi_total_area"
@@ -146,6 +152,9 @@
                     </div>
                     <div class="col-xs-12 col-md-5">
                         <q-input
+                            mask="#.#"
+                            fill-mask="0"
+                            reverse-fill-mask
                             outlined
                             v-model="form.total_greenhouse_area"
                             :error="!form.errors.total_greenhouse_area===false"
@@ -165,7 +174,7 @@
                         dense
                         rounded
                         style="color:#2e6525;padding: 5px 40px 5px"
-                        @click="e=>$inertia.get(route('manage-farmer'))"
+                        @click="back"
                     />
                     <div style="width: 15px"/>
                     <!--                <q-btn-->
@@ -252,6 +261,9 @@ const submit=()=>{
                     });
                 }
     });
+}
+const back=()=>{
+    router.get(route('farmer-details',props.farmer_id))
 }
 </script>
 

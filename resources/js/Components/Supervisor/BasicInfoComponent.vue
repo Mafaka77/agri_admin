@@ -1,7 +1,7 @@
 <template>
     <!--            First-->
     <div>
-        <q-expansion-item label="Basic Information" default-opened class="overflow-hidden" header-class="bg-primary text-white">
+        <q-expansion-item label="Basic Information" default-opened class="overflow-hidden" header-class="bg-black text-white">
             <div class="row justify-between q-pa-md q-gutter-y-md q-gutter-y-md">
                 <div class="col-xs-6 col-md-2">
                     <div style="color: #588052">Full Name</div>

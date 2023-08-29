@@ -128,4 +128,23 @@ class MobileAgriLandController extends Controller
             $farm->rabiCrops()->sync($rabiCrop);
         });
     }
+
+    public function deleteFarm(Request $request,int $id)
+    {
+        info($id);
+        try{
+                $farm=FarmerAgricultureLandDetails::query()->where('id',$id)->first();
+                $farm->delete();
+                $farm->irrigationInfrastructures()->delete();
+                $farm->farmEquipments()->delete();
+                $farm->kharifCrops()->delete();
+                $farm->rabiCrops()->delete();
+                return response()->json(['data'=>'Successfully Deleted'],200);
+
+        }catch (\Exception $ex){
+            return response()->json(['error'=>'Error Occured'],500);
+        }
+
+
+    }
 }

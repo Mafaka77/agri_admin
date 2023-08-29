@@ -318,7 +318,7 @@
                         dense
                         rounded
                         style="color:#2e6525;padding: 5px 40px 5px"
-                        @click="e=>$inertia.get(route('manage-farmer'))"
+                        @click="e=>$inertia.get(route('farmer_details',props.farmer_id))"
                     />
                     <div style="width: 15px"/>
                     <!--                <q-btn-->

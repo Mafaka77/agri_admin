@@ -72,9 +72,7 @@ class FarmerAgricultureLandDetailsController extends Controller
                 'landholding_documents_number'=>'required',
                 'land_holding_file'=>'required',
                 'kharif_acres_or_hectares'=>'required',
-                'kharif_total_area'=>'required',
                 'rabi_acres_or_hectares'=>'required',
-                'rabi_total_area'=>'required',
                 'district_id'=>'required',
                 'block_id'=>'required',
                 'village_id'=>'required',
@@ -99,6 +97,8 @@ class FarmerAgricultureLandDetailsController extends Controller
                 'land_holding_file'=>$file_path,
                 'sub_division_id'=>1,
                 'farmer_agri_id'=>$request->farmer_agri_id,
+                'kharif_total_area'=>$request->kharif_total_area,
+                'rabi_total_area'=>$request->rabi_total_area
                 ]);
             DB::transaction(function () use ($applications,$irrigationInfrastructure,$farmEquipment,$farmerRabiCrops,$farmerKharifCrops) {
                 $data = FarmerAgricultureLandDetails::query()->create($applications,);
@@ -165,12 +165,11 @@ class FarmerAgricultureLandDetailsController extends Controller
     public function update(Request $request, FarmerAgricultureLandDetails $farmerAgricultureLandDetails,int $id)
     {
 
-        try{
+//        try{
             $altitude=$request->altitude;
             $other_irrigation_infrastructure=$request->other_irrigation_infrastructure;
             $other_farm_equipment=$request->other_farm_equipment;
             $validateLand=$this->validate($request,[
-                'farmer_agri_id'=>'required',
                 'farmers_id'=>'required',
                 'land_owner_name'=>'required',
                 'area_of_land'=>'required',
@@ -189,19 +188,21 @@ class FarmerAgricultureLandDetailsController extends Controller
                 'land_holding_id'=>'required',
                 'ownership_type_id'=>'required'
             ]);
+
             $irrigationInfrastructure=$request->irrigation_infrastructure_ids;
             $farmEquipment=$request->farm_equipment_ids;
             $farmerKharifCrops=$request->kharif_crop_ids;
             $farmerRabiCrops=$request->rabi_crop_ids;
-            $data = FarmerAgricultureLandDetails::query()->findOrFail($id);
+            $data = FarmerAgricultureLandDetails::query()->where('id',$id)->first();
             $applications=array_merge($validateLand,[
                 'altitude'=>$altitude,
                 'other_irrigation_infrastructure'=>$other_irrigation_infrastructure,
                 'other_farm_equipment'=>$other_farm_equipment,
-                'sub_division_id'=>1]);
+                'sub_division_id'=>$request->sub_division_id,
+                'farmer_agri_id'=>$request->farmer_agri_id,
+                ]);
+
             DB::transaction(function () use ($applications,$irrigationInfrastructure,$farmEquipment,$farmerRabiCrops,$farmerKharifCrops,$data) {
-
-
                 $data->update($applications);
                 $data->irrigationInfrastructures()->sync($irrigationInfrastructure);
                 $data->farmEquipments()->sync($farmEquipment);
@@ -211,9 +212,9 @@ class FarmerAgricultureLandDetailsController extends Controller
             return to_route('farmer-details',[
                 'farmer'=>$request->farmers_id
             ]);
-        }catch (\Exception $ex){
-            return redirect()->back()->withErrors(['message'=>$ex]);
-        }
+//        }catch (\Exception $ex){
+//            return redirect()->back()->withErrors(['message'=>$ex]);
+//        }
     }
 
     /**

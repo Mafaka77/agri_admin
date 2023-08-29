@@ -37,26 +37,50 @@
                   :breakpoint="500"
                   bordered
                   class="bg-grey-3 drawer">
-            <template v-slot:mini>
-                <div class="column justify-center  text-color text-bold full-height">
+            <q-scroll-area style="height: calc(100% - 150px); margin-top: 150px; border-right: 1px solid #ddd">
+                <q-list padding>
+                    <q-item clickable v-ripple  @click="e=>$inertia.get(route('dashboard'))">
+                        <q-item-section avatar>
+                            <q-icon name="inbox" />
+                        </q-item-section>
 
-                    <div class="column q-gutter-sm">
-                        <q-btn flat color="primary" icon="o_dashboard"/>
-                        <q-btn flat icon="o_feed"/>
-                        <q-btn flat icon="o_storage"/>
-                        <q-btn flat icon="o_settings"/>
-                    </div>
-                    <q-btn class="absolute-bottom" @click="miniState=false" flat round icon="chevron_right"/>
+                        <q-item-section>
+                            Dashboard
+                        </q-item-section>
+                    </q-item>
+
+                    <q-item  clickable v-ripple @click="e=>$inertia.get(route('manage-farmer'))">
+                        <q-item-section avatar>
+                            <q-icon name="star" />
+                        </q-item-section>
+
+                        <q-item-section>
+                            Manage Farmers
+                        </q-item-section>
+                    </q-item>
+
+                   <SideNav/>
+                </q-list>
+            </q-scroll-area>
+
+            <q-img class="absolute-top" src="https://cdn.quasar.dev/img/material.png" style="height: 150px">
+                <div class="absolute-bottom bg-transparent">
+                    <q-avatar size="56px" class="q-mb-sm">
+                        <img src="https://cdn.quasar.dev/img/boy-avatar.png">
+                    </q-avatar>
+                    <div class="text-weight-bold">Welcome,</div>
+                    <div>{{$page.props.auth.user.name}}</div>
                 </div>
-            </template>
-            <SideNav class="drawer">
-                <template #miniBtn>
-                    <div class="flex justify-end">
-                        <q-btn @click="miniState=true" flat round icon="chevron_left"/>
-                    </div>
+            </q-img>
 
-                </template>
-            </SideNav>
+            <!--            <SideNav class="drawer">-->
+<!--                <template #miniBtn>-->
+<!--                    <div class="flex justify-end">-->
+<!--                        <q-btn @click="miniState=true" flat round icon="chevron_left"/>-->
+<!--                    </div>-->
+
+<!--                </template>-->
+<!--            </SideNav>-->
 
         </q-drawer>
         <q-page-container style="background-color: #f1f1f1">
@@ -105,8 +129,9 @@
                     </slot>
                 </div>
             </q-page>
-        </q-page-container>
 
+        </q-page-container>
+        <FooterComponent/>
     </q-layout>
 </template>
 
@@ -116,6 +141,7 @@ import {ref} from 'vue'
 import {router, useForm} from "@inertiajs/vue3";
 import {useQuasar} from "quasar";
 import {AdminStore} from "@/Store/AdminStore.js";
+import FooterComponent from "@/Components/FooterComponent.vue";
 
 const form = useForm({})
 const confirm = ref(false)

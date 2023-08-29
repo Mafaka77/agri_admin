@@ -38,7 +38,9 @@
                 <div class="row justify-around">
                     <div class="col-xs-12 col-md-5">
                         <q-input
-                            type="number"
+                            mask="#.#"
+                            fill-mask="0"
+                            reverse-fill-mask
                             name="farm_area"
                             outlined
                             v-model="form.area_of_land"

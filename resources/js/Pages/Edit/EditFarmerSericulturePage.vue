@@ -1,11 +1,11 @@
 <template>
     <div class="row justify-center">
     <div class="col-xs-12 col-md-9 col-xl-7 q-pa-md" style="background-color: white">
-        <q-breadcrumbs>
-            <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-            <q-breadcrumbs-el label="Sericulture" icon="person" />
-        </q-breadcrumbs>
-        <div class="q-pt-md text-lg">Animal Husbandry Details</div>
+<!--        <q-breadcrumbs>-->
+<!--            <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>-->
+<!--            <q-breadcrumbs-el label="Sericulture" icon="person" />-->
+<!--        </q-breadcrumbs>-->
+        <div class="q-pt-md text-lg">Sericulture Details</div>
         <div class="q-gutter-x-md column">
             <form @submit.prevent="submit" method="POST">
                 <div class="row justify-around q-mt-md">
@@ -96,7 +96,7 @@
                         dense
                         rounded
                         style="color:#2e6525;padding: 5px 40px 5px"
-                        @click="e=>$inertia.get(route('manage-farmer'))"
+                        @click="e=>$inertia.get(route('farmer-details',form.farmers_id))"
                     />
                     <div style="width: 15px"/>
                     <q-btn

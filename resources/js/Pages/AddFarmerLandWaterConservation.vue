@@ -18,7 +18,7 @@
                                 :error-message="form.errors.owner_id"
                                 dense
                                 filled
-                                label="Owner ID No *">
+                                label="Owner ID No">
                             </q-input>
                         </div>
                         <div class="col-xs-12 col-md-5">
@@ -49,7 +49,9 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
-                                type="number"
+                                mask="#.#"
+                                fill-mask="0"
+                                reverse-fill-mask
                                 name="full_name"
                                 filled
                                 outlined
@@ -71,7 +73,7 @@
                             dense
                             rounded
                             style="color:#2e6525;padding: 5px 40px 5px"
-                            @click="e=>$inertia.get(route('manage-farmer'))"
+                            @click="e=>$inertia.get(route('farmer-details',props.farmerId))"
                         />
                         <div style="width: 15px"/>
                         <q-btn
@@ -138,6 +140,9 @@ const submit=()=>{
                 message:'Error Occured!',
                 closeBtn:true,
             })
+        },
+        onFinish:()=>{
+            q.loading.hide();
         }
     });
 }

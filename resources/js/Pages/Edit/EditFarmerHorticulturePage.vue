@@ -17,7 +17,7 @@
                                 :error="!form.errors.farmer_horticulture_id===false"
                                 :error-message="form.errors.farmer_horticulture_id"
                                 dense
-                                label="Farmer Horticulture ID *">
+                                label="Farmer Horticulture ID">
                             </q-input>
                         </div>
                         <div class="col-xs-12 col-md-5">
@@ -40,7 +40,7 @@
                             <q-select v-model="form.kharif_crops_id" :error="!form.errors.kharif_crops_id === false"
                                       :error-message="form.errors.kharif_crops_id" :options="kharifCrops" dense
                                       option-label="kharif_crops_name" option-value="id" multiple use-chips stack-label
-                                      label=" Crops Grown(Kharif)"  outlined >
+                                      label=" Crops Grown(Kharif)"  outlined color="green" >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -52,6 +52,9 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
+                                mask="#.#"
+                                fill-mask="0"
+                                reverse-fill-mask
                                 name="full_name"
                                 outlined
                                 v-model="form.kharif_total_area"
@@ -70,7 +73,7 @@
                             <q-select v-model="form.rabi_crops_id" :error="!form.errors.rabi_crops_id === false"
                                       :error-message="form.errors.rabi_crops_id" :options="rabiCrops" dense
                                       option-label="rabi_crops_name" option-value="id" multiple use-chips stack-label
-                                      label=" Crops Grown(Rabi)" outlined  >
+                                      label=" Crops Grown(Rabi)" outlined color="green" >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -82,6 +85,9 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
+                                mask="#.#"
+                                fill-mask="0"
+                                reverse-fill-mask
                                 name="full_name"
                                 outlined
                                 v-model="form.rabi_total_area"
@@ -102,7 +108,7 @@
                             <q-select v-model="form.orchards_id" :error="!form.errors.orchards_id === false"
                                       :error-message="form.errors.orchards_id" :options="orchards" dense
                                       option-label="orchards_name" option-value="id" multiple use-chips stack-label
-                                      label=" Orchards" outlined  >
+                                      label=" Orchards" outlined  color="green">
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -116,7 +122,7 @@
                             <q-select v-model="form.plantation_id" :error="!form.errors.plantation_id === false"
                                       :error-message="form.errors.plantation_id" :options="plantation" dense
                                       option-label="plantation_name" option-value="id" multiple use-chips stack-label
-                                      label=" Plantation" outlined  >
+                                      label=" Plantation" outlined color="green" >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -134,7 +140,7 @@
                             <q-select v-model="form.green_house_id" :error="!form.errors.green_house_id === false"
                                       :error-message="form.errors.green_house_id" :options="greenHouse" dense
                                       option-label="name" option-value="id" multiple use-chips stack-label
-                                      label="Plants Grown" outlined  >
+                                      label="Plants Grown" outlined color="green" >
                                 <template v-slot:no-option>
                                     <q-item>
                                         <q-item-section class="text-gresy">
@@ -146,6 +152,9 @@
                         </div>
                         <div class="col-xs-12 col-md-5">
                             <q-input
+                                mask="#.#"
+                                fill-mask="0"
+                                reverse-fill-mask
                                 outlined
                                 v-model="form.total_greenhouse_area"
                                 :error="!form.errors.total_greenhouse_area===false"
@@ -165,7 +174,7 @@
                             dense
                             rounded
                             style="color:#2e6525;padding: 5px 40px 5px"
-                            @click="e=>$inertia.get(route('manage-farmer'))"
+                            @click="e=>$inertia.get(route('farmer-details',form.farmers_id))"
                         />
                         <div style="width: 15px"/>
                         <!--                <q-btn-->
@@ -241,7 +250,7 @@ const submit=()=>{
         ...data
     })).put(route('farmer-horticulture-land.update',form.id),{
         onStart:()=>q.loading.show(),
-        onFinish:()=>{
+        onSuccess:()=>{
             q.loading.hide();
             q.notify({
                 message:'Successfully Updated'
@@ -250,8 +259,11 @@ const submit=()=>{
         onError:(err)=>{
             q.loading.hide();
             q.notify({
-                message:'Error Occured'
+                message:'Error Occured!! Try Again'
             });
+        },
+        onFinish:()=>{
+            q.loading.hide();
         }
     });
 }

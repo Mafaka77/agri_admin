@@ -58,14 +58,13 @@ class FarmerAnimalHusbandryDetailsController extends Controller
             'adult_female'=>'required',
             'young_stock'=>'required',
             'total'=>'required',
-            'no_of_poultry'=>'required'
         ]);
         $livestock_ids=$request->livestock_ids;
         $husbandryTypeOfBreed=$request->type_of_breeds;
         $husbandryTypeOfFarm=$request->type_of_farms;
         $poultryTypeOfFarm=$request->type_of_poultry_farms;
         $poultryTypeOfBreed=$request->type_of_poultry_breeds;
-        $data=array_merge($validate,['husbandry_id'=>$request->husbandry_id]);
+        $data=array_merge($validate,['husbandry_id'=>$request->husbandry_id,'no_of_poultry'=>$request->no_of_poultry]);
         DB::transaction(function () use($data,$livestock_ids,$husbandryTypeOfBreed,$husbandryTypeOfFarm,$poultryTypeOfFarm,$poultryTypeOfBreed){
             $data=FarmerAnimalHusbandryDetails::query()->create($data);
             $data->livestock()->sync($livestock_ids);
@@ -128,7 +127,7 @@ class FarmerAnimalHusbandryDetailsController extends Controller
         $data=array_merge($validate,['husbandry_id'=>$request->husbandry_id]);
         DB::transaction(function () use($data,$livestock_ids,$husbandryTypeOfBreed,$husbandryTypeOfFarm,$poultryTypeOfFarm,$poultryTypeOfBreed,$id){
 
-            $animal=FarmerAnimalHusbandryDetails::query()->findOrFail($id)->first();
+            $animal=FarmerAnimalHusbandryDetails::query()->where('id',$id)->first();
             $animal->update($data);
             $animal->livestock()->sync($livestock_ids);
             $animal->typeOfFarm()->sync($husbandryTypeOfFarm);
@@ -146,7 +145,7 @@ class FarmerAnimalHusbandryDetailsController extends Controller
      */
     public function destroy(FarmerAnimalHusbandryDetails $farmerAnimalHusbandryDetails,int $id)
     {
-        $husbandry=FarmerAnimalHusbandryDetails::query()->findOrFail($id)->first();
+        $husbandry=FarmerAnimalHusbandryDetails::query()->where('id',$id)->first();
         $farmers_id=$husbandry->farmers_id;
         DB::transaction(function () use ($id,$husbandry){
             $husbandry->delete();

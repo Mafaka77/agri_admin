@@ -14,7 +14,7 @@ import GuestLayout from "@/Layouts/GuestLayout.vue";
 import HomeLayout from "@/Layouts/HomeLayout.vue";
 
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName =  'Agriculture';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
