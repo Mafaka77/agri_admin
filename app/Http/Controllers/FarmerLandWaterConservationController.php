@@ -94,7 +94,7 @@ class FarmerLandWaterConservationController extends Controller
             $data=array_merge($validate,[ 'owner_id'=>$request->owner_id,]);
             $crops=$request->crop_ids;
             DB::transaction(function () use($data,$crops,$id){
-                $land=FarmerLandWaterConservation::query()->findOrFail($id)->first();
+                $land=FarmerLandWaterConservation::query()->where('id',$id)->first();
                 $land->update($data);
                 $land->landCrops()->sync($crops);
             });

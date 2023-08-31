@@ -100,7 +100,7 @@ class FarmerFisherieController extends Controller
 
             ]);
             DB::transaction(function () use($fish_cultured_ids,$validatedData,$id){
-                $farmerFisherie=FarmerFisherie::query()->findOrFail($id)->first();
+                $farmerFisherie=FarmerFisherie::query()->where('id',$id)->first();
                 $farmerFisherie->update($validatedData);
                 $farmerFisherie->fish()->sync($fish_cultured_ids);
             });
@@ -118,7 +118,7 @@ class FarmerFisherieController extends Controller
      */
     public function destroy(FarmerFisherie $farmerFisherie,int $id)
     {
-        $farmerFisherie=FarmerFisherie::query()->findOrFail($id)->first();
+        $farmerFisherie=FarmerFisherie::query()->where('id',$id)->first();
         $farmerFisherie->delete();
         $farmerFisherie->farmerFishCultured()->delete();
     }

@@ -9,7 +9,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class FarmerGreenHousePlant extends Model
 {
     use HasFactory;
-    protected $fillable=[];
+    protected $fillable=[
+        'farmer_horticulture_farm_details_id','green_house_plant_id'
+    ];
 
     public function greenHousePlant():BelongsTo
     {

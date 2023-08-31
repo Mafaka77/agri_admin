@@ -17,4 +17,5 @@ class GreenHousePlant extends Model
     {
         return $this->hasMany(FarmerGreenHousePlant::class);
     }
+
 }

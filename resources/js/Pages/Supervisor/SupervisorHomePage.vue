@@ -46,7 +46,7 @@
 
                     </template>
                     <template v-slot:top-right>
-                        <div style="color: #2e6525">{{district.district_name}}</div>
+                        <div style="color: #2e6525">{{district[0].district_name}}</div>
 
                     </template>
                     <template v-slot:body-cell-actions="props">
@@ -88,10 +88,20 @@
                 >
                     <template v-slot:top-left>
                         <div>Enumerators({{enumeratorList.length}})</div>
+                        <div style="color: #2e6525">({{district[0].district_name}})</div>
 
                     </template>
                     <template v-slot:top-right>
-                        <div style="color: #2e6525">{{district.district_name}}</div>
+                        <div class="column">
+                            <q-btn
+                                label="Add Enumerator"
+                                flat
+                                color="white"
+                                style="background-color: green"
+                                @click="openAddModal"
+                            />
+
+                        </div>
 
                     </template>
                     <template v-slot:body-cell-actions="props">
@@ -100,9 +110,17 @@
                                 dense
                                 round
                                 flat
-                                @click="openFarmer(props.row.id)"
-                                label="OPEN"
+                                @click="openEditModal(props.row)"
+                                icon="edit"
                                 style="color: #2e6525"
+                            ></q-btn>
+                            <q-btn
+                                dense
+                                round
+                                flat
+                                color="red"
+                                @click="deleteLivestock(props.row.id)"
+                                icon="delete"
                             ></q-btn>
                         </q-td>
                     </template>
@@ -118,6 +136,94 @@
                     </template>
 
                 </q-table>
+                <q-dialog v-model="modal">
+                    <q-card>
+                        <q-toolbar>
+                            <q-toolbar-title><span class="text-weight-bold"> User</span></q-toolbar-title>
+                            <q-btn flat round dense icon="close" v-close-popup/>
+                        </q-toolbar>
+                        <q-card-section>
+                            <form @submit.prevent="submit" method="POST">
+                                <div class="q-pa-sm">
+                                    <div class="q-gutter-x-md column" >
+                                        <q-input
+                                            name="name"
+                                            standout
+                                            v-model="form.name"
+                                            :error="!form.errors.name===false"
+                                            :error-message="form.errors.name"
+                                            dense
+                                            placeholder="Name *">
+
+                                        </q-input>
+                                        <q-input
+                                            name="email"
+                                            standout
+                                            v-model="form.email"
+                                            :error="!form.errors.email===false"
+                                            :error-message="form.errors.email"
+                                            dense
+                                            placeholder="Email *">
+                                        </q-input>
+                                        <q-input
+                                            name="mobile"
+                                            standout
+                                            v-model="form.mobile"
+                                            :error="!form.errors.mobile===false"
+                                            :error-message="form.errors.mobile"
+                                            dense
+                                            placeholder="Mobile">
+                                        </q-input>
+                                        <q-input
+                                            name="password"
+                                            standout
+                                            v-model="form.password"
+                                            :error="!form.errors.password===false"
+                                            :error-message="form.errors.password"
+                                            dense
+                                            placeholder="Password *">
+                                        </q-input>
+                                        <q-select v-model="form.district_id" :error="!form.errors.district_id === false"
+                                                  disable
+                                                  :error-message="form.errors.district_id" :options="district" dense emit-value
+                                                  fill-input filled hide-selected map-options option-label="district_name" option-value="id"
+                                                  placeholder="Select District *" standout use-input>
+                                            <template v-slot:prepend>
+                                                <q-icon name="book" />
+                                            </template>
+                                            <template v-slot:no-option>
+                                                <q-item>
+                                                    <q-item-section class="text-gresy">
+                                                        No results
+                                                    </q-item-section>
+                                                </q-item>
+                                            </template>
+                                        </q-select>
+                                        <q-select v-model="form.roles_id" :error="!form.errors.roles_id === false"
+                                                  disable
+                                                  :error-message="form.errors.roles_id" :options="roleList" dense emit-value
+                                                  fill-input filled hide-selected map-options option-label="name" option-value="id"
+                                                  placeholder="Select Role *" standout use-input>
+                                            <template v-slot:prepend>
+                                                <q-icon name="book" />
+                                            </template>
+                                            <template v-slot:no-option>
+                                                <q-item>
+                                                    <q-item-section class="text-gresy">
+                                                        No results
+                                                    </q-item-section>
+                                                </q-item>
+                                            </template>
+                                        </q-select>
+                                        <q-btn label="Submit" dense color="black" type="submit"
+                                               :disable="form.processing"/>
+                                    </div>
+                                </div>
+                            </form>
+                        </q-card-section>
+                    </q-card>
+
+                </q-dialog>
             </div>
         </div>
     </div>
@@ -129,6 +235,8 @@ import {ref} from 'vue';
 import {useQuasar} from "quasar";
 import {router, useForm} from "@inertiajs/vue3";
 const q=useQuasar();
+const modal=ref(false);
+const isEdit=ref(false);
 const columns = [
     {
         name: 'farmer_id',
@@ -153,7 +261,7 @@ const enumeratorColumn = [
         sortable: true
     },
     { name: 'mobile', align: 'center', label: 'Mobile', field: 'mobile', sortable: true },
-    // { name: 'verification', align: 'center', label: 'Verification', field: row => row.verification, sortable: true},
+    { name: 'email', align: 'center', label: 'Email', field: row => row.email, sortable: true},
     // { name: 'enumerator', align: 'center', label: 'Enumerator', field: row => row.user.name, sortable: true},
     {name: 'actions', align: 'right', field: 'id'}
 ]
@@ -164,7 +272,56 @@ const props=defineProps({
     'district':Object,
     'pendingList':[],
     'enumeratorList':[],
+    'roleList':[]
 });
+
+const form=useForm({
+    id:0,
+    name:'',
+    email:'',
+    mobile:'',
+    password:'',
+    district_id:0,
+    roles_id:0,
+
+});
+const openAddModal=()=>{
+    modal.value=true;
+    isEdit.value=false;
+    form.district_id=props.district[0].id;
+    form.roles_id=props.roleList[0].id;
+}
+const submit=()=>{
+    form.post(route('create-enumerator'),{
+        onStart:()=>q.loading.show(),
+        onSuccess:()=>{
+            q.loading.hide();
+            q.notify({
+                message:'User created',
+            });
+        },
+        onError:(error)=>{
+            q.loading.hide();
+            const err=error.message;
+          q.notify({
+              message:err,
+          });
+        },
+        onFinish:()=>q.loading.hide()
+    });
+}
+const openEditModal=(data)=>{
+    modal.value=true;
+    isEdit.value=true;
+    form.id=data.id;
+    form.name=data.name;
+    form.email=data.email;
+    form.mobile=data.mobile;
+    form.password=data.password;
+    form.roles_id=data.roles_id;
+    form.district_id=data.district_id;
+}
+
 </script>
 
 <style scoped>

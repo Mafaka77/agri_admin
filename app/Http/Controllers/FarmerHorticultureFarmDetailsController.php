@@ -93,14 +93,13 @@ class FarmerHorticultureFarmDetailsController extends Controller
         $kharifCrops=KharifCrops::query()->get();
         $rabiCrops=RabiCrops::query()->get();
         $greenHouse=GreenHousePlant::query()->get();
-        $horti=FarmerHorticultureFarmDetails::query()->findOrFail($id)
+        $horti=FarmerHorticultureFarmDetails::query()->where('id',$id)
             ->with('farmerHortiKharifCrops')
             ->with('farmerHortiRabiCrops')
             ->with('farmerPlantation')
             ->with('farmerOrchids')
             ->with('greenHousePlants')
             ->first();
-        info($horti);
         return inertia('Edit/EditFarmerHorticulturePage',[
             'hortiData'=>$horti,
             'kharifCrops'=>$kharifCrops,
@@ -130,7 +129,7 @@ class FarmerHorticultureFarmDetailsController extends Controller
                 'rabi_total_area'=>$request->rabi_total_area,'rabi_acres_or_hectares'=>$request->rabi_acres_or_hectares,'total_greenhouse_area'=>$request->total_greenhouse_area
             ]);
             DB::transaction(function () use($data,$kharifCrops,$rabiCrops,$orchards,$plantation,$greenHouse,$id){
-                $farmerHorti=FarmerHorticultureFarmDetails::query()->findOrFail($id);
+                $farmerHorti=FarmerHorticultureFarmDetails::query()->where('id',$id)->first();
                 $farmerHorti->update($data);
                 $farmerHorti->farmerHortiKharifCrops()->sync($kharifCrops);
                 $farmerHorti->farmerHortiRabiCrops()->sync($rabiCrops);

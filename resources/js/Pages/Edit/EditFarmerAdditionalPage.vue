@@ -1,11 +1,11 @@
 <template>
     <div class="row justify-center">
         <div class="col-md-9 col-xl-7 q-pa-md" style="background-color: white">
-            <q-breadcrumbs>
-                <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-                <q-breadcrumbs-el  label="Farmer Details" icon="add_task"  @click="toFarmerDetails"/>
-                <q-breadcrumbs-el label="Add Additional Farmer Details" icon="add_circle" />
-            </q-breadcrumbs>
+<!--            <q-breadcrumbs>-->
+<!--                <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>-->
+<!--                <q-breadcrumbs-el  label="Farmer Details" icon="add_task"  @click="toFarmerDetails"/>-->
+<!--                <q-breadcrumbs-el label="Add Additional Farmer Details" icon="add_circle" />-->
+<!--            </q-breadcrumbs>-->
             <div class="q-pt-md text-lg">Additional Farmer Details</div>
             <div class="q-gutter-x-md column">
                 <form @submit.prevent="submit" method="POST">
@@ -41,6 +41,15 @@
                             >
                                 <template v-slot:prepend>
                                     <q-icon name="attach_file" />
+                                </template>
+                                <template v-slot:append>
+                                   <q-btn
+                                    flat
+                                    dense
+                                    color="green"
+                                    icon="preview"
+                                    @click="openFile(form.ration_card_file)"
+                                   />
                                 </template>
                             </q-file>
                         </div>
@@ -242,6 +251,15 @@
                                 <template v-slot:prepend>
                                     <q-icon name="attach_file" />
                                 </template>
+                                <template v-slot:append>
+                                    <q-btn
+                                        flat
+                                        dense
+                                        color="green"
+                                        icon="preview"
+                                        @click="openFile(form.aadhaar_card_path)"
+                                    />
+                                </template>
                             </q-file>
                         </div>
                         <div class="col-xs-12 col-md-5">
@@ -261,6 +279,15 @@
                             >
                                 <template v-slot:prepend>
                                     <q-icon name="attach_file" />
+                                </template>
+                                <template v-slot:append>
+                                    <q-btn
+                                        flat
+                                        dense
+                                        color="green"
+                                        icon="preview"
+                                        @click="openFile(form.bank_passbook_path)"
+                                    />
                                 </template>
                             </q-file>
                         </div>
@@ -320,7 +347,7 @@
                             dense
                             rounded
                             style="color:#2e6525;padding: 5px 40px 5px"
-                            @click="e=>$inertia.get(route('manage-farmer'))"
+                            @click="e=>$inertia.get(route('farmer-details',form.farmers_id))"
                         />
                         <div style="width: 15px"/>
                         <!--                <q-btn-->
@@ -350,7 +377,7 @@ import {router, useForm} from "@inertiajs/vue3";
 import {useQuasar} from "quasar";
 const q=useQuasar();
 const form=useForm({
-    farmers_id:props.additional.farmer_id,
+    farmers_id:props.additional.farmers_id,
     ration_card_number:props.additional.ration_card_number,
     ration_card_path:props.additional.ration_card_path,
     ration_card_file:props.additional.ration_card_path,
@@ -506,6 +533,9 @@ const onFileRejected=(message)=>{
         type: 'negative',
         message: `${message.length} file(s) did not pass validation constraints`
     })
+}
+const openFile=(file)=>{
+    window.open('/storage/'+file,'_blank')
 }
 </script>
 

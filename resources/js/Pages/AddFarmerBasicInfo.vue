@@ -1,10 +1,9 @@
 <template>
     <div class="row justify-center">
     <div class="col-md-9 col-xl-7 q-pa-xl" style="background-color: white">
-        <q-breadcrumbs>
-            <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-            <q-breadcrumbs-el label="Basic Information" icon="person" />
-        </q-breadcrumbs>
+        <div class=" " style="color:#2e6525 ">
+            <q-btn  size="12px"  flat dense icon="arrow_back" label="Back" @click="e=>$inertia.get(route('farmer-details',form.farmers_id))" />
+        </div>
         <div class="q-pt-md text-lg">Farmer Basic Details</div>
         <div class="q-gutter-x-md column">
             <form @submit.prevent="submit" method="POST">

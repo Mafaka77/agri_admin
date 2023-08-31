@@ -39,4 +39,12 @@ class FarmerLandWaterController extends Controller
             $land->landCrops()->sync($landCrops);
         });
     }
+
+    public function deleteLandWater(Request $request,int $id)
+    {
+        $land=FarmerLandWaterConservation::query()->where('id',$id)->first();
+        $land->delete();
+        $land->landCropsGrown()->delete();
+        return response()->json(['message'=>'Success'],200);
+    }
 }

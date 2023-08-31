@@ -45,11 +45,11 @@
                            <span class="text-weight-medium">{{farmer.full_name}}</span>
                        </q-item-label>
                    </q-item-section>
-                   <q-item-section middle side>
-                       <div class="q-gutter-xs" style="color: #2e6525">
-                           <q-btn class="text-weight-bold" size="12px" flat dense label="View" />
-                       </div>
-                   </q-item-section>
+<!--                   <q-item-section middle side>-->
+<!--                       <div class="q-gutter-xs" style="color: #2e6525">-->
+<!--                           <q-btn class="text-weight-bold" size="12px" flat dense label="View" />-->
+<!--                       </div>-->
+<!--                   </q-item-section>-->
                </q-item>
            </q-card>
 <!--        END-->
@@ -75,7 +75,7 @@
                         </div>
                     </q-item-section>
                     <q-item-section middle side>
-                        <div class="q-gutter-xs" style="color: #2e6525">
+                        <div v-if="data.verification==='Pending'" class="q-gutter-xs" style="color: #2e6525">
                             <q-btn class="text-weight-bold text-red" size="12px" flat dense icon="delete" @click="deleteAgriLand(data.id)"/>
                         </div>
                     </q-item-section>
@@ -106,8 +106,8 @@
                         </div>
                     </q-item-section>
                     <q-item-section  side>
-                        <div class="q-gutter-xs" style="color: #2e6525">
-                            <q-btn class="text-weight-bold" size="12px" flat dense icon="delete" color="red" />
+                        <div   class="q-gutter-xs" style="color: #2e6525">
+                            <q-btn class="text-weight-bold" size="12px" flat dense icon="delete" color="red" @click="deleteAdditional(data.id)" />
                         </div>
                     </q-item-section>
                 </q-item>
@@ -136,7 +136,7 @@
                         </div>
                     </q-item-section>
                     <q-item-section middle side>
-                    <div class="q-gutter-xs" style="color: #2e6525">
+                    <div   class="q-gutter-xs" style="color: #2e6525">
                         <q-btn class="text-weight-bold" size="12px" flat dense icon="delete" color="red" @click="deleteHorti(data.id)" />
                     </div>
                 </q-item-section>
@@ -439,6 +439,23 @@ const deleteAgriLand=(id)=>{
         cancel: 'No'
     }).onOk(() => {
         router.delete(route('farmer-agriculture-land.destroy', id), {
+            onStart: () => q.loading.show({ message: 'Deleting....' }),
+            onFinish: () => q.loading.hide(),
+            onSuccess: () => q.loading.hide(),
+            onError: () => q.loading.hide(),
+            preserveState: false,
+        })
+    }).onCancel(() => {
+    })
+}
+const deleteAdditional=(id)=>{
+    q.dialog({
+        title: 'Confirm Delete',
+        message: 'Are you sure?',
+        ok: 'Yes',
+        cancel: 'No'
+    }).onOk(() => {
+        router.delete(route('additional-farmer-details.destroy', id), {
             onStart: () => q.loading.show({ message: 'Deleting....' }),
             onFinish: () => q.loading.hide(),
             onSuccess: () => q.loading.hide(),

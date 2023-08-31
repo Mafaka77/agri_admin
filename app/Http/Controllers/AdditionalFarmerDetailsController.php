@@ -186,8 +186,9 @@ class AdditionalFarmerDetailsController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AdditionalFarmerDetails $additionalFarmerDetails)
+    public function destroy(AdditionalFarmerDetails $additionalFarmerDetails,int $id)
     {
-        //
+        $additional=AdditionalFarmerDetails::query()->where('id',$id)->first();
+        $additional->delete();
     }
 }

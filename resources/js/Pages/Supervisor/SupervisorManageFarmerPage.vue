@@ -21,10 +21,10 @@
                     </div>̵
                     <div>
                         <q-input
-                            outlined̵̵
+                            outlined
                             debounce="300"
                             dense
-                            label="Search"
+                            label="Search by Name"
                             @keyup.enter.prevent="searchData(store.searchFarmerText)"
                             v-model="store.searchFarmerText"
                             clearable
@@ -43,7 +43,31 @@
             </template>
             <template v-slot:top-right>
                 <div style="color: #2e6525">
+                    <div class="column q-gutter-y-md">
+                        <q-select
+                            v-model="store.supervisorFilterBy"
+                            outlined
+                            dense
+                            emit-value
+                            fill-input  hide-selected map-options option-label="label" option-value="value"
+                            placeholder="Filter by Verification"
+                            color="green" use-input
+                            :options="filters"
+                            @update:model-value="filterData(store.searchFarmerText)"
+                        >
+                            <template v-slot:after>
+                                <div v-if="store.supervisorFilterBy!=''">
+                                    <q-btn icon="clear"
+                                           flat
+                                           dense
+                                           @click="clearFilter(store.searchFarmerText)"
+                                    />
+                                </div>
 
+                            </template>
+                        </q-select>
+
+                    </div>
                 </div>
 
             </template>
@@ -114,6 +138,12 @@ const columns = [
     { name: 'enumerator', align: 'center', label: 'Enumerator', field: row => row.user.name, sortable: true},
     {name: 'actions', align: 'right', field: 'id'}
 ]
+const filters=[
+    {label:"Pending",value:'Pending'},
+    {label:"Submitted",value:'Submitted'},
+    {label:"Approved",value:'Approved'},
+    {label:"Rejected",value:'Rejected'},
+]
 function tableData(props) {
     const {page, rowsPerPage,} = props.pagination;
     router.get(route('manage-farmer'), {
@@ -126,6 +156,35 @@ const searchData=(searchText)=> {
         search: searchText,
         per_page: 10,
         page: 1,
+    }, {
+        onStart: () => q.loading.show(),
+        onSuccess: () => q.loading.hide(),
+        onFinish: () => q.loading.hide(),
+        onError: () => q.loading.hide(),
+
+    })
+}
+const filterData=(searchText)=> {
+    router.get(route('manage-farmer'), {
+        search: searchText,
+        per_page: 10,
+        page: 1,
+        filterBy:store.supervisorFilterBy,
+    }, {
+        onStart: () => q.loading.show(),
+        onSuccess: () => q.loading.hide(),
+        onFinish: () => q.loading.hide(),
+        onError: () => q.loading.hide(),
+
+    })
+}
+const clearFilter=(searchText)=> {
+    store.supervisorFilterBy='';
+    router.get(route('manage-farmer'), {
+        search: searchText,
+        per_page: 10,
+        page: 1,
+        filterBy:store.supervisorFilterBy,
     }, {
         onStart: () => q.loading.show(),
         onSuccess: () => q.loading.hide(),

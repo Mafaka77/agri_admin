@@ -81,7 +81,7 @@
                     <div style="color: #588052">Ownership Documents</div>
                 </div>
                 <div class="col-xs-6 col-md-3">
-                   <a href="#"> <q-btn label="VIEW DOCUMENT" flat color="white" style="background-color:#588052 " @click="openFile(agri.land_holding_file)"></q-btn></a>
+                   <a href="#" style="text-decoration: none"> <q-btn label="VIEW DOCUMENT" flat color="white" style="background-color:#588052" @click="openFile(agri.land_holding_file)"></q-btn></a>
                 </div>
                 <div class="col-xs-6 col-md-2">
 

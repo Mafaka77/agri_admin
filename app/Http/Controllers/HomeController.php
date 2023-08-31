@@ -2,6 +2,7 @@
 namespace App\Http\Controllers;
 use App\Models\District;
 use App\Models\Farmers;
+use App\Models\Roles;
 use App\Models\User;
 use App\Models\Village;
 use Illuminate\Http\Request;
@@ -18,15 +19,15 @@ class HomeController extends Controller
 
             case 3:
                 $unSubmitted=Farmers::query()
-                    ->where('user_id','=','3')
+                    ->where('user_id','=',$user->id)
                     ->where('verification','=','Pending')
                     ->count();
                 $pendingApproval=Farmers::query()
-                    ->where('user_id','=','3')
+                    ->where('user_id','=',$user->id)
                     ->where('verification','=','Submitted')
                     ->count();
                 $approved= Farmers::query()
-                    ->where('user_id','=','3')
+                    ->where('user_id','=',$user->id)
                     ->where('verification','=','Approved')
                     ->count();
                 return inertia('HomePage',[
@@ -38,9 +39,10 @@ class HomeController extends Controller
             case 2:
                 $pendingCounts=Farmers::query()->where('district_id',$user->district_id)->where('verification','=','Submitted')->count();
                 $totalFarmersDistrictWise=Farmers::query()->where('district_id',$user->district_id)->where('verification','=','Approved')->count();
-                $district=District::query()->where('id',$user->district_id)->first();
+                $district=District::query()->where('id',$user->district_id)->get();
                 $totalApprovedFarmers=Farmers::query()->where('verification','=','Approved')->count();
                 $pendingList=Farmers::query()->where('district_id',$user->district_id)->where('verification','=','Submitted')->with('user')->get();
+                $roles=Roles::query()->where('id','=','3')->get();
                 $enumeratorList=User::query()->where('roles_id','=','3')
                     ->where('district_id',$user->district_id)
                     ->get();
@@ -51,6 +53,7 @@ class HomeController extends Controller
                     'district'=>$district,
                     'pendingList'=>$pendingList,
                     'enumeratorList'=>$enumeratorList,
+                    'roleList'=>$roles
             ]);
             break;
             default:
@@ -91,5 +94,27 @@ class HomeController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         return to_route('dashboard');
+    }
+
+    public function createEnumerator(Request $request)
+    {
+        $validate=$request->validate([
+            'name'=>'required',
+            'email'=>'required',
+            'password'=>'required',
+            'district_id'=>'required',
+            'roles_id'=>'required',
+        ]);
+        $data=array_merge($validate,['password'=>bcrypt($request->password),'mobile'=>$request->mobile]);
+        $email=User::query()->where('email','=',$request->email)->first();
+
+        if($email!=null){
+            return back()->withErrors(['message'=>'User already exists']);
+        }else{
+            User::query()->create($data);
+            return to_route('dashboard');
+        }
+
+
     }
 }

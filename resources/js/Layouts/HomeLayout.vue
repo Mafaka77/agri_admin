@@ -3,14 +3,14 @@
         <q-header class="bg-white text-black header" bordered  style="border-bottom-color: green;">
             <q-toolbar>
                 <q-btn dense flat icon="menu" round @click="toggleLeftDrawer" class="drawer" />
-                <div class="col q-pl-lg q-mb-sm">
+                <div class="col q-pl-lg q-pt-sm">
                     <q-toolbar-title>
-                        <div class="col text-green text-bold">
-                            FARMER REGISTRATION
-                        </div>
+<!--                        <div class="col items-center">-->
+                            <img src="/images/agri.png" style="height: 30px">
+<!--                        </div>-->
 
                     </q-toolbar-title>
-                        <div class="text-subtitle3"> Agriculture Department,Mizoram</div>
+
                 </div>
                 <q-btn dense flat icon="person" round>
                     <q-menu persistent>
@@ -84,43 +84,7 @@
 
         </q-drawer>
         <q-page-container style="background-color: #f1f1f1">
-            <div class="row justify-start">
-                <div class="col-md-5">
-                    <q-tabs inline-label class="largeScreen text-green-9" v-model="store.tabs">
-                        <q-tab name="dashboard" icon="home" label="Dashboard" clickable @click="e=>$inertia.get(route('dashboard'))"/>
-                        <q-tab name="farmers" icon="person" label="Farmers List" clickable @click="e=>$inertia.get(route('manage-farmer'))"/>
-                        <q-tab  v-if="$page.props.auth.user.roles_id===1" name="movies" icon="movie" label="Admin Controls" >
-                            <q-menu
-                                transition-show="scale"
-                                transition-hide="scale"
-                            >
-                                <q-list style="max-width: 100%">
-                                    <q-item  clickable @click="e=>$inertia.get(route('district.index'))">
-                                        <q-item-section>Manage District</q-item-section>
-                                    </q-item>
-                                    <q-item clickable @click="e=>$inertia.get(route('sub-division.index'))">
-                                        <q-item-section>Manage Sub-Division</q-item-section>
-                                    </q-item>
-                                    <q-separator />
-                                    <q-item clickable @click="e=>$inertia.get(route('kharif-crops.index'))">
-                                        <q-item-section>Manage Kharif Crops</q-item-section>
-                                    </q-item>
-                                    <q-item clickable @click="e=>$inertia.get(route('rabi-crops.index'))">
-                                        <q-item-section>Manage Rabi Crops</q-item-section>
-                                    </q-item>
-                                    <q-item clickable @click="e=>$inertia.get(route('livestock.index'))">
-                                        <q-item-section>Manage Livestock</q-item-section>
-                                    </q-item>
-                                    <q-item clickable @click="e=>$inertia.get(route('manage-user.index'))">
-                                        <q-item-section>Manage Users</q-item-section>
-                                    </q-item>
-
-                                </q-list>
-                            </q-menu>
-                        </q-tab>
-                    </q-tabs>
-                </div>
-            </div>
+            <AdminControls/>
             <q-page style="width: 100%">
                 <br/>
                 <div class=" q-pa-sm">
@@ -142,6 +106,7 @@ import {router, useForm} from "@inertiajs/vue3";
 import {useQuasar} from "quasar";
 import {AdminStore} from "@/Store/AdminStore.js";
 import FooterComponent from "@/Components/FooterComponent.vue";
+import AdminControls from "@/Components/Admin/AdminControls.vue";
 
 const form = useForm({})
 const confirm = ref(false)

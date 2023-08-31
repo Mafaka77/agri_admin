@@ -17,7 +17,7 @@ import HomeLayout from "@/Layouts/HomeLayout.vue";
 const appName =  'Agriculture';
 
 createInertiaApp({
-    title: (title) => `${title} - ${appName}`,
+    title: (title) => `${appName}`,
     resolve: (name) => {
         const page = resolvePageComponent(`./Pages/${name}.vue`, import.meta.glob('./Pages/**/*.vue'));
         page.then((module) => {

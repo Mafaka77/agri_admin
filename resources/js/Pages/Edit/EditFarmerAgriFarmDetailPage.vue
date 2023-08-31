@@ -232,6 +232,17 @@
                             <template v-slot:prepend>
                                 <q-icon name="attach_file" />
                             </template>
+                            <template v-slot:append>
+                                <q-btn
+                                    flat
+                                    icon="preview"
+                                    color="green"
+                                    dense
+                                    @click="openFile(form.land_holding_file)"
+                                />
+
+                        </template>
+
                         </q-file>
                     </div>
                     <div class="col-xs-12 col-md-5">
@@ -563,7 +574,9 @@ const uploadFile=(files)=>{
             message: ex
         })
     });
-
+}
+const openFile=(file)=>{
+    window.open('/storage/'+file,'_blank')
 }
 </script>
 

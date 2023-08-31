@@ -2,7 +2,10 @@
     <div class="row justify-center">
     <div class="col-xs-12 col-md-9 col-xl-7">
         <q-table
-            flat bordered
+            :table-header-style="{ backgroundColor: '#302e2a' }"
+            table-header-class="text-white"
+            flat
+            bordered
             title="Farmers"
             :rows="farmerList"
             :columns="columns"
@@ -16,10 +19,10 @@
                     <div class="row">Farmer List</div>̵
                     <div>
                         <q-input
-                            outlined̵̵
+                            outlined
                             debounce="300"
                             dense
-                            label="Search"
+                            label="Search by Name"
                             @keyup.enter.prevent="searchData(store.searchFarmerText)"
                             v-model="store.searchFarmerText"
                             clearable
@@ -37,18 +40,46 @@
 
             </template>
             <template v-slot:top-right>
-                <q-btn
-                    @click="e=>$inertia.get(route('farmer-basic-info.index'))"
-                    outline
-                    rounded
-                    label="Add Farmer"
-                    dense
-                    flat
-                    class="text-white q-px-lg q-mx-lg"
-                    style="background-color:#2e6525 "
-                />
+                <div class="column q-gutter-y-md">
+                    <q-select
+                        v-model="store.filterBy"
+                        outlined
+                        dense
+                         emit-value
+                        fill-input  hide-selected map-options option-label="label" option-value="value"
+                        placeholder="Filter by Verification"
+                        color="green" use-input
+                        :options="filters"
+                        @update:model-value="filterData(store.searchFarmerText)"
+                    >
+                          <template v-slot:after>
+                              <div v-if="store.filterBy!=''">
+                                  <q-btn icon="clear"
+                                         flat
+                                         dense
+                                        @click="clearFilter(store.searchFarmerText)"
+                                  />
+                              </div>
+
+                          </template>
+                    </q-select>
+                    <q-btn
+                        @click="e=>$inertia.get(route('farmer-basic-info.index'))"
+                        outline
+                        rounded
+                        label="Add Farmer"
+                        dense
+                        flat
+                        class="text-white q-px-lg q-mx-lg"
+                        style="background-color:#2e6525 "
+                    />
+
+                </div>
+
+
 
             </template>
+
             <template v-slot:body-cell-actions="props">
                 <q-td :props="props">
                        <q-btn v-if="$page.props.auth.user.roles_id===2"
@@ -146,6 +177,13 @@ const props=defineProps({
         'farmers':[]
 })
 const farmerList=ref(props.farmers.data);
+const filters=[
+    {label:"Pending",value:'Pending'},
+    {label:"Submitted",value:'Submitted'},
+    {label:"Approved",value:'Approved'},
+    {label:"Rejected",value:'Rejected'},
+]
+const filterBy=ref('');
 const openFarmer=(id)=>{
     router.get(route('open-clicked',id),{})
 }
@@ -191,6 +229,36 @@ const searchData=(searchText)=> {
 
     })
 }
+const filterData=(searchText)=> {
+    router.get(route('manage-farmer'), {
+        search: searchText,
+        per_page: 10,
+        page: 1,
+        filterBy:store.filterBy,
+    }, {
+        onStart: () => q.loading.show(),
+        onSuccess: () => q.loading.hide(),
+        onFinish: () => q.loading.hide(),
+        onError: () => q.loading.hide(),
+
+    })
+}
+const clearFilter=(searchText)=> {
+    store.filterBy='';
+    router.get(route('manage-farmer'), {
+        search: searchText,
+        per_page: 10,
+        page: 1,
+        filterBy:store.filterBy,
+    }, {
+        onStart: () => q.loading.show(),
+        onSuccess: () => q.loading.hide(),
+        onFinish: () => q.loading.hide(),
+        onError: () => q.loading.hide(),
+
+    })
+}
+
 </script>
 <style>
 .my-table-details {

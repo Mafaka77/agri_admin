@@ -11,7 +11,7 @@
             <HusbandryComponent :husbandry="husbandry"/>
             <SericultureComponent :sericulture="sericulture"/>
             <q-separator/>
-            <div class="row justify-center q-gutter-md q-pt-md q-pb-md">
+            <div v-if="basicInfo.verification!='Approved'" class="row justify-center q-gutter-md q-pt-md q-pb-md">
                 <div class=" col-xs-3 col-md-1">
                     <q-btn outline label="REJECT" style="color: red" @click="rejectDialog(basicInfo.id)"/>
                 </div>
@@ -87,7 +87,7 @@ const approve=(id)=>{
 }
 const rejectDialog=(id)=>{
     q.dialog({
-        dark: true,
+        dark: false,
         title: 'Rejection',
         message: 'Rejection Reason',
         prompt: {

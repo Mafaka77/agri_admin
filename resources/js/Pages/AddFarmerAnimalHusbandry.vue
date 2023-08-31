@@ -1,6 +1,9 @@
 <template>
     <div class="row justify-center">
         <div class="col-xs-12 col-md-9 col-xl-7 q-pa-md" style="background-color: white">
+            <div class=" " style="color:#2e6525 ">
+                <q-btn  size="12px"  flat dense icon="arrow_back" label="Back" @click="e=>$inertia.get(route('farmer-details',form.farmers_id))" />
+            </div>
             <div class="q-pt-md text-lg">Animal Husbandry Details</div>
             <div class="q-gutter-x-md column">
                 <form @submit.prevent="submit" method="POST">

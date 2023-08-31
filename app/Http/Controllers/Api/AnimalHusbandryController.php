@@ -70,11 +70,11 @@ class AnimalHusbandryController extends Controller
         try{
             $husbandry=FarmerAnimalHusbandryDetails::query()->findOrFail($id)->first();
             $husbandry->delete();
-            $husbandry->livestock()->delete();
-            $husbandry->typeOfFarm()->delete();
-            $husbandry->husbandryTypeBreed()->delete();
-            $husbandry->poultryFarm()->delete();
-            $husbandry->typeOfBreed()->delete();
+            $husbandry->farmerLivestock()->delete();
+            $husbandry->husbandryTypeOfFarm()->delete();
+            $husbandry->husbandryTypeOfBreed()->delete();
+            $husbandry->poultryTypeOfFarm()->delete();
+            $husbandry->poultryTypeOfBreed()->delete();
             return response()->json(['data'=>'Successfully Deleted'],200);
         }catch (\Exception $ex){
             return response()->json(['error'=>'Error Occured'],500);

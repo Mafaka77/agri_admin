@@ -27,11 +27,15 @@ class BasicInfoController extends Controller
         $farmerId=$request->id;
 
         $basicInfo=Farmers::query()->where('id','=',$farmerId)->first();
-        $farmLand=FarmerAgricultureLandDetails::query()->where('farmers_id','=',$farmerId)->get();
-        $additional=AdditionalFarmerDetails::query()->where('farmers_id','=',$farmerId)->get();
+        $farmLand=FarmerAgricultureLandDetails::query()->where('farmers_id','=',$farmerId)->first();
+        $additional=AdditionalFarmerDetails::query()->where('farmers_id','=',$farmerId)->first();
         info($additional);
         if($farmLand !=null && $additional!=null){
             $basicInfo->update(['status'=>'Complete']);
+            return response()->json(['data'=>$basicInfo->status]);
+        }else{
+            $basicInfo->update(['status'=>'Incomplete']);
+            return response()->json(['data'=>$basicInfo->status]);
         }
     }
 
@@ -55,6 +59,9 @@ class BasicInfoController extends Controller
         $offset=$request->offset??0;
         $limit=$request->limit??15;
         $search=$request->search;
+        $sortBy=$request->sortBy=='Oldest'?'asc':'desc';
+        $filterBy=$request->filterBy;
+        info($filterBy);
         $farmers=Farmers::query()->where('user_id','=',$userId)
             ->with('caste')
             ->with('district')
@@ -64,7 +71,8 @@ class BasicInfoController extends Controller
             ->with('block')
             ->with('village')
             ->with('farmerBankDetails')
-            ->orderBy('created_at','desc')
+            ->orderBy('created_at',$sortBy)
+            ->when($filterBy,fn(Builder $builder)=>$builder->where('verification','=',$filterBy))
             ->when($search,fn(Builder $builder)=>$builder->where('full_name','LIKE',"%$search%"))
             ->offset($offset)
             ->limit($limit)

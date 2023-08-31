@@ -70,11 +70,11 @@ class FarmerHorticultureController extends Controller
         try{
             $horti=FarmerHorticultureFarmDetails::query()->where('id',$id)->first();
             $horti->delete();
-            $horti->farmerHortiKharifCrops()->delete();
-            $horti->farmerHortiRabiCrops()->delete();
-            $horti->farmerOrchids()->delete();
-            $horti->farmerPlantation()->delete();
-            $horti->greenHousePlants()->delete();
+            $horti->farmerHortiKharif()->delete();
+            $horti->farmerHortiRabi()->delete();
+            $horti->farmerHortiOrchard()->delete();
+            $horti->farmerHortiPlantation()->delete();
+            $horti->farmerGreenHousePlant()->delete();
             return response()->json(200);
         }catch (\Exception $ex){
             return response()->json(500);

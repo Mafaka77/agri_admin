@@ -66,6 +66,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('rabi-crops', \App\Http\Controllers\RabiCropsController::class);
     Route::resource('livestock', \App\Http\Controllers\LivestockController::class);
     Route::resource('manage-user',\App\Http\Controllers\ManageUserController::class);
+    Route::resource('manage-greenhouse-plants',\App\Http\Controllers\GreenHousePlantController::class);
+    Route::post('create-enumerator',[\App\Http\Controllers\HomeController::class,'createEnumerator'])->name('create-enumerator');
 
 //EDIT ROUTES
 

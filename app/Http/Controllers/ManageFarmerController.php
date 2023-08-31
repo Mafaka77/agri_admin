@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Block;
 use App\Models\District;
 use App\Models\Farmers;
+use App\Models\Roles;
 use App\Models\Village;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
@@ -19,11 +20,13 @@ class ManageFarmerController extends Controller
         switch ($rolesId){
             case 3:{
                 $search=$request->get('search');
+                $filterBy=$request->get('filterBy');
                 $perPage = $request->get('per_page') ?? 10;
                 $farmers=Farmers::query()
                     ->orderBy('created_at', 'DESC')
                     ->with('district')
                     ->where('user_id',$user->id)
+                    ->when($filterBy,fn(Builder $builder)=>$builder->where('verification','=',$filterBy))
                     ->when($search, fn (Builder $builder) => $builder->where('full_name', 'LIKE', "%$search%"))
                     ->latest()
                     ->paginate($perPage);
@@ -35,18 +38,20 @@ class ManageFarmerController extends Controller
                 $search = $request->get('search');
                 $perPage = $request->get('per_page') ?? 10;
                 $district=District::query()->where('id',$user->district_id)->first();
+                $filterBy=$request->get('filterBy');
                 $farmers=Farmers::query()
                     ->orderBy('created_at', 'DESC')
                     ->with('district')
                     ->where('district_id',$user->district_id)
                     ->where('verification','!=','Pending')
                     ->with('user')
+                    ->when($filterBy,fn(Builder $builder)=>$builder->where('verification','=',$filterBy))
                     ->when($search, fn (Builder $builder) => $builder->where('full_name', 'LIKE', "%$search%"))
                     ->latest()
                     ->paginate($perPage);
                 return inertia('Supervisor/SupervisorManageFarmerPage',[
                     'farmers'=>$farmers,
-                    'district'=>$district
+                    'district'=>$district,
                 ]);
             }
             default:{

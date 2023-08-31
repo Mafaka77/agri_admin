@@ -56,7 +56,7 @@ class SericultureController extends Controller
         try{
             $seri=FarmerSericultureDetails::query()->findOrFail($id)->first();
             $seri->delete();
-            $seri->silkworm()->delete();
+            $seri->silkwormReared()->delete();
             return response()->json(['data'=>'Deleted'],200);
         }catch (\Exception $ex){
             return response()->json(['message'=>'Error Occured'],500);

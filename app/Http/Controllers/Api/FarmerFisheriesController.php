@@ -45,7 +45,7 @@ class FarmerFisheriesController extends Controller
     {
         $fisheries=FarmerFisherie::query()->findOrFail($id)->first();
         $fisheries->delete();
-        $fisheries->fish()->delete();
+        $fisheries->farmerFishCultured()->delete();
         return response()->json(200);
     }
 }

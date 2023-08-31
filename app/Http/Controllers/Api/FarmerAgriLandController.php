@@ -119,13 +119,16 @@ class FarmerAgriLandController extends Controller
         $kharifCrop=$request->kharifCrop;
         $rabiCrop=$request->rabiCrop;
         DB::transaction(function () use($data,$irrigationInfrastructure,$equipment,$kharifCrop,$rabiCrop,$farm){
-//            $farmDetail=FarmerAgricultureLandDetails::query()->where('id','=',$id);
             $farm->update($data);
-//            $agriFarm=FarmerAgricultureLandDetails::query()->create($data);
             $farm->irrigationInfrastructures()->sync($irrigationInfrastructure);
             $farm->farmEquipments()->sync($equipment);
             $farm->kharifCrops()->sync($kharifCrop);
             $farm->rabiCrops()->sync($rabiCrop);
         });
+    }
+
+    public function deleteAgriFarmDetail(Request $request,int $id)
+    {
+
     }
 }

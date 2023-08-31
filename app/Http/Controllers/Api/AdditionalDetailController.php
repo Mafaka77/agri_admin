@@ -94,11 +94,12 @@ class AdditionalDetailController extends Controller
         }
     }
 
-    public function deleteAdditionalDetail(Request $request)
+    public function deleteAdditionalDetail(Request $request,int $id)
     {
+
         try{
-            $id=$request->id;
             $additional=AdditionalFarmerDetails::query()->where('id',$id)->first();
+            info($id);
             $additional->delete();
             return response()->json(['message'=>'Successfully Deleted'],200);
         }catch(\Exception $ex){

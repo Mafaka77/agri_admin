@@ -20,7 +20,7 @@ class KharifCrops extends Model
         return $this->hasOne(FarmerKharifCrops::class);
     }
 
-    public function farmerHortiKharif(): HasMany
+    public function farmerHortiKharifCrops(): HasMany
     {
         return $this->hasMany(FarmerHortiKharif::class);
     }

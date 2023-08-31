@@ -3,11 +3,9 @@
 
 
     <div class="col-xs-12 col-md-9 col-xl-7 q-pa-xl" style="background-color: white">
-        <q-breadcrumbs>
-            <q-breadcrumbs-el icon="home" @click="e=>$inertia.get(route('manage-farmer'))"/>
-            <q-breadcrumbs-el  label="Farmer Details" icon="add_task"  @click="toFarmerDetails"/>
-            <q-breadcrumbs-el label="Add Farm Land & Agriculture Details" icon="add_circle" />
-        </q-breadcrumbs>
+        <div class=" " style="color:#2e6525 ">
+            <q-btn  size="12px"  flat dense icon="arrow_back" label="Back" @click="e=>$inertia.get(route('farmer-details',form.farmers_id))" />
+        </div>
         <div class="q-pt-md text-lg">Farm Land & Agriculture Details</div>
         <div class="q-gutter-x-md column">
             <form @submit.prevent="submit" method="POST">

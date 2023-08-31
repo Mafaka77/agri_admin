@@ -135,10 +135,10 @@ class MobileAgriLandController extends Controller
         try{
                 $farm=FarmerAgricultureLandDetails::query()->where('id',$id)->first();
                 $farm->delete();
-                $farm->irrigationInfrastructures()->delete();
-                $farm->farmEquipments()->delete();
-                $farm->kharifCrops()->delete();
-                $farm->rabiCrops()->delete();
+                $farm->farmerIrrigationInfrastructure()->delete();
+                $farm->farmerFarmEquipment()->delete();
+                $farm->farmerKharifCrops()->delete();
+                $farm->farmerRabiCrops()->delete();
                 return response()->json(['data'=>'Successfully Deleted'],200);
 
         }catch (\Exception $ex){

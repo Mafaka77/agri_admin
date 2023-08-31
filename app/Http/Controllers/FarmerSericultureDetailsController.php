@@ -72,7 +72,7 @@ class FarmerSericultureDetailsController extends Controller
     {
         $silkWorm=Silkworm::query()->get();
         $sericulture=FarmerSericultureDetails::query()
-            ->findOrFail($id)
+            ->where('id',$id)
             ->with('silkworm')
             ->first();
         return inertia('Edit/EditFarmerSericulturePage',[
@@ -98,7 +98,7 @@ class FarmerSericultureDetailsController extends Controller
             $datas=array_merge($validate,['sericulture_id'=>$request->sericulture_id,'plantation_total_area'=>$request->plantation_total_area,'size_of_rearing_unit'=>$request->size_of_rearing_unit]);
             $silkwormId=$request->silkworm_ids;
             DB::transaction(function () use($datas,$silkwormId,$id){
-                $data=FarmerSericultureDetails::query()->findOrFail($id)->first();
+                $data=FarmerSericultureDetails::query()->where('id',$id)->first();
                 $data->update($datas);
                 $data->silkworm()->sync($silkwormId);
             });
@@ -115,7 +115,7 @@ class FarmerSericultureDetailsController extends Controller
      */
     public function destroy(FarmerSericultureDetails $farmerSericultureDetails,int $id)
     {
-        $data=FarmerSericultureDetails::query()->findOrFail($id)->first();
+        $data=FarmerSericultureDetails::query()->where('id',$id)->first();
         $farmer_id=$data->farmers_id;
         $data->delete();
         $data->silkwormReared()->delete();

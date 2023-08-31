@@ -11,7 +11,7 @@
                 <div style="color: #588052">Ration Card Document</div>
             </div>
             <div class="col-xs-6 col-md-3">
-                <a href="#" style="text-decoration: none" ><q-btn label="VIEW DOCUMENT" flat style="background-color:#2e6525" text-color="white" @click="openRationCard(additional.ration_card_path)"/></a>
+                <a href="#" style="text-decoration: none" ><q-btn label="VIEW DOCUMENT" flat style="background-color:#2e6525" text-color="white" @click="openFile(additional.ration_card_path)"/></a>
             </div>
         </div>
 <!--        SCHEME APPLIED-->

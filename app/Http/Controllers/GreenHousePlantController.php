@@ -12,7 +12,10 @@ class GreenHousePlantController extends Controller
      */
     public function index()
     {
-        //
+        $plants=GreenHousePlant::query()->get();
+        return inertia('Admin/ManageGreenhousePlants',[
+            'plants'=>$plants
+        ]);
     }
 
     /**
@@ -28,7 +31,11 @@ class GreenHousePlantController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validate=$request->validate([
+            'name'=>'required'
+        ]);
+        GreenHousePlant::query()->firstOrCreate($validate);
+        return to_route('manage-greenhouse-plants.index');
     }
 
     /**
@@ -50,16 +57,23 @@ class GreenHousePlantController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, GreenHousePlant $greenHousePlant)
+    public function update(Request $request, GreenHousePlant $greenHousePlant,int $id)
     {
-        //
+        $validate=$request->validate([
+            'name'=>'required'
+        ]);
+        $plant=GreenHousePlant::query()->where('id',$id)->first();
+        $plant->update($validate);
+        return to_route('manage-greenhouse-plants.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(GreenHousePlant $greenHousePlant)
+    public function destroy(GreenHousePlant $greenHousePlant,int $id)
     {
-        //
+        $plant=GreenHousePlant::query()->where('id',$id)->first();
+        $plant->delete();
+        return to_route('manage-greenhouse-plants.index');
     }
 }

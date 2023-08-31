@@ -42,6 +42,9 @@ Route::post('login',[\App\Http\Controllers\Api\LoginController::class,'login'])-
 Route::get('check-status/{id}',[\App\Http\Controllers\Api\BasicInfoController::class,'checkStatus'])->name('check-status');
 Route::get('check-verification/{id}',[\App\Http\Controllers\Api\BasicInfoController::class,'checkVerification'])->name('check-verification');
 Route::get('send-for-approval/{id}',[\App\Http\Controllers\Api\BasicInfoController::class,'sendForApproval'])->name('send-for-approval');
+
+//PROFILE
+Route::get('/get-profile/{id}',[\App\Http\Controllers\Api\ProfileController::class,'getProfile'])->name('get-profile');
 //BASIC INFORMATION
 Route::get('get-all-farmers/{id}',[\App\Http\Controllers\Api\BasicInfoController::class,'getAllFarmers'])->name('get-all-farmers');
 Route::get('get-farmer/{id}',[\App\Http\Controllers\Api\BasicInfoController::class,'getFarmerBasicInfo'])->name('get-farmer');
@@ -75,6 +78,7 @@ Route::delete('delete-horticulture-details/{id}',[\App\Http\Controllers\Api\Farm
 Route::post('submit-land-water',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'submitLandWater'])->name('submit-land-water');
 Route::get('get-land-water/{id}',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'getLandWater'])->name('get-land-water');
 Route::put('update-land-water/{id}',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'updateLandWater'])->name('update-land-water');
+Route::delete('delete-land-water/{id}',[\App\Http\Controllers\Api\FarmerLandWaterController::class,'deleteLandWater'])->name('delete-land-water');
 
 //FISHERIES
 Route::post('submit-fisheries',[\App\Http\Controllers\Api\FarmerFisheriesController::class,'submitFisheries'])->name('submit-fisheries');
