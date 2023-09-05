@@ -12,7 +12,7 @@ import FooterComponent from "@/Components/FooterComponent.vue";
                     <q-toolbar-title>
                         <div class="row justify-center q-pt-md">
                             <div class="col-xs-12 col-md-5 text-center links">
-                                <img src="/images/logo.png" style="height: 30px">
+                                <img src="/images/agri.png" style="height: 30px">
                             </div>
                             <div class="col-xs-12 col-md-5 text-center links">
 

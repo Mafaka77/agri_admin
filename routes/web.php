@@ -68,6 +68,9 @@ Route::middleware('auth')->group(function () {
     Route::resource('manage-user',\App\Http\Controllers\ManageUserController::class);
     Route::resource('manage-greenhouse-plants',\App\Http\Controllers\GreenHousePlantController::class);
     Route::post('create-enumerator',[\App\Http\Controllers\HomeController::class,'createEnumerator'])->name('create-enumerator');
+    Route::resource('manage-app-controls',\App\Http\Controllers\AppControlsController::class);
+    Route::put('update-download-btn',[\App\Http\Controllers\AppControlsController::class,'downloadBtn'])->name('update-download-btn');
+    Route::put('update-permission-btn',[\App\Http\Controllers\AppControlsController::class,'permissionBtn'])->name('update-permission-btn');
 
 //EDIT ROUTES
 

@@ -1,7 +1,7 @@
 <template>
     <div class="row justify-start">
         <div class="col-md-5">
-            <q-tabs inline-label class="largeScreen text-green-9" v-model="store.tabs">
+            <q-tabs  inline-label class="largeScreen text-green-9" v-model="store.tabs">
                 <q-tab name="dashboard" icon="home" label="Dashboard" clickable @click="e=>$inertia.get(route('dashboard'))"/>
                 <q-tab name="farmers" icon="person" label="Farmers List" clickable @click="e=>$inertia.get(route('manage-farmer'))"/>
                 <q-tab  v-if="$page.props.auth.user.roles_id===1" name="movies" icon="movie" label="Admin Controls" >
@@ -12,6 +12,9 @@
                         <q-list style="max-width: 100%">
                             <q-item clickable @click="e=>$inertia.get(route('manage-user.index'))">
                                 <q-item-section>Manage Users</q-item-section>
+                            </q-item>
+                            <q-item clickable @click="e=>$inertia.get(route('manage-app-controls.index'))">
+                                <q-item-section>Manage App Buttons</q-item-section>
                             </q-item>
                             <q-item  clickable @click="e=>$inertia.get(route('district.index'))">
                                 <q-item-section>Manage District</q-item-section>

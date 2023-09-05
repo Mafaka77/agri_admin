@@ -15,7 +15,7 @@
             v-model:pagination="pagination"
         >
             <template v-slot:top-left>
-                <div class="column q-gutter-md">
+                <div class="column q-gutter-y-md">
                     <div class="row">Farmer List</div>̵
                     <div>
                         <q-input
@@ -41,28 +41,31 @@
             </template>
             <template v-slot:top-right>
                 <div class="column q-gutter-y-md">
-                    <q-select
-                        v-model="store.filterBy"
-                        outlined
-                        dense
-                         emit-value
-                        fill-input  hide-selected map-options option-label="label" option-value="value"
-                        placeholder="Filter by Verification"
-                        color="green" use-input
-                        :options="filters"
-                        @update:model-value="filterData(store.searchFarmerText)"
-                    >
-                          <template v-slot:after>
-                              <div v-if="store.filterBy!=''">
-                                  <q-btn icon="clear"
-                                         flat
-                                         dense
-                                        @click="clearFilter(store.searchFarmerText)"
-                                  />
-                              </div>
+                    <div >
+                        <q-select
+                            v-model="store.filterBy"
+                            outlined
+                            dense
+                            emit-value
+                            fill-input  hide-selected map-options option-label="label" option-value="value"
+                            placeholder="Filter by Verification"
+                            color="green" use-input
+                            :options="filters"
+                            @update:model-value="filterData(store.searchFarmerText)"
+                        >
+                            <template v-slot:after>
+                                <div v-if="store.filterBy!=''">
+                                    <q-btn icon="clear"
+                                           flat
+                                           dense
+                                           @click="clearFilter(store.searchFarmerText)"
+                                    />
+                                </div>
 
-                          </template>
-                    </q-select>
+                            </template>
+                        </q-select>
+                    </div>
+                    <div >
                     <q-btn
                         @click="e=>$inertia.get(route('farmer-basic-info.index'))"
                         outline
@@ -73,11 +76,8 @@
                         class="text-white q-px-lg q-mx-lg"
                         style="background-color:#2e6525 "
                     />
-
                 </div>
-
-
-
+                </div>
             </template>
 
             <template v-slot:body-cell-actions="props">

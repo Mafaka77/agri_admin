@@ -40,6 +40,7 @@ class DatabaseSeeder extends Seeder
         $this->call(TypeOfFarmSeeder::class);
         $this->call(TypeOfPoultryFarmSeeder::class);
         $this->call(TypeOfPoultryBreedSeeder::class);
+        $this->call(AppControlSeeder::class);
         // \App\Models\User::factory(10)->create();
 
         // \App\Models\User::factory()->create([

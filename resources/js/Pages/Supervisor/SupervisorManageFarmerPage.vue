@@ -1,7 +1,6 @@
 <template>
-    <div class="row justify-center">
-        <div class="col-xs-12 col-md-9 col-xl-7" style="background-color: white">
-            <div class="q-col-gutter-y-md">
+    <div class="container row">
+        <div class="col-xs-12 col-md-12 " style="background-color: white">
         <q-table
             :table-header-style="{ backgroundColor: '#302e2a' }"
             table-header-class="text-white"
@@ -101,7 +100,6 @@
             </template>
 
         </q-table>
-    </div>
         </div>
     ̵</div>
 </template>
