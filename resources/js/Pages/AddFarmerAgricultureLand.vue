@@ -562,7 +562,7 @@ const click=()=>{
     navigator.geolocation.getCurrentPosition(position => {
         form.latitude=position.coords.latitude.toString();
         form.longitude=position.coords.longitude.toString();
-        console.log(position.coords.altitude);
+        console.log(position.coords);
 
 
     });
