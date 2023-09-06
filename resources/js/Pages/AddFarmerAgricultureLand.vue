@@ -563,7 +563,7 @@ const click=()=>{
         form.latitude=position.coords.latitude.toString();
         form.longitude=position.coords.longitude.toString();
         console.log(position.coords.altitude);
-        form.altitude=position.coords.altitude.toString();
+
 
     });
 }

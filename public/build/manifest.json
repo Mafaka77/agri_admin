@@ -1,54 +1,54 @@
 {
-  "_QBadge-42f27645.js": {
-    "file": "assets/QBadge-42f27645.js",
+  "_QBadge-7ea4b1d1.js": {
+    "file": "assets/QBadge-7ea4b1d1.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QBreadcrumbs-0eec2d7a.js": {
-    "file": "assets/QBreadcrumbs-0eec2d7a.js",
+  "_QBreadcrumbs-65e3ed0c.js": {
+    "file": "assets/QBreadcrumbs-65e3ed0c.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QChip-92b2a9c8.js": {
-    "file": "assets/QChip-92b2a9c8.js",
+  "_QChip-18c0443a.js": {
+    "file": "assets/QChip-18c0443a.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QFile-410759ec.js": {
-    "file": "assets/QFile-410759ec.js",
+  "_QFile-7ff34758.js": {
+    "file": "assets/QFile-7ff34758.js",
     "imports": [
-      "_QChip-92b2a9c8.js",
+      "_QChip-18c0443a.js",
       "resources/js/app.js"
     ]
   },
-  "_QPopupProxy-ca18b0a4.js": {
-    "file": "assets/QPopupProxy-ca18b0a4.js",
+  "_QPopupProxy-0441798d.js": {
+    "file": "assets/QPopupProxy-0441798d.js",
     "imports": [
       "resources/js/app.js"
     ]
   },
-  "_QSelect-f4d18824.js": {
-    "file": "assets/QSelect-f4d18824.js",
+  "_QSelect-fb5735ec.js": {
+    "file": "assets/QSelect-fb5735ec.js",
     "imports": [
       "resources/js/app.js",
-      "_QChip-92b2a9c8.js"
+      "_QChip-18c0443a.js"
     ]
   },
-  "_QTable-2ac1820a.js": {
-    "file": "assets/QTable-2ac1820a.js",
+  "_QTable-c50fa7ff.js": {
+    "file": "assets/QTable-c50fa7ff.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js"
+      "_QSelect-fb5735ec.js"
     ]
   },
-  "_SericultureComponent-68c781c9.js": {
-    "file": "assets/SericultureComponent-68c781c9.js",
+  "_SericultureComponent-ee7fd24e.js": {
+    "file": "assets/SericultureComponent-ee7fd24e.js",
     "imports": [
       "resources/js/app.js",
-      "_QChip-92b2a9c8.js"
+      "_QChip-18c0443a.js"
     ]
   },
   "node_modules/@quasar/extras/material-icons-outlined/web-font/gok-H7zzDkdnRel8-DQ6KAXJ69wP1tGnf4ZGhUcY.woff": {
@@ -68,34 +68,34 @@
     "src": "node_modules/@quasar/extras/material-icons/web-font/flUhRq6tzZclQEJ-Vdg-IuiaDsNcIhQ8tQ.woff2"
   },
   "resources/js/Pages/AddAdditionalFarmerDetailPage.vue": {
-    "file": "assets/AddAdditionalFarmerDetailPage-eea854b7.js",
+    "file": "assets/AddAdditionalFarmerDetailPage-d5880cc6.js",
     "imports": [
       "resources/js/app.js",
-      "_QFile-410759ec.js",
-      "_QSelect-f4d18824.js",
-      "_QPopupProxy-ca18b0a4.js",
-      "_QChip-92b2a9c8.js"
+      "_QFile-7ff34758.js",
+      "_QSelect-fb5735ec.js",
+      "_QPopupProxy-0441798d.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/AddAdditionalFarmerDetailPage.vue"
   },
   "resources/js/Pages/AddFarmerAgricultureLand.vue": {
-    "file": "assets/AddFarmerAgricultureLand-ad687e86.js",
+    "file": "assets/AddFarmerAgricultureLand-064d632e.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QFile-410759ec.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QFile-7ff34758.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/AddFarmerAgricultureLand.vue"
   },
   "resources/js/Pages/AddFarmerAnimalHusbandry.vue": {
-    "file": "assets/AddFarmerAnimalHusbandry-ef22328e.js",
+    "file": "assets/AddFarmerAnimalHusbandry-d390a99b.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/AddFarmerAnimalHusbandry.vue"
@@ -108,58 +108,58 @@
     "css": [
       "assets/AddFarmerBasicInfo-149ea3c1.css"
     ],
-    "file": "assets/AddFarmerBasicInfo-02b760f7.js",
+    "file": "assets/AddFarmerBasicInfo-9b5ffaf4.js",
     "imports": [
       "resources/js/app.js",
-      "_QPopupProxy-ca18b0a4.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QPopupProxy-0441798d.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/AddFarmerBasicInfo.vue"
   },
   "resources/js/Pages/AddFarmerFisheries.vue": {
-    "file": "assets/AddFarmerFisheries-68fe061c.js",
+    "file": "assets/AddFarmerFisheries-9cf582dc.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/AddFarmerFisheries.vue"
   },
   "resources/js/Pages/AddFarmerHorticulturePage.vue": {
-    "file": "assets/AddFarmerHorticulturePage-c28ea8c5.js",
+    "file": "assets/AddFarmerHorticulturePage-50d1b225.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/AddFarmerHorticulturePage.vue"
   },
   "resources/js/Pages/AddFarmerLandWaterConservation.vue": {
-    "file": "assets/AddFarmerLandWaterConservation-3656f2b3.js",
+    "file": "assets/AddFarmerLandWaterConservation-21aa48d0.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/AddFarmerLandWaterConservation.vue"
   },
   "resources/js/Pages/AddFarmerSericulture.vue": {
-    "file": "assets/AddFarmerSericulture-42b1ec65.js",
+    "file": "assets/AddFarmerSericulture-99735291.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/AddFarmerSericulture.vue"
   },
   "resources/js/Pages/Admin/AdminHomePage.vue": {
-    "file": "assets/AdminHomePage-0448144a.js",
+    "file": "assets/AdminHomePage-5c0bb273.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -167,62 +167,62 @@
     "src": "resources/js/Pages/Admin/AdminHomePage.vue"
   },
   "resources/js/Pages/Admin/AdminManageFarmerPage.vue": {
-    "file": "assets/AdminManageFarmerPage-df7d47e6.js",
+    "file": "assets/AdminManageFarmerPage-55cda34d.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QBadge-42f27645.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QBadge-7ea4b1d1.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/AdminManageFarmerPage.vue"
   },
   "resources/js/Pages/Admin/AdminViewFarmerDetails.vue": {
-    "file": "assets/AdminViewFarmerDetails-1731cef4.js",
+    "file": "assets/AdminViewFarmerDetails-9fc0c56c.js",
     "imports": [
       "resources/js/app.js",
-      "_SericultureComponent-68c781c9.js",
-      "_QChip-92b2a9c8.js"
+      "_SericultureComponent-ee7fd24e.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/AdminViewFarmerDetails.vue"
   },
   "resources/js/Pages/Admin/DistrictPage.vue": {
-    "file": "assets/DistrictPage-bd18c3e0.js",
+    "file": "assets/DistrictPage-f0439646.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/DistrictPage.vue"
   },
   "resources/js/Pages/Admin/KharifCropsPage.vue": {
-    "file": "assets/KharifCropsPage-eb3b4471.js",
+    "file": "assets/KharifCropsPage-5223c7d8.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/KharifCropsPage.vue"
   },
   "resources/js/Pages/Admin/LivestockPage.vue": {
-    "file": "assets/LivestockPage-d80414b0.js",
+    "file": "assets/LivestockPage-10e61df5.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/LivestockPage.vue"
   },
   "resources/js/Pages/Admin/ManageAppButtons.vue": {
-    "file": "assets/ManageAppButtons-605793ed.js",
+    "file": "assets/ManageAppButtons-3d5613b5.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -230,51 +230,51 @@
     "src": "resources/js/Pages/Admin/ManageAppButtons.vue"
   },
   "resources/js/Pages/Admin/ManageGreenhousePlants.vue": {
-    "file": "assets/ManageGreenhousePlants-2892174d.js",
+    "file": "assets/ManageGreenhousePlants-eed627ce.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/ManageGreenhousePlants.vue"
   },
   "resources/js/Pages/Admin/ManageUsersPage.vue": {
-    "file": "assets/ManageUsersPage-cf0e7eca.js",
+    "file": "assets/ManageUsersPage-7f709623.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/ManageUsersPage.vue"
   },
   "resources/js/Pages/Admin/RabiCropsPage.vue": {
-    "file": "assets/RabiCropsPage-3eb4112f.js",
+    "file": "assets/RabiCropsPage-c004692e.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/RabiCropsPage.vue"
   },
   "resources/js/Pages/Admin/SubDivisionPage.vue": {
-    "file": "assets/SubDivisionPage-bb667e68.js",
+    "file": "assets/SubDivisionPage-3ce48887.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Admin/SubDivisionPage.vue"
   },
   "resources/js/Pages/Auth/Login.vue": {
-    "file": "assets/Login-27037115.js",
+    "file": "assets/Login-704a47ac.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -282,89 +282,89 @@
     "src": "resources/js/Pages/Auth/Login.vue"
   },
   "resources/js/Pages/Edit/EditFarmerAdditionalPage.vue": {
-    "file": "assets/EditFarmerAdditionalPage-9be78b81.js",
+    "file": "assets/EditFarmerAdditionalPage-f95e36b2.js",
     "imports": [
       "resources/js/app.js",
-      "_QFile-410759ec.js",
-      "_QSelect-f4d18824.js",
-      "_QPopupProxy-ca18b0a4.js",
-      "_QChip-92b2a9c8.js"
+      "_QFile-7ff34758.js",
+      "_QSelect-fb5735ec.js",
+      "_QPopupProxy-0441798d.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Edit/EditFarmerAdditionalPage.vue"
   },
   "resources/js/Pages/Edit/EditFarmerAgriFarmDetailPage.vue": {
-    "file": "assets/EditFarmerAgriFarmDetailPage-7c4d8980.js",
+    "file": "assets/EditFarmerAgriFarmDetailPage-235ffcbf.js",
     "imports": [
-      "_QBreadcrumbs-0eec2d7a.js",
+      "_QBreadcrumbs-65e3ed0c.js",
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QFile-410759ec.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QFile-7ff34758.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Edit/EditFarmerAgriFarmDetailPage.vue"
   },
   "resources/js/Pages/Edit/EditFarmerAnimalHusbandryPage.vue": {
-    "file": "assets/EditFarmerAnimalHusbandryPage-0202cc61.js",
+    "file": "assets/EditFarmerAnimalHusbandryPage-d41c4510.js",
     "imports": [
-      "_QBreadcrumbs-0eec2d7a.js",
+      "_QBreadcrumbs-65e3ed0c.js",
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Edit/EditFarmerAnimalHusbandryPage.vue"
   },
   "resources/js/Pages/Edit/EditFarmerBasicInfoPage.vue": {
-    "file": "assets/EditFarmerBasicInfoPage-e2ab777a.js",
+    "file": "assets/EditFarmerBasicInfoPage-7e8149c5.js",
     "imports": [
       "resources/js/app.js",
-      "_QPopupProxy-ca18b0a4.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QPopupProxy-0441798d.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Edit/EditFarmerBasicInfoPage.vue"
   },
   "resources/js/Pages/Edit/EditFarmerFisheriePage.vue": {
-    "file": "assets/EditFarmerFisheriePage-b28f2a89.js",
+    "file": "assets/EditFarmerFisheriePage-d565965d.js",
     "imports": [
-      "_QBreadcrumbs-0eec2d7a.js",
+      "_QBreadcrumbs-65e3ed0c.js",
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Edit/EditFarmerFisheriePage.vue"
   },
   "resources/js/Pages/Edit/EditFarmerHorticulturePage.vue": {
-    "file": "assets/EditFarmerHorticulturePage-ea5973bf.js",
+    "file": "assets/EditFarmerHorticulturePage-b2374485.js",
     "imports": [
-      "_QBreadcrumbs-0eec2d7a.js",
+      "_QBreadcrumbs-65e3ed0c.js",
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Edit/EditFarmerHorticulturePage.vue"
   },
   "resources/js/Pages/Edit/EditFarmerLandWaterPage.vue": {
-    "file": "assets/EditFarmerLandWaterPage-4037bfd4.js",
+    "file": "assets/EditFarmerLandWaterPage-aaa7bbb6.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Edit/EditFarmerLandWaterPage.vue"
   },
   "resources/js/Pages/Edit/EditFarmerSericulturePage.vue": {
-    "file": "assets/EditFarmerSericulturePage-a8160cc4.js",
+    "file": "assets/EditFarmerSericulturePage-3c8a76be.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Edit/EditFarmerSericulturePage.vue"
@@ -377,16 +377,16 @@
     "css": [
       "assets/FarmerDetailPage-88d55172.css"
     ],
-    "file": "assets/FarmerDetailPage-43515c5a.js",
+    "file": "assets/FarmerDetailPage-c7e9985f.js",
     "imports": [
       "resources/js/app.js",
-      "_QBadge-42f27645.js"
+      "_QBadge-7ea4b1d1.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/FarmerDetailPage.vue"
   },
   "resources/js/Pages/HomePage.vue": {
-    "file": "assets/HomePage-1ed40fcb.js",
+    "file": "assets/HomePage-b070edae.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -394,7 +394,7 @@
     "src": "resources/js/Pages/HomePage.vue"
   },
   "resources/js/Pages/Index.vue": {
-    "file": "assets/Index-adcbc7f9.js",
+    "file": "assets/Index-e4a81b49.js",
     "imports": [
       "resources/js/app.js"
     ],
@@ -409,47 +409,47 @@
     "css": [
       "assets/ManageFarmer-e3d35bbb.css"
     ],
-    "file": "assets/ManageFarmer-4aad3640.js",
+    "file": "assets/ManageFarmer-ec3fc90d.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QTable-2ac1820a.js",
-      "_QBadge-42f27645.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QTable-c50fa7ff.js",
+      "_QBadge-7ea4b1d1.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/ManageFarmer.vue"
   },
   "resources/js/Pages/Supervisor/SupervisorApprovalPage.vue": {
-    "file": "assets/SupervisorApprovalPage-3d4595e8.js",
+    "file": "assets/SupervisorApprovalPage-d9af2ffe.js",
     "imports": [
       "resources/js/app.js",
-      "_SericultureComponent-68c781c9.js",
-      "_QChip-92b2a9c8.js"
+      "_SericultureComponent-ee7fd24e.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Supervisor/SupervisorApprovalPage.vue"
   },
   "resources/js/Pages/Supervisor/SupervisorHomePage.vue": {
-    "file": "assets/SupervisorHomePage-2781eb84.js",
+    "file": "assets/SupervisorHomePage-7f2e7951.js",
     "imports": [
       "resources/js/app.js",
-      "_QTable-2ac1820a.js",
-      "_QBadge-42f27645.js",
-      "_QSelect-f4d18824.js",
-      "_QChip-92b2a9c8.js"
+      "_QTable-c50fa7ff.js",
+      "_QBadge-7ea4b1d1.js",
+      "_QSelect-fb5735ec.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Supervisor/SupervisorHomePage.vue"
   },
   "resources/js/Pages/Supervisor/SupervisorManageFarmerPage.vue": {
-    "file": "assets/SupervisorManageFarmerPage-f18c2f6e.js",
+    "file": "assets/SupervisorManageFarmerPage-3390b08d.js",
     "imports": [
       "resources/js/app.js",
-      "_QSelect-f4d18824.js",
-      "_QTable-2ac1820a.js",
-      "_QBadge-42f27645.js",
-      "_QChip-92b2a9c8.js"
+      "_QSelect-fb5735ec.js",
+      "_QTable-c50fa7ff.js",
+      "_QBadge-7ea4b1d1.js",
+      "_QChip-18c0443a.js"
     ],
     "isDynamicEntry": true,
     "src": "resources/js/Pages/Supervisor/SupervisorManageFarmerPage.vue"
@@ -505,7 +505,7 @@
       "resources/js/Pages/Supervisor/SupervisorHomePage.vue",
       "resources/js/Pages/Supervisor/SupervisorManageFarmerPage.vue"
     ],
-    "file": "assets/app-34eb093c.js",
+    "file": "assets/app-a3529727.js",
     "isEntry": true,
     "src": "resources/js/app.js"
   }
