@@ -10,7 +10,6 @@
         <div class="q-gutter-x-md column">
             <form @submit.prevent="submit" method="POST">
                 <div class="row justify-around q-pt-md q-col-gutter-y-md">
-                    <q-btn label="Click" @click="click"></q-btn>
                     <div class="col-xs-12 col-md-5">
                         <q-input
                             name="full_name"
@@ -563,6 +562,7 @@ const click=()=>{
     navigator.geolocation.getCurrentPosition(position => {
         form.latitude=position.coords.latitude.toString();
         form.longitude=position.coords.longitude.toString();
+        console.log(position.coords.altitude);
         form.altitude=position.coords.altitude.toString();
 
     });
