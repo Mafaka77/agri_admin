@@ -556,9 +556,15 @@ const fileRejected=(message)=>{
 const toFarmerDetails=()=>{
         router.get(route('farmer-details',props.farmerId));
 }
+onMounted(()=>{
+    click();
+})
 const click=()=>{
     navigator.geolocation.getCurrentPosition(position => {
-        console.log(position.coords.latitude);
+        form.latitude=position.coords.latitude.toString();
+        form.longitude=position.coords.longitude.toString();
+        form.altitude=position.coords.altitude.toString();
+
     });
 }
 </script>
