@@ -10,6 +10,7 @@
         <div class="q-gutter-x-md column">
             <form @submit.prevent="submit" method="POST">
                 <div class="row justify-around q-pt-md q-col-gutter-y-md">
+                    <q-btn label="Click" @click="click"></q-btn>
                     <div class="col-xs-12 col-md-5">
                         <q-input
                             name="full_name"
@@ -420,7 +421,7 @@
 </template>
 
 <script setup>
-import {computed, ref} from 'vue';
+import {computed, onMounted, ref} from 'vue';
 import {router, useForm} from "@inertiajs/vue3";
 import {useQuasar} from "quasar";
 const q=useQuasar();
@@ -554,6 +555,11 @@ const fileRejected=(message)=>{
 }
 const toFarmerDetails=()=>{
         router.get(route('farmer-details',props.farmerId));
+}
+const click=()=>{
+    navigator.geolocation.getCurrentPosition(position => {
+        console.log(position.coords.latitude);
+    });
 }
 </script>
 
