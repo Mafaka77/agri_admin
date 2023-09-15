@@ -28,6 +28,7 @@ class AdditionalDetailController extends Controller
 //        info($data);
         try{
             $data=$request->data;
+            info($data);
             $schemeApplied=$request->scheme;
             DB::transaction(function () use($data,$schemeApplied){
                 $additional=AdditionalFarmerDetails::query()->create($data);

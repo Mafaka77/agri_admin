@@ -111,7 +111,7 @@ import {router, useForm} from "@inertiajs/vue3";
 import {AdminStore} from "@/Store/AdminStore.js";
 const q=useQuasar();
 const store=AdminStore();
-
+const tabs=ref('farmers')
 const props=defineProps({
     'farmers':[],
     'district':Object

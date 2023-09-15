@@ -82,49 +82,31 @@ class BasicInfoController extends Controller
 
     public function submitFarmerBasicInfo(Request $request)
     {
-        $validateBank=$this->validate($request,[
-            'bank_name'=>'required',
-            'account_number'=>'required',
-            'branch_name'=>'required',
-            'ifsc_code'=>'required',
-        ]);
-        $farmerData=$this->validate($request,[
-            'full_name'=>'required',
-            'dob'=>'required',
-            'relationship'=>'required',
-            'relationship_name'=>'required',
-            'phone_no'=>'required',
-            'aadhaar_no'=>'required',
-            'aadhaar_verify_type'=>'required',
-            'voter_no'=>'required',
-            'education_qualification'=>'required',
-            'is_farming_main_income'=>'required',
-            'state_lgd_code'=>'required',
-            'village_lgd_code'=>'required',
-            'farmer_category_id'=>'required',
-            'gender_id'=>'required',
-            'caste_id'=>'required',
-            'district_id'=>'required',
-            'sub_division_id'=>'required',
-            'block_id'=>'required',
-            'village_id'=>'required',
-            'status'=>'required',
-            'user_id'=>'required'
-        ]);
-        $aadhaar=Farmers::query()->where('aadhaar_no',$request->aadhaar_no)->first();
-        $isFarmingMainIncome=$request->is_farming_main_income=='Yes'?1:0;
-        $farmerMerge=array_merge($farmerData,['is_farming_main_income'=>$isFarmingMainIncome]);
-        if($aadhaar==null){
-            $farmers= DB::transaction(function () use ($farmerMerge,$validateBank){
-                $data=Farmers::query()->create($farmerMerge);
-                $data->farmerBankDetails()->create($validateBank);
-                return $data;
 
-            });
-            return response()->json(['data'=>$farmers],200);
-        }else{
-            return response()->json(['error'=>'Farmer Already Exists'],409);
-        }
+            $farmer=$request->farmer;
+            $bank=$request->bank;
+            $aadhaar=Farmers::query()->where('aadhaar_no',$farmer['aadhaar_no'])->first();
+            $isFarmingMainIncome=$farmer['is_farming_main_income']=='Yes'?1:0;
+            $farmerMerge=array_merge($farmer,['is_farming_main_income'=>$isFarmingMainIncome]);
+            if($aadhaar==null){
+                $farmers= DB::transaction(function () use ($farmerMerge,$bank){
+                    $data=Farmers::query()->create($farmerMerge);
+                    $data->farmerBankDetails()->create([
+                        'bank_name'=>$bank['bank_name'],
+                        'account_number'=>$bank['account_number'],
+                        'branch_name'=>$bank['branch_name'],
+                        'ifsc_code'=>$bank['ifsc_code']
+                    ]);
+                    return $data;
+                });
+                return response()->json(['data'=>$farmers],200);
+            }else{
+                return response()->json(['error'=>'Farmer Already Exists'],409);
+            }
+//        }catch (\Exception $ex){
+////            info($ex);
+//        }
+
 
     }
 

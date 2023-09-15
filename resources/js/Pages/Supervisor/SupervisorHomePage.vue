@@ -237,6 +237,7 @@ import {router, useForm} from "@inertiajs/vue3";
 const q=useQuasar();
 const modal=ref(false);
 const isEdit=ref(false);
+const tabs=ref('dashboard')
 const columns = [
     {
         name: 'farmer_id',

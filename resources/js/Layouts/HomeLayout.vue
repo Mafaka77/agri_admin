@@ -6,7 +6,7 @@
                 <div class="col q-pl-lg q-pt-sm">
                     <q-toolbar-title>
 <!--                        <div class="col items-center">-->
-                            <img src="/images/agri.png" style="height: 30px">
+                            <img src="/images/logo_agri.svg" style="height: 30px">
 <!--                        </div>-->
 
                     </q-toolbar-title>

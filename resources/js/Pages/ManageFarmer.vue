@@ -1,5 +1,6 @@
 <template>
     <div class="row justify-center">
+
     <div class="col-xs-12 col-md-9 col-xl-7">
         <q-table
             :table-header-style="{ backgroundColor: '#302e2a' }"
@@ -154,6 +155,7 @@ import {ref} from 'vue';
 import {useQuasar} from "quasar";
 import {router, useForm} from "@inertiajs/vue3";
 import {AdminStore} from "@/Store/AdminStore.js";
+import AdminControls from "@/Components/Admin/AdminControls.vue";
 const q=useQuasar();
 const store=AdminStore();
 const columns = [
@@ -176,6 +178,7 @@ const columns = [
 const props=defineProps({
         'farmers':[]
 })
+const tabs=ref('farmers');
 const farmerList=ref(props.farmers.data);
 const filters=[
     {label:"Pending",value:'Pending'},

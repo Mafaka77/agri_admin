@@ -1,7 +1,5 @@
 <template>
     <div class="row justify-center">
-
-
     <div class="col-md-9 col-xl-7">
         <div class="column">
             <div class="row justify-between q-col-gutter-sm">
@@ -44,6 +42,7 @@ const props=defineProps({
     'pendingApproval':Object,
     'totalApproved':Object
 });
+const tabs=ref('dashboard');
 </script>
 
 <style scoped>

@@ -1,5 +1,5 @@
 <template>
-    <div class="row justify-center">
+    <div class="row justify-center q-pt-md">
         <div class="col-xs-12 col-md-9 col-xl-7">
             <div class="column">
                 <div class="q-col-gutter-lg">
@@ -44,6 +44,7 @@ const props=defineProps({
     'totalSupervisors':Object,
     'totalEnumerators':Object,
 });
+const tabs=ref('dashboard');
 </script>
 
 <style scoped>

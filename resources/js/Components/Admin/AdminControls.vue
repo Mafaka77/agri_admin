@@ -1,9 +1,9 @@
 <template>
     <div class="row justify-start">
         <div class="col-md-5">
-            <q-tabs  inline-label class="largeScreen text-green-9" v-model="store.tabs">
+            <q-tabs  inline-label class="largeScreen text-green-9" v-model="tabs">
                 <q-tab name="dashboard" icon="home" label="Dashboard" clickable @click="e=>$inertia.get(route('dashboard'))"/>
-                <q-tab name="farmers" icon="person" label="Farmers List" clickable @click="e=>$inertia.get(route('manage-farmer'))"/>
+                <q-tab name="manage-farmer" icon="person" label="Farmers List" clickable @click="e=>$inertia.get(route('manage-farmer'))"/>
                 <q-tab  v-if="$page.props.auth.user.roles_id===1" name="movies" icon="movie" label="Admin Controls" >
                     <q-menu
                         transition-show="scale"
@@ -46,8 +46,10 @@
 
 <script setup>
 import {AdminStore} from "@/Store/AdminStore.js";
+import {storeToRefs} from "pinia";
 
 const store=AdminStore();
+const {tabs}=storeToRefs(store)
 </script>
 
 <style scoped>
