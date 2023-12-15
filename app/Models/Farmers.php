@@ -16,7 +16,7 @@ class Farmers extends Model
         'id','farmer_id','full_name','dob','farmer_category_id','status','voter_no','education_qualification',
         'phone_no','aadhaar_no','gender_id','caste_id','sub_division_id','district_id',
         'village_id','block_id','relationship','relationship_name','other_income','is_farming_main_income',
-        'aadhaar_verify_type','state_lgd_code','village_lgd_code','user_id','verification','rejection_note'
+        'aadhaar_verify_type','state_lgd_code','village_lgd_code','user_id','verification','rejection_note','supervisor_id',
 
     ];
     public static function boot()

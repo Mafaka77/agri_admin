@@ -24,6 +24,9 @@ class RolesSeeder extends Seeder
             ],[
                 'id'=>3,
                 'name'=>'Enumerator'
+            ],[
+                'id'=>4,
+                'name'=>'DAO'
             ]
         ];
         foreach ($roles as $role){

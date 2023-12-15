@@ -10,6 +10,7 @@ use App\Models\FarmerFisherie;
 use App\Models\FarmerHorticultureFarmDetails;
 use App\Models\FarmerLandWaterConservation;
 use App\Models\FarmerSericultureDetails;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -144,7 +145,12 @@ class MobileAgriLandController extends Controller
         }catch (\Exception $ex){
             return response()->json(['error'=>'Error Occured'],500);
         }
+    }
 
-
+    public function getSupervisor(Request $request,int $id)
+    {
+        $supervisorList=User::query()->where('district_id',$id,)->where('roles_id','=',2)->get();
+        info($supervisorList);
+        return response()->json(['data'=>$supervisorList],200);
     }
 }

@@ -30,6 +30,7 @@ return new class extends Migration
             $table->string('status')->default('Incomplete');
             $table->enum('verification',['Pending','Submitted','Approved','Rejected'])->default('Pending');
             $table->string('rejection_note')->nullable();
+            $table->string('supervisor_id')->nullable();
             $table->foreignIdFor(\App\Models\User::class);
             $table->foreignIdFor(\App\Models\FarmerCategory::class);
             $table->foreignIdFor(\App\Models\Gender::class);

@@ -59,6 +59,7 @@ Route::post('submit-agri-farm',[\App\Http\Controllers\Api\MobileAgriLandControll
 Route::get('get-agri-farm-detail/{id}',[\App\Http\Controllers\Api\MobileAgriLandController::class,'getFarmerAgriLand'])->name('get-agri-farm-detail');
 Route::put('update-farm-detail/{id}',[\App\Http\Controllers\Api\MobileAgriLandController::class,'updateAgriLandDetail'])->name('update-farm-detail');
 Route::delete('delete-farm-land/{id}',[\App\Http\Controllers\Api\MobileAgriLandController::class,'deleteFarm'])->name('delete-farm-land');
+Route::get('get-supervisor/{districtId}',[\App\Http\Controllers\Api\MobileAgriLandController::class,'getSupervisor'])->name('get-supervisor');
 
 //ADDITIONAL DETAILS
 Route::post('upload-additional-file',[\App\Http\Controllers\Api\AdditionalDetailController::class,'uploadDocuments'])->name('upload-additional-file');
